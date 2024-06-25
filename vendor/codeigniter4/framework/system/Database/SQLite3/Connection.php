@@ -55,6 +55,9 @@ class Connection extends BaseConnection
      */
     protected $busyTimeout;
 
+    /**
+     * @return void
+     */
     public function initialize()
     {
         parent::initialize();
@@ -101,6 +104,8 @@ class Connection extends BaseConnection
     /**
      * Keep or establish the connection if no queries have been sent for
      * a length of time exceeding the server's idle timeout.
+     *
+     * @return void
      */
     public function reconnect()
     {
@@ -110,6 +115,8 @@ class Connection extends BaseConnection
 
     /**
      * Close the database connection.
+     *
+     * @return void
      */
     protected function _close()
     {
@@ -209,7 +216,7 @@ class Connection extends BaseConnection
     }
 
     /**
-     * @return array|false
+     * @return false|list<string>
      *
      * @throws DatabaseException
      */

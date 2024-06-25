@@ -654,6 +654,7 @@ class BaseBuilder
             $cond = ' ON ' . $cond;
         } else {
             // Split multiple conditions
+            // @TODO This does not parse `BETWEEN a AND b` correctly.
             if (preg_match_all('/\sAND\s|\sOR\s/i', $cond, $joints, PREG_OFFSET_CAPTURE)) {
                 $conditions = [];
                 $joints     = $joints[0];
@@ -675,6 +676,13 @@ class BaseBuilder
 
             foreach ($conditions as $i => $condition) {
                 $operator = $this->getOperator($condition);
+
+                // Workaround for BETWEEN
+                if ($operator === false) {
+                    $cond .= $joints[$i] . $condition;
+
+                    continue;
+                }
 
                 $cond .= $joints[$i];
                 $cond .= preg_match('/(\(*)?([\[\]\w\.\'-]+)' . preg_quote($operator, '/') . '(.*)/i', $condition, $match) ? $match[1] . $this->db->protectIdentifiers($match[2]) . $operator . $this->db->protectIdentifiers($match[3]) : $condition;
@@ -1090,7 +1098,7 @@ class BaseBuilder
      * @used-by notHavingLike()
      * @used-by orNotHavingLike()
      *
-     * @param array|RawSql|string $field
+     * @param array<string, string>|RawSql|string $field
      *
      * @return $this
      */
@@ -1440,10 +1448,11 @@ class BaseBuilder
      */
     public function orderBy(string $orderBy, string $direction = '', ?bool $escape = null)
     {
-        $qbOrderBy = [];
         if ($orderBy === '') {
             return $this;
         }
+
+        $qbOrderBy = [];
 
         $direction = strtoupper(trim($direction));
 
@@ -1455,7 +1464,7 @@ class BaseBuilder
             $direction = in_array($direction, ['ASC', 'DESC'], true) ? ' ' . $direction : '';
         }
 
-        if (! is_bool($escape)) {
+        if ($escape === null) {
             $escape = $this->db->protectIdentifiers;
         }
 
@@ -1466,8 +1475,6 @@ class BaseBuilder
                 'escape'    => false,
             ];
         } else {
-            $qbOrderBy = [];
-
             foreach (explode(',', $orderBy) as $field) {
                 $qbOrderBy[] = ($direction === '' && preg_match('/\s+(ASC|DESC)$/i', rtrim($field), $match, PREG_OFFSET_CAPTURE))
                     ? [
@@ -2376,7 +2383,9 @@ class BaseBuilder
     /**
      * Generates a platform-specific insert string from the supplied data
      *
-     * @param string $table Protected table name
+     * @param string           $table         Protected table name
+     * @param list<string>     $keys          Keys of QBSet
+     * @param list<int|string> $unescapedKeys Values of QBSet
      */
     protected function _insert(string $table, array $keys, array $unescapedKeys): string
     {
@@ -2416,7 +2425,9 @@ class BaseBuilder
     /**
      * Generates a platform-specific replace string from the supplied data
      *
-     * @param string $table Protected table name
+     * @param string           $table  Protected table name
+     * @param list<string>     $keys   Keys of QBSet
+     * @param list<int|string> $values Values of QBSet
      */
     protected function _replace(string $table, array $keys, array $values): string
     {
@@ -2512,7 +2523,8 @@ class BaseBuilder
     /**
      * Generates a platform-specific update string from the supplied data
      *
-     * @param string $table Protected table name
+     * @param string                $table  Protected table name
+     * @param array<string, string> $values QBSet
      */
     protected function _update(string $table, array $values): string
     {
@@ -2863,9 +2875,9 @@ class BaseBuilder
      *
      * @used-by batchExecute()
      *
-     * @param string       $table Protected table name
-     * @param list<string> $keys  QBKeys
-     * @paramst<string|int>> $values QBSet
+     * @param string           $table  Protected table name
+     * @param list<string>     $keys   QBKeys
+     * @param list<int|string> $values QBSet
      */
     protected function _deleteBatch(string $table, array $keys, array $values): string
     {
