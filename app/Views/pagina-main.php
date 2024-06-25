@@ -1,11 +1,3 @@
-<?php
-$is_logged = 0;
-$user = session('user');
-if (null !== $user) {
-  $is_logged = (session('user')['id_usuario'] > 0);
-} 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,34 +9,89 @@ if (null !== $user) {
 </head>
 
 <body>
-    <ul class="nav nav-tabs">
+    <style>
+        .center-screen {
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }  
+        .card {
+            height: 100%;
+        }
+        .car-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .custom-navbar {
+            background-color: #50A5E4;
+        } 
+        .imagen  {
+            align-items: center;
+            margin-bottom: -25%;
+        } 
+        .imagen img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        } 
+        
+        
+    </style>
+    <ul class="nav nav-tabs custom-navbar">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Tus turnos</a>
+            <a class="nav-link text-white " aria-current="page" href="<?= site_url('crudPaciente') ?>">Tus turnos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= site_url('calendario') ?>">Calendario</a>
+            <a class="nav-link text-white " href="<?= site_url('calendario') ?>">Calendario</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Consulta</a>
+            <a class="nav-link text-white " href="<?= site_url('preguntas') ?>">Preguntas</a>
         </li>
-        <li class="nav-item position-relative">
-            <a class="nav-link" href="<?= site_url('calendario') ?>">Perfil</a>
+        <li class="nav-item">
+            <a class="nav-link text-white " href="<?= site_url('perfil') ?>">Perfil</a>
         </li>
-
-        <!-- //Apartado para rol de medico  -->
-        <!-- <li class="nav-item ">
-            <a class="nav-link" href="#">Ver mis turnos</a>
-        </li>  --> 
-
-         <!-- //Apartado para rol Admin  -->
-        <!-- <li class="nav-item ">
-            <a class="nav-link" href="#">Gestion de Turnos</a>
-        </li>  
-        <li class="nav-item ">
-            <a class="nav-link" href="#">Gestionar Usuarios Usuarios</a> 
-        </li>  
-        -->
     </ul> 
+    <div class="imagen">
+        <img src="img/1.jpg" alt="">
+    </div>
+        <div class="container center-screen">
+            <div class="row justify content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Generar un Turno</h5>
+                            <p class="card-text">Toque aqui para generar un turno.</p>
+                            <a href="#" class="btn btn-primary">Ir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Añadir un Paciente</h5>
+                            <p class="card-text">Añada aqui sus datos personales.</p>
+                            <a href="#" class="btn btn-primary">Ir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ver mis Turnos</h5>
+                            <p class="card-text">Vea los turnos generados.</p>
+                            <a href="#" class="btn btn-primary">Ir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    
 
 
 

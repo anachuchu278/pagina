@@ -27,7 +27,7 @@ class LoginControlador extends BaseController{
                 $session->set('user_id', $user['id_Usuario']); 
 
                 // Redirigir a la URL guardada o a una ruta predeterminada después del login
-                $redirect_url = $session->get('redirect_url') ?? '/crudPaciente';
+                $redirect_url = $session->get('redirect_url') ?? 'pagina';
                 return redirect()->to($redirect_url);
             } else {
                 return redirect()->back()->with('error', 'Contraseña incorrecta.');
@@ -42,5 +42,5 @@ class LoginControlador extends BaseController{
         $this->session->destroy(); //Funciona pero da warning
         return redirect()->to('');
     } 
-    //
+    
 }
