@@ -20,13 +20,13 @@
             <tbody>
                 <?php foreach ($turnos as $turno) :?>
                     <tr>
-                        <td><?= $turno->fecha_hora; ?></td>
-                        <td><?= $turno->email; ?></td>
-                        <td><?= $turno->tipo; ?></td>
+                        <td><?= $turno['fecha_hora']; ?></td>
+                        <td><?= $turno['id_usuario']; ?></td>
+                        <td><?= $turno['id_paciente']; ?></td>
                         <td>
-                            <a href="<?= site_url('editarTurno/'. $turno->id_Turno); ?>">Reprogramar Turno</a>
-                            <a href="<?= site_url('cancelarTurno/'. $turno->id_Turno); ?>">Cancelar Turno</a>
-                            <a href="<?= site_url('PDFTurno/'. $turno->id_Turno); ?>">Descargar PDF</a>
+                            <a href="<?= site_url('editarTurno/'. $turno['id_Turno']); ?>">Reprogramar Turno</a>
+                            <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']); ?>">Cancelar Turno</a>
+                            <a href="<?= site_url('PDFTurno/'. $turno['id_Turno']); ?>">Descargar PDF</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
