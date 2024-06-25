@@ -15,7 +15,7 @@
             <div class="calendar">
                 <div class="month">
                     <i class="fa fa-angle-left prev"></i>
-                    <div class="date"> junio 2024</div>
+                    <div class="date"></div>
                     <i class="fa fa-angle-right next"></i>
                 </div> 
                 <div class="week">
@@ -27,8 +27,15 @@
                     <div>Sa</div>
                     <div>Do</div>
                 </div> 
+                <div class="goto-today">
+                    <div class="goto">
+                        <input type="text" placeholder="mm/yyyy" class="date-input">
+                        <button class="goto-btn">ir</button>
+                    </div>
+                    <button class="goto-today">Dia Actual</button>
+                </div>
             </div>
-        </div>
+        </div> 
     </div>
 
 
