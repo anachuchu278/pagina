@@ -46,7 +46,7 @@ class TurnoModel extends Model{
         $builder = $this->db->table('turno');
         $builder->select('turno.*, especialidad.tipo', 'usuario.email');
         $builder->join('usuario', 'turno.id_usuario = usuario.id_Usuario');
-        $builder->join('especialidad', 'especialidad.id = usuario.id_especialidad');
+        $builder->join('especialidad', 'especialidad.id_Especialidad = usuario.id_especialidad');
         $builder->where('turno.id_usuario', $pacienteId);
         return $builder->get()->getResult();
     }

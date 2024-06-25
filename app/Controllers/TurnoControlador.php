@@ -16,12 +16,12 @@ class TurnoControlador extends BaseController{
             $pacienteModel = new PacienteModel();
             $usuarioModel = new UsuarioModelo();
             // $estadoModel = new EstadoModel();
-            
+
             $userId = $session->get('user_id');
             $user = $pacienteModel->find($userId);
-            
+
             $turnos = $turnoModel->getTurnosPorPaciente($userId);
-            
+
             // Cargar la información de especialidad para cada usuario en los turnos
             // foreach ($turnos as $turno) {
             //     $usuario = $usuarioModel->find($turno['id_usuario']);
@@ -29,8 +29,11 @@ class TurnoControlador extends BaseController{
             // }
             $data['usuario'] = $user;
             $data['turnos'] = $turnos;
-            
-            echo view('layout/navbar.php');
+
+            $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+            $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+
+            echo view('layout/navbar.php', $data);
             return view('turnoVista.php', $data);
         } else {
             // Usuario no logueado, redirige a la página de inicio de sesión u otra página
@@ -63,7 +66,10 @@ class TurnoControlador extends BaseController{
             // TODO Revisar como añadir el id_pago  -!- Cambiar relacion id_turno -> tabla Pago, no id_pago ->Tabla Turno
             $id = $session->get('user_id');
             $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
-            $codigoturno = rand(1, 999999);
+            function getRandomHex($num_bytes=4) {
+                return bin2hex(openssl_random_pseudo_bytes($num_bytes));
+            }
+            $codigoturno = getRandomHex(4);
             $data = [
                 'fecha_hora' => $this->request->getPost('fecha_hora'),
                 'codigo turno' => $codigoturno,
