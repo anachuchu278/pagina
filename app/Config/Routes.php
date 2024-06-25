@@ -6,12 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-<<<<<<< HEAD
+
 $routes->get('/', 'PaginaController::Ingresar'); 
 $routes->get('calendario','PaginaController::calendario' );
 $routes->get('perfil','PaginaController::perfil');
-=======
-// $routes->get('/', 'Home::index');
 //Paciente
 $routes->get('crudPaciente', 'PacienteControlador::index', ['filter' => 'auth']);
 $routes->get('newPacienteView', 'PacienteControlador::newVista', ['filter' => 'auth']);
@@ -34,4 +32,4 @@ $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para e
 //Medico
 $routes->get('NewMedView', 'RecepcionControlador::newMedVista'); 
 //
->>>>>>> origin/test
+
