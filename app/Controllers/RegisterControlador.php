@@ -41,5 +41,6 @@ class RegisterControlador extends Controller {
 
         $UsuarioModelo->insert($data);
         return redirect()->to('loginVista')->with('success', 'Se ha registrado correctamente.');
-    }
+    } 
+    //
 }

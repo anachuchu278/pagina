@@ -27,4 +27,5 @@ $routes->get('turnos', 'TurnoControlador::index', ['filter' => 'auth']); // Pagi
 $routes->get('newTurno', 'TurnoControlador::newVista'); // Vista para añadir nuevos turnos
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
 //Medico
-$routes->get('NewMedView', 'RecepcionControlador::newMedVista');
+$routes->get('NewMedView', 'RecepcionControlador::newMedVista'); 
+//

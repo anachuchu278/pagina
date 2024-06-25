@@ -41,5 +41,6 @@ class LoginControlador extends BaseController{
         $session = \Config\Services::session();
         $this->session->destroy(); //Funciona pero da warning
         return redirect()->to('');
-    }
+    } 
+    //
 }
