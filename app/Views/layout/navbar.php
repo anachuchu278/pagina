@@ -7,6 +7,9 @@
     </div>
     <ul class="navbar-menu">
         <li><a href="/">Inicio</a></li>
+        <?php if ($showAdmin): ?>
+            <li><a href="admin">Admin</a></li>
+        <?php endif; ?>
         <li><a href="turnos">Turnos</a></li>
         <li><a href="newPacienteView">Mis Datos</a></li>
         <form class="advanced-search">

@@ -47,9 +47,6 @@
         <div class="box-new">
             <a class="new" href="newPacienteView">Añadir</a><br>
         </div>
-        <?php if ($showAdmin): ?>
-            <li><a href="admin">Admin</a></li>
-        <?php else: ?>
-        <?php endif; ?>
+
     </body>
 </html>
