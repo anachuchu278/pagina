@@ -11,51 +11,42 @@ use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
     public function index(){
         $session = \Config\Services::session();
-        if ($session->get('user_id')) {
-            $turnoModel = new TurnoModel();
-            $pacienteModel = new PacienteModel();
-            $usuarioModel = new UsuarioModelo();
-            // $estadoModel = new EstadoModel();
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
+        // $estadoModel = new EstadoModel();
 
-            $userId = $session->get('user_id');
-            $user = $pacienteModel->find($userId);
+        $userId = $session->get('user_id');
+        $user = $pacienteModel->find($userId);
 
-            $turnos = $turnoModel->getTurnosPorPaciente($userId);
+        $turnos = $turnoModel->getTurnosPorPaciente($userId);
 
-            // Cargar la información de especialidad para cada usuario en los turnos
-            // foreach ($turnos as $turno) {
-            //     $usuario = $usuarioModel->find($turno['id_usuario']);
-            //     $turno['id_especialidad'] = $usuario->especialidad;
-            // }
-            $data['usuario'] = $user;
-            $data['turnos'] = $turnos;
+        // Cargar la información de especialidad para cada usuario en los turnos
+        // foreach ($turnos as $turno) {
+        //     $usuario = $usuarioModel->find($turno['id_usuario']);
+        //     $turno['id_especialidad'] = $usuario->especialidad;
+        // }
+        $data['usuario'] = $user;
+        $data['turnos'] = $turnos;
 
-            $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-            $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
 
-            echo view('layout/navbar.php', $data);
-            return view('turnoVista.php', $data);
-        } else {
-            // Usuario no logueado, redirige a la página de inicio de sesión u otra página
-            return redirect()->to('/');
-        }
+        echo view('layout/navbar.php', $data);
+        return view('turnoVista.php', $data);
     }
     public function newVista(){ // Vista para agendar un turno
         $session = \Config\Services::session();
-        if ($session->get('user_id')) {
-            $turnoModel = new TurnoModel();
-            $pacienteModel = new PacienteModel();
-            $usuarioModel = new UsuarioModelo();
-            $userId = $session->get('user_id');
-            // $usuario = $usuarioModel->getMedicos();
-            $user = $pacienteModel->getPaciente($userId);
-            
-            $data['usuario'] = $user;
-            echo view('layout/navbar.php');
-            return view('TurnoNew.php', $data);
-        } else {
-            return redirect()->to('/');
-        }
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
+        $userId = $session->get('user_id');
+        // $usuario = $usuarioModel->getMedicos();
+        $user = $pacienteModel->getPaciente($userId);
+        
+        $data['usuario'] = $user;
+        echo view('layout/navbar.php');
+        return view('TurnoNew.php', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
         $session = \Config\Services::session();
@@ -79,7 +70,6 @@ class TurnoControlador extends BaseController{
             ];
         
         } else {
-            // Usuario no logueado, redirige a la página de inicio de sesión u otra página
             return redirect()->to('/');
         }
     }

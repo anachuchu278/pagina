@@ -23,7 +23,7 @@ $routes->get('loginVista','LoginControlador::index');
 $routes->get('Logout', 'LoginControlador::logout'); // Logout
 // $routes->get('test', 'LoginControlador::loguearse');
 //Turnos
-$routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turnos del usuario
+$routes->get('turnos', 'TurnoControlador::index', ['filter' => 'auth']); // Pagina principal con turnos del usuario
 $routes->get('newTurno', 'TurnoControlador::newVista'); // Vista para añadir nuevos turnos
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
 //Medico

@@ -105,6 +105,6 @@ class Filters extends BaseFilters
      * @var array<string, array<string, list<string>>>
      */
     public array $filters = [
-    'auth' => ['before' => ['crudPaciente', 'newPacienteView', 'editPaciente/*', 'eliminarPaciente/*']],
+    'auth' => ['before' => ['crudPaciente', 'newPacienteView', 'editPaciente/*', 'eliminarPaciente/*', 'turnos']],
     ];
 }
