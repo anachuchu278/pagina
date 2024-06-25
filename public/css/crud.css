@@ -1,0 +1,56 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo de los enlaces */
+.delete {
+    color: #000000;
+    text-decoration: underline dotted rgb(0, 0, 0);
+}
+
+.delete:hover {
+    background-color: rgb(255, 78, 78);
+    border-radius: 5px;
+}
+
+.editar {
+    color: #000000;
+    text-decoration: none;
+}
+
+.editar:hover {
+    background-color: rgb(42, 134, 255);
+    border-radius: 5px;
+}
+
+.box-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 1rem auto;
+    width: auto;
+}
+
+.new:hover {
+    background-color: rgb(151, 202, 174);
+}
