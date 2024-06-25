@@ -14,13 +14,13 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
- CI_ENVIRONMENT = development
+# CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
- app.baseURL = 'http://localhost/pagina/public'
+# app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
@@ -31,12 +31,12 @@
 #--------------------------------------------------------------------
 
 # database.default.hostname = localhost
- database.default.database = tesina_grupo6
- database.default.username = root
- database.default.password = 
+# database.default.database = ci4
+# database.default.username = root
+# database.default.password = root
 # database.default.DBDriver = MySQLi
 # database.default.DBPrefix =
- database.default.port = 3306
+# database.default.port = 3306
 
 # If you use MySQLi as tests, first update the values of Config\Database::$tests.
 # database.tests.hostname = localhost
