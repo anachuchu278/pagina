@@ -19,7 +19,7 @@ class TurnoControlador extends BaseController{
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
 
-        $turnos = $turnoModel->getTurnosPorPaciente($userId);
+        $turnos = $turnoModel->getTurnosPorUsuario($userId);
 
         // Cargar la información de especialidad para cada usuario en los turnos
         // foreach ($turnos as $turno) {
@@ -35,16 +35,19 @@ class TurnoControlador extends BaseController{
         echo view('layout/navbar.php', $data);
         return view('turnoVista.php', $data);
     }
-    public function newVista(){ // Vista para agendar un turno
+    public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $userId = $session->get('user_id');
-        // $usuario = $usuarioModel->getMedicos();
+
         $user = $pacienteModel->getPaciente($userId);
-        
+        $turnos = $turnoModel->getTurnosPorUsuario($userId);
+
         $data['usuario'] = $user;
+        $data['turnos'] = $turnos;
+
         echo view('layout/navbar.php');
         return view('TurnoNew.php', $data);
     }

@@ -7,33 +7,34 @@
     <title>Turnos</title>
 </head>
 <body>
-    <table>
     <?php if (!empty($turnos)): ?>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Medico</th>
-                <th>Especialidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($turnos as $turno) :?>
+        <table>
+            <thead>
                 <tr>
-                    <td><?= $turno['fecha_hora'];?></td>
-                    <td><?= $turno['id_usuario'];?></td>
-                    <td>
-                        <a href="<?= site_url('editarTurno/'. $turno->id_Turno);?>">Reprogramar Turno</a>
-                        <a href="<?= site_url('cancelarTurno/'. $turno->id_Turno);?>">Cancelar Turno</a>
-                        <a href="<?= site_url('PDFTurno/'. $turno->id_Turno);?>">Descargar PDF</a>
-                    </td>
+                    <th>Fecha</th>
+                    <th>Medico</th>
+                    <th>Especialidad</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endforeach;?>
-        </tbody>
+            </thead>
+            <tbody>
+                <?php foreach ($turnos as $turno) :?>
+                    <tr>
+                        <td><?= $turno->fecha_hora; ?></td>
+                        <td><?= $turno->email; ?></td>
+                        <td><?= $turno->tipo; ?></td>
+                        <td>
+                            <a href="<?= site_url('editarTurno/'. $turno->id_Turno); ?>">Reprogramar Turno</a>
+                            <a href="<?= site_url('cancelarTurno/'. $turno->id_Turno); ?>">Cancelar Turno</a>
+                            <a href="<?= site_url('PDFTurno/'. $turno->id_Turno); ?>">Descargar PDF</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     <?php else: ?>
         <p>No tiene turnos reservados.</p>
     <?php endif; ?>
-    </table>
     <div class="box-new">
         <a href="newTurno"><button class="new" >Pedir Turno</button></a>
     </div>
