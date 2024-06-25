@@ -9,5 +9,8 @@ class PaginaController extends Controller{
     } 
     public function Calendario(){
         return view('calendario');
+    } 
+    public function perfil(){
+        return view('perfil');
     }
 }

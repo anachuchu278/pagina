@@ -28,7 +28,7 @@ if (null !== $user) {
             <a class="nav-link" href="#">Consulta</a>
         </li>
         <li class="nav-item position-relative">
-            <a class="nav-link" href="#">Perfil</a>
+            <a class="nav-link" href="<?= site_url('calendario') ?>">Perfil</a>
         </li>
 
         <!-- //Apartado para rol de medico  -->

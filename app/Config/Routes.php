@@ -8,3 +8,4 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'PaginaController::Ingresar'); 
 $routes->get('calendario','PaginaController::calendario' );
+$routes->get('perfil','PaginaController::perfil');
