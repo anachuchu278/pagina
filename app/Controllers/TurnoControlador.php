@@ -45,10 +45,10 @@ class TurnoControlador extends BaseController{
         $user = $pacienteModel->getPaciente($userId);
         $turnos = $turnoModel->getTurnosPorUsuario($userId);
 
-        $data['usuario'] = $user;
+        $data['userId'] = $userId;
         $data['turnos'] = $turnos;
 
-        echo view('layout/navbar.php');
+        //echo view('layout/navbar.php', $data);
         return view('TurnoNew.php', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
@@ -66,12 +66,14 @@ class TurnoControlador extends BaseController{
             $codigoturno = getRandomHex(4);
             $data = [
                 'fecha_hora' => $this->request->getPost('fecha_hora'),
-                'codigo turno' => $codigoturno,
-                'id_usuario' => $this->request->getPost('medico'),
-                'id_paciente' => $idPaciente,
-                'id_estado' => 1
+                'codigo_turno' => $codigoturno,
+                'id_usuario' => 1,
+                'id_paciente' => 1,
+                'id_estado' => 1,
+                'id_pago' => 1,
             ];
-        
+            $turnoModel->insertarTurno($data);
+            return redirect()->to('turnos');
         } else {
             return redirect()->to('/');
         }
