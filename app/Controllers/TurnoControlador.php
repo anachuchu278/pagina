@@ -19,7 +19,7 @@ class TurnoControlador extends BaseController{
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
 
-        $turnos = $turnoModel->getTurnosPorPaciente($userId);
+        $turnos = $turnoModel->getTurnosPorUsuario($userId);
 
         // Cargar la información de especialidad para cada usuario en los turnos
         // foreach ($turnos as $turno) {
@@ -35,17 +35,20 @@ class TurnoControlador extends BaseController{
         echo view('layout/navbar.php', $data);
         return view('turnoVista.php', $data);
     }
-    public function newVista(){ // Vista para agendar un turno
+    public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $userId = $session->get('user_id');
-        // $usuario = $usuarioModel->getMedicos();
+
         $user = $pacienteModel->getPaciente($userId);
-        
-        $data['usuario'] = $user;
-        echo view('layout/navbar.php');
+        $turnos = $turnoModel->getTurnosPorUsuario($userId);
+
+        $data['userId'] = $userId;
+        $data['turnos'] = $turnos;
+
+        //echo view('layout/navbar.php', $data);
         return view('TurnoNew.php', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
@@ -63,12 +66,14 @@ class TurnoControlador extends BaseController{
             $codigoturno = getRandomHex(4);
             $data = [
                 'fecha_hora' => $this->request->getPost('fecha_hora'),
-                'codigo turno' => $codigoturno,
-                'id_usuario' => $this->request->getPost('medico'),
-                'id_paciente' => $idPaciente,
-                'id_estado' => 1
+                'codigo_turno' => $codigoturno,
+                'id_usuario' => 1,
+                'id_paciente' => 1,
+                'id_estado' => 1,
+                'id_pago' => 1,
             ];
-        
+            $turnoModel->insertarTurno($data);
+            return redirect()->to('turnos');
         } else {
             return redirect()->to('/');
         }
