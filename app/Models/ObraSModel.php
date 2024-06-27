@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class ObraSModel extends Model{
     protected $table      = 'obra_social';
     // Uncomment below if you want add primary key
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_Obra';
     protected $allowedFields=[
         'nombre'
     ];
@@ -15,7 +15,7 @@ class ObraSModel extends Model{
         if ($id === false) {
             return $this->findAll() ? $this->findAll() : [];
         } else {
-            return $this->where(['id' => $id])->first() ? $this->where(['id' => $id])->first() : [];
+            return $this->where(['id_Obra' => $id])->first() ? $this->where(['id_Obra' => $id])->first() : [];
         }
     }
 }
