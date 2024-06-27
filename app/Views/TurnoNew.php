@@ -6,8 +6,21 @@
     <title>Nuevo Turno</title>
 </head>
 <body>
-    <form action="newTurno" method="POST">
-        
+    <form action="newTurno1" method="POST">
+
+        <label for="fecha">Fecha y hora:</label><br>
+
+        <?php
+            $mindate = date("Y-m-d");
+            $mintime = date("h:i");
+            $min = $mindate."T".$mintime;
+            $maxdate = date("Y-m-d", strtotime("+10 Days"));
+            $maxtime = date("h:i");
+            $max = $maxdate."T".$maxtime;
+        ?>
+        <input type="datetime-local" id="fecha_hora" min="<?php echo $min;?>" max="<?php echo $max;?>" name="fecha_hora" required><br>
+
+        <input type="submit" value="Añadir Turno">
     </form>
 </body>
 </html>

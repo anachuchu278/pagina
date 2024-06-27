@@ -15,7 +15,7 @@
             <div class="calendar">
                 <div class="month">
                     <i class="fa fa-angle-left prev"></i>
-                    <div class="date"></div>
+                    <div class="date">Junio 2024</div>
                     <i class="fa fa-angle-right next"></i>
                 </div> 
                 <div class="week">
@@ -27,6 +27,39 @@
                     <div>Sa</div>
                     <div>Do</div>
                 </div> 
+                <div class="days">
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day active">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    
+                </div>
                 <div class="goto-today">
                     <div class="goto">
                         <input type="text" placeholder="mm/yyyy" class="date-input">
