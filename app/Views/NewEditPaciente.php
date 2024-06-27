@@ -6,7 +6,7 @@
     <title><?= isset($paciente['id_Paciente']) ? "Editar " . $paciente['nombre'] : "Añadir Paciente" ?></title>
 </head>
 <body>
-    <form action="<?= isset($paciente['id_Paciente']) ? base_url('guardarPaciente/' . $paciente['id_Paciente']) : base_url('guardarPaciente') ?>" method="POST">
+    <form action="<?= isset($paciente['id_Paciente']) ? base_url('editarPaciente/' . $paciente['id_Paciente']) : base_url('newPaciente') ?>" method="POST">
         <?php if (isset($paciente['id_Paciente'])): ?>
             <input type="hidden" name="id_Paciente" value="<?= $paciente['id_Paciente'] ?>">
         <?php endif; ?>
@@ -44,14 +44,14 @@
         <label for="id_obra">Obra:</label><br>
         <select name="id_obra" id="id_obra" required>
             <?php foreach ($obras as $obra): ?>
-                <option value="<?= $obra['id'] ?>" <?= (isset($paciente['id_obra']) && $paciente['id_obra'] == $obra['id']) ? 'selected' : '' ?>><?= $obra['nombre'] ?></option>
+                <option value="<?= $obra['id_Obra'] ?>" <?= (isset($paciente['id_obra']) && $paciente['id_obra'] == $obra['id_Obra']) ? 'selected' : '' ?>><?= $obra['nombre'] ?></option>
             <?php endforeach; ?>
         </select><br>
 
         <label for="id_tipo_sangre">Tipo de sangre:</label><br>
         <select name="id_tipo_sangre" id="id_tipo_sangre" required>
             <?php foreach ($tiposans as $tiposan): ?>
-                <option value="<?= $tiposan['id_sangre'] ?>" <?= (isset($paciente['id_tipo_sangre']) && $paciente['id_tipo_sangre'] == $tiposan['id_sangre']) ? 'selected' : '' ?>><?= $tiposan['tipo'] ?></option>
+                <option value="<?= $tiposan['id_Sangre'] ?>" <?= (isset($paciente['id_tipo_sangre']) && $paciente['id_tipo_sangre'] == $tiposan['id_Sangre']) ? 'selected' : '' ?>><?= $tiposan['tipo'] ?></option>
             <?php endforeach; ?>
         </select><br>
 

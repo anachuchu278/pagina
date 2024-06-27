@@ -65,7 +65,7 @@ class PacienteControlador extends BaseController
 
             // Verificar si el usuario actual puede editar este paciente
             if ($session->get('user_rol') != 1 && $session->get('user_id') != $data['paciente']['id_usuario']) {
-                return redirect()->to('/ruta/a/pagina/de/error')->with('error', 'No tienes permiso para editar este paciente.');
+                return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
             }
         }
 
@@ -129,8 +129,8 @@ class PacienteControlador extends BaseController
 
         // Verificar si el usuario actual puede editar este paciente
         $session = \Config\Services::session();
-        if ($session->get('user_id_rol') != 1 && $session->get('user_id') != $data['paciente']['id_usuario']) {
-            return redirect()->to('/ruta/a/pagina/de/error')->with('error', 'No tienes permiso para editar este paciente.');
+        if ($session->get('user_id_rol') != 2 && $session->get('user_id') != $data['paciente']['id_usuario']) {
+            return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
         }
 
         return view('NewEditPaciente', $data);
