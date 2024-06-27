@@ -12,7 +12,7 @@ class EstadoModel extends Model{
     ];
     public function getNombrePorID($idT)
     {
-        $query = $this->db->get_where('pacientes',array('id' => $idT));
+        $query = $this->db->getWhere('estado',array('id' => $idT));
         return $query;
     }
 }
