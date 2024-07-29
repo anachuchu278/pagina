@@ -52,7 +52,14 @@
         </li>
         <li class="nav-item">
             <a class="nav-link text-white " href="<?= site_url('perfil') ?>">Perfil</a>
-        </li>
+        </li> 
+        <li class="nav-item">
+            <a class="nav-link text-white " href="<?= site_url('logout') ?>">Cerrar Sesion</a>
+        </li> 
+        <?php if ($showAdmin):?>
+            <li><a class="nav-link text-white " href="<?= site_url('admin') ?>">Admin</a></li>
+            <?php endif; ?>
+            
     </ul> 
     <div class="imagen">
         <img src="img/1.jpg" alt="">

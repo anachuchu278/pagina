@@ -1,16 +1,18 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-.container { 
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.container {
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    max-width: 800px; /* Ajusta el máximo ancho según sea necesario */
+    background-color: #f9f9f9; /* Opcional: Añade un color de fondo */
+    padding: 20px; /* Opcional: Añade un padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: Añade una sombra */
+    border-radius: 10px; /* Opcional: Añade bordes redondeados */
 }
 
 h1 {

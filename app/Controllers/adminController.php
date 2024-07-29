@@ -3,23 +3,20 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\UsuarioModelo;
+use App\Models\UsuarioModelo;  
 
-class RegisterControlador extends Controller
-{
-    public function index()
-    {
-        return view('registerVista');
+class AdminController extends BaseController {
+
+    public function admin(){
+        return view('nuevoAdmin');
     }
-
-    public function registrarse()
-    {
+    public function nuevoAdmin(){
         $UsuarioModelo = new UsuarioModelo();
 
         $name = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
-        $id_rol = 1;
+        $id_rol = 2;
 
         // Verificar si el email ya está registrado
         $existingEmail = $UsuarioModelo->where('email', $email)->first();
@@ -54,9 +51,11 @@ class RegisterControlador extends Controller
         ];
 
         $UsuarioModelo->insert($data);
-        return redirect()->to('loginVista')->with('success', 'Se ha registrado correctamente.');
+        return redirect()->to('pagina');
 
 
     }
-    //
-}
+    }
+
+
+?>
