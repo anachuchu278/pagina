@@ -10,9 +10,9 @@ class EstadoModel extends Model{
     protected $allowedFields = [
         'estado'
     ];
-    public function getNombrePorID($idT)
-    {
-        $query = $this->db->getWhere('estado',array('id' => $idT));
-        return $query;
-    }
+    // public function getNombrePorID($idT)
+    // {
+    //     $query = $this->db->where('estado',array('id' => $idT));
+    //     return $query;
+    // }
 }

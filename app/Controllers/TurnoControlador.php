@@ -24,8 +24,8 @@ class TurnoControlador extends BaseController{
         // Cargar la información de especialidad para cada usuario en los turnos
         foreach ($turnos as $turno) {
             $idT = $turno['id_estado'];
-            $nameID = $estadoModel->getNombrePorID($idT);
-            $turno['id_ usuario'] = $nameID;
+            // $nameID = $estadoModel->getNombrePorID($idT);
+            // $turno['id_ usuario'] = $nameID;
         }
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
