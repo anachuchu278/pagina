@@ -34,7 +34,8 @@ class Filters extends BaseFilters
         'cors'          => Cors::class,
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
-        'performance'   => PerformanceMetrics::class,
+        'performance'   => PerformanceMetrics::class, 
+        'SessionAdmin'  => \App\Filters\SessionAdmin::class
     ];
 
     /**
@@ -104,7 +105,11 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [
-    'auth' => ['before' => ['crudPaciente', 'newPacienteView', 'editPaciente/*', 'eliminarPaciente/*', 'turnos']],
-    ];
+    public array $filters = [ 
+        "SessionAdmin" => [
+            "before" => [
+                "vistaAdmin"
+            ]
+        ] 
+    ]; 
 }
