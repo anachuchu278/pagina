@@ -86,8 +86,8 @@ class PacienteControlador extends BaseController
             'altura_cm' => $this->request->getPost('altura_cm'),
             'peso' => $this->request->getPost('peso'),
             'historia_clinica' => $this->request->getPost('historia_clinica'),
-            'id_obra' => $this->request->getPost('id_obra'),
-            'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre'),
+            'id_Obra' => $this->request->getPost('id_Obra'),
+            'id_Sangre' => $this->request->getPost('id_Sangre'),
             'RH_tipo_sangre' => $this->request->getPost('rh') ? 1 : 0
         ];
 
@@ -129,9 +129,6 @@ class PacienteControlador extends BaseController
 
         // Verificar si el usuario actual puede editar este paciente
         $session = \Config\Services::session();
-        if ($session->get('user_id_rol') != 1 && $session->get('user_id') != $data['paciente']['id_usuario']) {
-            return redirect()->to('/ruta/a/pagina/de/error')->with('error', 'No tienes permiso para editar este paciente.');
-        }
 
         return view('NewEditPaciente', $data);
     }
