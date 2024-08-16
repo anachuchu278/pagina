@@ -17,7 +17,7 @@ $routes->get('crudPaciente', 'PacienteControlador::index', ['filter' => 'auth'])
 $routes->get('newPacienteView', 'PacienteControlador::newVista', ['filter' => 'auth']);
 $routes->post('newPaciente', 'PacienteControlador::new', ['filter' => 'auth']);
 $routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1', ['filter' => 'auth']);
-$routes->post('editarPaciente', 'PacienteControlador::edit', ['filter' => 'auth']);
+$routes->post('editarPaciente/(:num)', 'PacienteControlador::edit/$1', ['filter' => 'auth']);
 $routes->get('eliminarPaciente/(:num)', 'PacienteControlador::delete/$1', ['filter' => 'auth']);
 //Usuario
 $routes->get('/','RegisterControlador::index'); 
