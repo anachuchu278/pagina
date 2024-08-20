@@ -23,7 +23,9 @@
 
 			<button type="submit">Login</button>
 		</form>	
-    </div>
+		<a href="<?= base_url('/')?>">No tienes cuenta? Registrate</a>
+		</div>
+		
 </body>
 </html> 
-// 
+

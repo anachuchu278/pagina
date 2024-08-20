@@ -27,8 +27,8 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => 'cris',
-        'password'     => 'root',
+        'username'     => 'root',
+        'password'     => '',
         'database'     => 'tesina_grupo6',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',

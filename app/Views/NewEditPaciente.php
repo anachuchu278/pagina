@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
+    <link rel="stylesheet" href="<?php echo base_url('css/editPaciente.css')?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($paciente['id_Paciente']) ? "Editar " . $paciente['nombre'] : "Añadir Paciente" ?></title>
@@ -41,17 +42,17 @@
         <label for="historia_clinica">Historia clínica:</label><br>
         <input type="text" id="historia_clinica" name="historia_clinica" value="<?= isset($paciente['historia_clinica']) ? $paciente['historia_clinica'] : '' ?>"><br>
 
-        <label for="id_obra">Obra:</label><br>
-        <select name="id_obra" id="id_obra" required>
+        <label for="id_Obra">Obra:</label><br>
+        <select name="id_Obra" id="id_Obra" required>
             <?php foreach ($obras as $obra): ?>
-                <option value="<?= $obra['id_Obra'] ?>" <?= (isset($paciente['id_obra']) && $paciente['id_obra'] == $obra['id_Obra']) ? 'selected' : '' ?>><?= $obra['nombre'] ?></option>
+                <option value="<?= $obra['id_Obra'] ?>" <?= (isset($paciente['id_Obra']) && $paciente['id_Obra'] == $obra['id_Obra']) ? 'selected' : '' ?>><?= $obra['nombre'] ?></option>
             <?php endforeach; ?>
         </select><br>
 
-        <label for="id_tipo_sangre">Tipo de sangre:</label><br>
-        <select name="id_tipo_sangre" id="id_tipo_sangre" required>
+        <label for="id_Sangre">Tipo de sangre:</label><br>
+        <select name="id_Sangre" id="id_Sangre" required>
             <?php foreach ($tiposans as $tiposan): ?>
-                <option value="<?= $tiposan['id_Sangre'] ?>" <?= (isset($paciente['id_tipo_sangre']) && $paciente['id_tipo_sangre'] == $tiposan['id_Sangre']) ? 'selected' : '' ?>><?= $tiposan['tipo'] ?></option>
+                <option value="<?= $tiposan['id_Sangre'] ?>" <?= (isset($paciente['id_Sangre']) && $paciente['id_Sangre'] == $tiposan['id_Sangre']) ? 'selected' : '' ?>><?= $tiposan['tipo'] ?></option>
             <?php endforeach; ?>
         </select><br>
 

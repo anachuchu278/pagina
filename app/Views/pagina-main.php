@@ -52,7 +52,14 @@
         </li>
         <li class="nav-item">
             <a class="nav-link text-white " href="<?= site_url('perfil') ?>">Perfil</a>
-        </li>
+        </li> 
+        <li class="nav-item">
+            <a class="nav-link text-white " href="<?= site_url('logout') ?>">Cerrar Sesion</a>
+        </li> 
+        <?php if ($showAdmin):?>
+            <li><a class="nav-link text-white " href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+            <?php endif; ?>
+            
     </ul> 
     <div class="imagen">
         <img src="img/1.jpg" alt="">
@@ -64,7 +71,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Generar un Turno</h5>
                             <p class="card-text">Toque aqui para generar un turno.</p>
-                            <a href="#" class="btn btn-primary">Ir</a>
+                            <a href="<?php echo base_url('newTurno')?>" class="btn btn-primary">Ir</a>
                         </div>
                     </div>
                 </div>
@@ -73,7 +80,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Añadir un Paciente</h5>
                             <p class="card-text">Añada aqui sus datos personales.</p>
-                            <a href="#" class="btn btn-primary">Ir</a>
+                            <a href="<?php echo base_url('newPacienteView')?>" class="btn btn-primary">Ir</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +89,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Ver mis Turnos</h5>
                             <p class="card-text">Vea los turnos generados.</p>
-                            <a href="#" class="btn btn-primary">Ir</a>
+                            <a href="<?php echo base_url('turnos')?>" class="btn btn-primary">Ir</a>
                         </div>
                     </div>
                 </div>

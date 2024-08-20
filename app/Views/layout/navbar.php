@@ -6,9 +6,9 @@
         <img src="img/logo.png" alt="Logo">
     </div>
     <ul class="navbar-menu">
-        <li><a href="/">Inicio</a></li>
+        <li><a href="pagina">Inicio</a></li>
         <?php if ($showAdmin): ?>
-            <li><a href="admin">Admin</a></li>
+            <li><a href="<?php echo base_url('vista')?>">Admin</a></li>
         <?php endif; ?>
         <li><a href="turnos">Turnos</a></li>
         <li><a href="newPacienteView">Mis Datos</a></li>

@@ -25,12 +25,16 @@ $routes->post('register', 'RegisterControlador::registrarse');
 $routes->get('login', 'RegisterControlador::registrarse'); 
 $routes->post('login1', 'LoginControlador::loguearse'); //Loguea
 $routes->get('loginVista','LoginControlador::index');
-$routes->get('Logout', 'LoginControlador::logout'); // Logout
+$routes->get('logout', 'LoginControlador::logout'); // Logout
 $routes->get('test', 'LoginControlador::loguearse');
 //Turnos
-$routes->get('turnos', 'TurnoControlador::index', ['filter' => 'auth']); // Pagina principal con turnos del usuario
+$routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turnos del usuario
 $routes->get('newTurno', 'TurnoControlador::newVista');// Vista para añadir nuevos turnos
 $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
 //Medico
-$routes->get('NewMedView', 'RecepcionControlador::newMedVista');
+$routes->get('NewMedView', 'RecepcionControlador::newMedVista'); 
+
+//Creacion de Admins 
+$routes->get('vistaAdmin', 'adminController::Admin'); 
+$routes->post('nuevoadmin', 'adminController::nuevoAdmin');
