@@ -1,0 +1,87 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0; 
+    padding: 1px;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 12px 15px;
+}
+
+thead tr {
+    background-color: #008198;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+/* Estilos de los enlaces */
+a {
+    color: #009879;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.editar {
+    color: #4CAF50;
+}
+
+.delete {
+    color: #f44336;
+}
+
+/* Botón para añadir nuevo paciente */
+.box-new {
+    margin-top: 20px;
+}
+
+a.new {
+    background-color: #008198;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+a.new:hover {
+    background-color: #007f5f;
+}

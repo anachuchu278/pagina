@@ -1,0 +1,83 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 1px;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+}
+
+thead tr {
+    background-color: #009879;
+    color: white;
+    font-weight: bold;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+/* Estilo de los enlaces de acciones */
+a {
+    color: #009879;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Botón para pedir un nuevo turno */
+.box-new {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.new {
+    padding: 10px 20px;
+    background-color: #009879;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new:hover {
+    background-color: #007f5f;
+}
+
+/* Estilo para el mensaje "No tiene turnos reservados" */
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 20px;
+}
