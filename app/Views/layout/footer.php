@@ -27,8 +27,8 @@
             </div>
             <div class="footer-section contact">
                 <h2>Contacto</h2>
-                <p>Email: contacto@empresa.com</p>
-                <p>Teléfono: 123-456-7890</p>
+                <p>Email: infoSolutins@gmail.com</p>
+                <p>Teléfono: +53 3571 68-4727</p>
                 <p>Dirección: Calle Falsa 123, Ciudad, País</p>
             </div>
             <div class="footer-section social">

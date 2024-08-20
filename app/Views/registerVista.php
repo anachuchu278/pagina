@@ -32,7 +32,7 @@
             
             <button type="submit" href="<?= base_url('register') ?>">Registrarse</button>
         </form><br>
-        <a href="loginVista" >loguearse</a>
+        <a href="loginVista" >Loguearse</a>
     </div>
 </body>
 </html> 

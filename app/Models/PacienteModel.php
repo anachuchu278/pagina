@@ -16,8 +16,8 @@ class PacienteModel extends Model{
         'dni',
         'historia_clinica',
         'id_usuario',
-        'id_tipo_sangre',
-        'id_obra'
+        'id_Sangre',
+        'id_Obra'
     ];
 
     public function insertarPaciente($data){

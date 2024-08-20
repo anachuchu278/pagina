@@ -7,10 +7,13 @@ use App\Models\UsuarioModelo;
 
 class AdminController extends BaseController {
 
-    public function admin(){
+    public function Admin(){
         return view('nuevoAdmin');
     }
-    public function nuevoAdmin(){
+
+    public function nuevoAdmin(){ 
+
+        
         $UsuarioModelo = new UsuarioModelo();
 
         $name = $this->request->getPost('nombre');
