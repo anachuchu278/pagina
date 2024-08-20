@@ -65,7 +65,7 @@ class PacienteControlador extends BaseController
 
             // Verificar si el usuario actual puede editar este paciente
             if ($session->get('user_rol') != 1 && $session->get('user_id') != $data['paciente']['id_usuario']) {
-                return redirect()->to('/ruta/a/pagina/de/error')->with('error', 'No tienes permiso para editar este paciente.');
+                return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
             }
         }
 
@@ -149,9 +149,9 @@ class PacienteControlador extends BaseController
             'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
         ];
 
-        $pacienteModel->editPaciente($id, $data);
+        $pacienteModel->editarPaciente($id, $data);
 
-        return redirect()->to('editPaciente');
+        return redirect()->to('crudPaciente');
     }
 
     public function delete($id)
