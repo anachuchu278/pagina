@@ -13,7 +13,7 @@ $routes->get('perfil','PaginaController::perfil');
 $routes->get('preguntas','PaginaController::preguntas');
 
 //Paciente
-$routes->get('crudPaciente', 'PacienteControlador::index', ['filter' => 'auth']);
+$routes->get('crudPaciente', 'PacienteControlador::index');
 $routes->get('newPacienteView', 'PacienteControlador::newVista', ['filter' => 'auth']);
 $routes->post('newPaciente', 'PacienteControlador::new', ['filter' => 'auth']);
 $routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1', ['filter' => 'auth']);
@@ -33,7 +33,10 @@ $routes->get('newTurno', 'TurnoControlador::newVista');// Vista para añadir nue
 $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
 //Medico
-$routes->get('NewMedView', 'RecepcionControlador::newMedVista'); 
+$routes->get('NewMedView', 'RecepcionControlador::newMedVista');
+$routes->get('horario_medico', 'RecepcionControlador::horMed');
+$routes->post('guardarH', 'RecepcionControlador::guardarHorario');
+$routes->get('turnos_disp', 'RecepcionControlador::turnoDisp');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
