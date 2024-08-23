@@ -34,7 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class, 
-        'SessionAdmin'  => \App\Filters\SessionAdmin::class
+        //'SessionAdmin'  => \App\Filters\SessionAdmin::class
     ];
 
     /**

@@ -7,7 +7,7 @@
     </div>
     <ul class="navbar-menu">
         <li><a href="pagina">Inicio</a></li>
-        <?php if ($showAdmin): ?>
+        <?php if (isset($showAdmin) && $showAdmin): ?>
             <li><a href="<?php echo base_url('vista')?>">Admin</a></li>
         <?php endif; ?>
         <li><a href="turnos">Turnos</a></li>

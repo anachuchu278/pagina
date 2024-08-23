@@ -19,7 +19,7 @@
         .card {
             height: 100%;
         }
-        .car-body {
+        .card-body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -62,7 +62,7 @@
             
     </ul> 
     <div class="imagen">
-        <img src="img/1.jpg" alt="">
+        <img src="img/1.jpg" alt="" >
     </div>
         <div class="container center-screen">
             <div class="row justify content-center">
