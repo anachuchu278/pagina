@@ -105,11 +105,11 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [ 
-        "SessionAdmin" => [
-            "before" => [
-                "vistaAdmin"
-            ]
-        ] 
-    ]; 
+    //public array $filters = [ 
+       // "SessionAdmin" => [
+         //   "before" => [
+           //     "vistaAdmin"
+            //]
+        //] 
+    //]; 
 }
