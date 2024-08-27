@@ -25,6 +25,8 @@ class LoginControlador extends BaseController{
             if (password_verify($password, $user['password'])) {
                 $session->set('user_rol', $user['id_rol']);
                 $session->set('user_id', $user['id_Usuario']); 
+                $session->set('name' , $user['nombre']);
+                $session->set('email' , $user['email']);
 
                 // Redirigir a la URL guardada o a una ruta predeterminada después del login
                 $redirect_url = $session->get('redirect_url') ?? 'pagina';

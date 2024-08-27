@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calendario</title>
     <link rel="stylesheet" href="<?php echo base_url('css/calendario.css')?>">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="light">
     <div class="calendar">
@@ -46,6 +48,7 @@
 
         </div>
     </div>
- 
+    
+<script src="<?= base_url('script.js')?>"></script>
 </body>
 </html>
