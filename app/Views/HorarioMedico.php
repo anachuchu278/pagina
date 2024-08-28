@@ -30,15 +30,13 @@
             <option value="Miercoles">Miércoles</option>
             <option value="Jueves">Jueves</option>
             <option value="Viernes">Viernes</option>
-            <option value="Sabado">Sábado</option>
-            <option value="Domingo">Domingo</option>
         </select><br><br>
 
         <label for="start_time">Hora de Inicio:</label>
-        <input type="time" id="start_time" name="start_time" required min="<?= $mintime ?>" value="<?= old('start_time') ?>"><br><br>
+        <input type="time" id="start_time" name="start_time" required value="<?= old('start_time') ?>"><br><br>
 
         <label for="end_time">Hora Final:</label>
-        <input type="time" id="end_time" name="end_time" required min="<?= $mintime ?>" value="<?= old('end_time') ?>"><br><br>
+        <input type="time" id="end_time" name="end_time" required value="<?= old('end_time') ?>"><br><br>
 
         <button type="submit">Guardar</button>
     </form>
