@@ -52,4 +52,16 @@ h3 {
 .error {
     color: red;
     font-weight: bold;
+} 
+.info-perfil img {
+    position: absolute;
+    margin-top: -13.5rem;
+    left: 65rem;
+    width: 9.8rem;
+} 
+
+.info-perfil .imagen {
+    position: absolute;
+    margin-top: -15rem; 
+    left: 65.5rem;
 }

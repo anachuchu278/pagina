@@ -11,7 +11,7 @@
     <h2>Bienvenido,
         <?php echo $user['nombre']; ?>
     </h2> 
-
+        
     <h3>Datos del Usuario</h3>  
         <div class="info-perfil"> 
             <label for="nombre">Nombre</label>
@@ -21,9 +21,9 @@
             <label for="ID">ID</label>
             <p><?php echo $user['id_Usuario'];?></p>
             <label for="id_rol">Id del Rol</label>
-            <p><?php echo $user['id_rol'];?></p>
-        
-
+            <p><?php echo $user['id_rol'];?></p> 
+            <label class="imagen" for="imagen">Imagen Del Usuario</label>
+            <img src="<?=  base_url($user['imagen_ruta']);?>" alt="">
         </div>
     <?php else: ?> 
     

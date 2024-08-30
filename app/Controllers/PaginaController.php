@@ -18,7 +18,7 @@ class PaginaController extends Controller{
     public function perfil(){ 
         $session = \Config\Services::session();
         $idUsuario = $session->get('user_id');
-        $userModel = new UsuarioModelo();
+        $userModel = new UsuarioModelo(); 
         if(!$idUsuario || $idUsuario == 0) {
             return redirect()->to('');
         } else {
