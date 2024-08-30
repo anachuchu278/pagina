@@ -41,3 +41,5 @@ $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turn
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');
+
+$routes->get('pay', 'Home::pay');
