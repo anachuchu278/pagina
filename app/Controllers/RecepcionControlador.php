@@ -55,7 +55,7 @@ class RecepcionControlador extends BaseController{
             'id_especialidad'=> null,
             'id_rol'=> 1
         ];
-        $usuarioModelo->editarUsuario($id,$data);
+        $usuarioModelo->update($id, $data);
         return redirect()->to('crudPaciente');
     }
     public function horMed() //Vista para añadir horarios
