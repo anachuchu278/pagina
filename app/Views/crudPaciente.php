@@ -27,8 +27,9 @@
         </li> 
         <?php if ($showAdmin):?>
             <li><a class="nav-link text-white " href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
-            <?php endif; ?>
-            
+            <li><a class="nav-link text-white " href="<?= site_url('crudMeds') ?>">Medicos</a></li>
+            <li><a class="nav-link text-white " href="<?= site_url('vistaAdmin') ?>"></a></li>
+        <?php endif; ?>    
     </ul> 
     </nav>
     <table>

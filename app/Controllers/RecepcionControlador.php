@@ -26,6 +26,21 @@ class RecepcionControlador extends BaseController{
             return redirect()->to('/');
         }
     }
+    public function indexMed()
+    {
+        $usuarioModelo = new UsuarioModelo();
+        $horarioModelo = new HorarioModelo();
+        $medicos = $usuarioModelo->where('id_rol', 4)->findAll();
+        $horarios = $horarioModelo->findAll();
+
+        // Preparar datos para la vista
+        $data = [
+            'medicos' => $medicos,
+            'horarios' => $horarios,
+        ];
+
+        return view('crudMedico', $data);
+    }
     public function newMedVista()
     {
         $session = \Config\Services::session();
