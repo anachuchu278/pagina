@@ -37,8 +37,6 @@
             display: block;
             margin: 0 auto;
         } 
-        
-        
     </style>
     <ul class="nav nav-tabs custom-navbar">
         <li class="nav-item">
