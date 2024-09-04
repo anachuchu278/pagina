@@ -22,18 +22,53 @@ class PacienteControlador extends BaseController
     public function index()
     {
         $session = \Config\Services::session();
-        $usuario = new UsuarioModelo();
-        $obra = new ObraSModel();
-        $tiposan = new TipoSModel();
-        $model = new PacienteModel();
-        $pacientes = $model->findAll();
-        $tipoSangre = $tiposan->findAll();
+        $usuarioModel = new UsuarioModelo();
+        $obraModel = new ObraSModel();
+        $tiposanModel = new TipoSModel();
+        $pacienteModel = new PacienteModel();
 
-        foreach ($pacientes as &$paciente) { // Usar "&" para modificar directamente el array original
+        $pacientes = $pacienteModel->findAll();
+        $obras = $obraModel->findAll();
+        $tiposSangre = $tiposanModel->findAll();
+
+        $obrasMap = [];
+        foreach ($obras as $obra) {
+            $obrasMap[$obra['id_Obra']] = $obra['nombre'];
+        }
+
+        $tiposSangreMap = [];
+        foreach ($tiposSangre as $tipo) {
+            $tiposSangreMap[$tipo['id_Sangre']] = $tipo['tipo'];
+        }
+
+        foreach ($pacientes as &$paciente) {
+            // Convertir RH_tipo_sangre a '+' o '-'
             if ($paciente['RH_tipo_sangre'] == '1') {
                 $paciente['RH_tipo_sangre'] = '+';
             } else {
                 $paciente['RH_tipo_sangre'] = '-';
+            }
+
+            // Obtener el email del usuario y reemplazar el id_usuario con el email
+            $usuario = $usuarioModel->find($paciente['id_Usuario']);
+            if ($usuario) {
+                $paciente['usuario_email'] = $usuario['email'];
+            } else {
+                $paciente['usuario_email'] = 'Desconocido';
+            }
+
+            // Reemplazar id_Obra con el nombre de la obra
+            if (isset($obrasMap[$paciente['id_Obra']])) {
+                $paciente['obra_nombre'] = $obrasMap[$paciente['id_Obra']];
+            } else {
+                $paciente['obra_nombre'] = 'Desconocido';
+            }
+
+            // Reemplazar id_Sangre con el tipo de sangre
+            if (isset($tiposSangreMap[$paciente['id_Sangre']])) {
+                $paciente['tipo_sangre'] = $tiposSangreMap[$paciente['id_Sangre']];
+            } else {
+                $paciente['tipo_sangre'] = 'Desconocido';
             }
         }
 

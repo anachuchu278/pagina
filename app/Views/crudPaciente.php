@@ -54,10 +54,10 @@
                     <td><?= $paciente['apellido']; ?></td>
                     <td><?= $paciente['edad']; ?></td>
                     <td><?= $paciente['altura_cm']; ?></td>
-                    <td><?= $paciente['id_Sangre']; ?></td>
+                    <td><?= $paciente['tipo_sangre']; ?></td>
                     <td><?= $paciente['RH_tipo_sangre']; ?></td>
-                    <td><?= $paciente['id_Obra']; ?></td>
-                    <td><?= $paciente['id_Usuario']; ?></td>
+                    <td><?= $paciente['obra_nombre']; ?></td>
+                    <td><?= $paciente['usuario_email']; ?></td>
                     <td>
                         <a class="editar" href="<?= site_url('editPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
                         <a class="delete" href="<?= site_url('eliminarPaciente/'. $paciente['id_Paciente']); ?>">Eliminar</a>
