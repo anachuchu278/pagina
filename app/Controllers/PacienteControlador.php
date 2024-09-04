@@ -7,6 +7,7 @@ use CodeIgniter\Controller;
 use App\Models\PacienteModel;
 use App\Models\ObraSModel;
 use App\Models\TipoSModel;
+use App\Models\EspecialidadModel;
 
 class PacienteControlador extends BaseController
 {
@@ -41,7 +42,7 @@ class PacienteControlador extends BaseController
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
 
-        echo view('layout/navbar.php', $data);
+        // echo view('layout/navbar.php', $data);
         echo view('crudPaciente', $data); // Cambiar a un solo array para pasar datos a la vista
     }
 
@@ -51,10 +52,12 @@ class PacienteControlador extends BaseController
         $obra = new ObraSModel();
         $tiposan = new TipoSModel();
         $usuario = new UsuarioModelo();
+        $espec = new EspecialidadModel();
         
         $data['obras'] = $obra->findAll();
         $data['usuarios'] = $usuario->findAll();
         $data['tiposans'] = $tiposan->findAll();
+        $data['especialidades'] = $espec->findAll();
 
         $data['paciente'] = []; // Inicializar un array vacío para el paciente
 
@@ -76,7 +79,7 @@ class PacienteControlador extends BaseController
     {
         $session = \Config\Services::session();
         $pacienteModel = new PacienteModel();
-        
+        $usuarioModel = new UsuarioModelo();
         $data = [
             'id_usuario' => $this->request->getPost('id_Usuario'),
             'nombre' => $this->request->getPost('nombre'),
@@ -91,22 +94,22 @@ class PacienteControlador extends BaseController
             'RH_tipo_sangre' => $this->request->getPost('rh') ? 1 : 0
         ];
 
-        // Si estamos editando un paciente
+        $idEspecialidad = $this->request->getPost('especialidad');
+
         if ($this->request->getPost('id_Paciente')) {
             $pacienteId = $this->request->getPost('id_Paciente');
             $paciente = $pacienteModel->find($pacienteId);
 
-            // Verificar si el usuario actual puede editar este paciente
             if ($session->get('user_rol') != 1 && $session->get('user_id') != $paciente['id_usuario']) {
                 return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
             }
 
             $pacienteModel->update($pacienteId, $data);
+            $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
         } else {
-            // Verificar si el usuario actual es administrador
             if ($session->get('user_rol') == 2) {
-                // Añadir un nuevo paciente
                 $pacienteModel->insertarPaciente($data);
+                $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
             } else {
                 return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para añadir un nuevo paciente.');
             }
@@ -120,9 +123,12 @@ class PacienteControlador extends BaseController
         $obra = new ObraSModel();
         $tiposan = new TipoSModel();
         $usuario = new UsuarioModelo();
+        $espec = new EspecialidadModel();
+
         $data['obras'] = $obra->findAll();
         $data['usuarios'] = $usuario->findAll();
         $data['tiposans'] = $tiposan->findAll();
+        $data['especialidades'] = $espec->findAll();
 
         $pacienteModel = new PacienteModel();
         $data['paciente'] = $pacienteModel->find($id);
@@ -136,6 +142,8 @@ class PacienteControlador extends BaseController
     public function edit($id)
     {
         $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
+
         $data = [
             'id_usuario' => $this->request->getPost('id_Usuario'),
             'nombre' => $this->request->getPost('nombre'),
@@ -148,8 +156,10 @@ class PacienteControlador extends BaseController
             'id_obra' => $this->request->getPost('id_obra'),
             'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
         ];
+        $idEspecialidad = $this->request->getPost('especialidad');
 
         $pacienteModel->editarPaciente($id, $data);
+        $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
 
         return redirect()->to('crudPaciente');
     }

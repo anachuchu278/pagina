@@ -5,7 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UsuarioModelo;  
 
-class AdminController extends BaseController {
+class adminController extends BaseController {
 
     public function Admin(){
         return view('nuevoAdmin');
