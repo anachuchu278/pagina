@@ -51,7 +51,7 @@
             <a class="nav-link text-white " href="<?= site_url('preguntas') ?>">Preguntas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('perfil') ?>">Perfil</a>
+            <a class="nav-link text-white " href="<?= site_url('/perfil') ?>">Perfil</a>
         </li> 
         <li class="nav-item">
             <a class="nav-link text-white " href="<?= site_url('logout') ?>">Cerrar Sesion</a>

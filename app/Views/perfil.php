@@ -20,13 +20,16 @@
             <p><?php echo $user['email'];?></p>
             <label for="ID">ID</label>
             <p><?php echo $user['id_Usuario'];?></p>
-            <label for="id_rol">Id del Rol</label>
-            <p><?php echo $user['id_rol'];?></p> 
+            <label for="id_rol">Rol</label>
+            <p><?php echo $user['nombre_rol'];?></p> 
             <label class="imagen" for="imagen">Imagen Del Usuario</label>
             <img src="<?=  base_url($user['imagen_ruta']);?>" alt="">
         </div>
     <?php else: ?> 
     
-    <?php endif; ?>
+    <?php endif; ?> 
+    <div class="volver-container">
+    <a href="pagina" class="volver">Volver</a>
+    </div>
 </body>
 </html>

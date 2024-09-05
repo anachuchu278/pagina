@@ -37,4 +37,5 @@ $routes->get('NewMedView', 'RecepcionControlador::newMedVista');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
-$routes->post('nuevoadmin', 'adminController::nuevoAdmin');
+$routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
+$routes->post('admin/eliminar', 'adminController::eliminarAdmin');

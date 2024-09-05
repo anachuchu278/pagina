@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendario</title>
+    <title>
+        Calendar
+    </title>
     <link rel="stylesheet" href="<?php echo base_url('css/calendario.css')?>">
-    
-    <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="light">
+
     <div class="calendar">
         <div class="calendar-header">
-            <span class="month-picker" id="month-picker">
-                Agosto
-            </span>
+            <span class="month-picker" id="month-picker">February</span>
             <div class="year-picker">
                 <span class="year-change" id="prev-year">
                     <pre><</pre>
                 </span>
-                <span id="year">2024</span>
+                <span id="year">2021</span>
                 <span class="year-change" id="next-year">
                     <pre>></pre>
                 </span>
             </div>
         </div>
         <div class="calendar-body">
-            <div class="calendar-week-days">
-                <span class="week-day">Lun</span>
-                <span class="week-day">Mar</span>
-                <span class="week-day">Mie</span>
-                <span class="week-day">Jue</span>
-                <span class="week-day">Vie</span>
-                <span class="week-day">Sab</span>
-                <span class="week-day">Dom</span>
+            <div class="calendar-week-day">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
             </div>
-            <div class="calendar-days">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-
-            </div>
-
+            <div class="calendar-days"></div>
         </div>
+        <div class="calendar-footer">
+            <div class="toggle">
+                <span>Dark Mode</span>
+                <div class="dark-mode-switch">
+                    <div class="dark-mode-switch-ident"></div>
+                </div>
+            </div>
+        </div>
+        <div class="month-list"></div>
     </div>
-    
-<script src="<?= base_url('script.js')?>"></script>
+
+    <script src="<?php echo base_url('assets/script.js')?>"></script>
 </body>
+
 </html>

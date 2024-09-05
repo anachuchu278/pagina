@@ -34,5 +34,26 @@ class UsuarioModelo extends Model{
     public function getMedicos()
     {
         
+    } 
+    public function getRol($idUsuario){
+        return $this->db->table($this->table)
+            ->select('usuario.*, rol.nombre_rol') 
+            ->join('rol', 'rol.id_rol = usuario.id_rol')
+            ->where('usuario.id_Usuario', $idUsuario)
+            ->get()
+            ->getRowArray();
+    } 
+    public function getAdmin(){
+        return $this->db->table($this->table) 
+            ->select('usuario.*')
+            ->join('rol', 'rol.id_rol = usuario.id_rol')
+            ->where('rol.nombre_rol', 'Admin')
+            ->get()
+            ->getResultArray();
+    }
+    public function deleteAdmin($id_Usuario){
+        return $this->db->table('usuario')
+                        ->where('id_Usuario', $id_Usuario)
+                        ->delete();
     }
 }

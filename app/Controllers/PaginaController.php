@@ -22,23 +22,10 @@ class PaginaController extends Controller{
         if(!$idUsuario || $idUsuario == 0) {
             return redirect()->to('');
         } else {
-            $session = session(); 
-            $id= $idUsuario;
-            $user = $userModel->getUsuario($id);
-            // $user = [
-            //     'user_id' ->this->request->getPost('id_Usuario'),
-            //     'nombre' ->this->request->getPost('nombre'),
-            //     'email' ->this->request->getPost('email'),
-            //     'id_rol' ->this->request->getPost('id_rol'),
-            // ];
-            
-
+            $user = $userModel->getRol($idUsuario);
             $data['user'] = $user;  
-            //var_dump($user);
-
             return view('perfil', $data);
         }
-
     } 
     public function preguntas(){
         return view('preguntasFrecuentes');

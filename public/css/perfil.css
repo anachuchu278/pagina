@@ -7,11 +7,19 @@ body {
 }
 
 h2 {
-    color: #72b7df;
-    justify-content: center;
-    text-align: center;
+    color: #72b7df; /* Color principal */
+    font-size: 2rem; /* Tamaño de fuente más grande para mayor impacto */
+    font-weight: bold; /* Negrita para hacerlo más destacado */
+    text-align: center; /* Centrar el texto */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 20px; /* Espacio inferior */
+    padding: 10px; /* Añadir relleno para que no se vea tan pegado */
+    border-bottom: 2px solid #72b7df; /* Añadir una línea inferior para darle estilo */
+    letter-spacing: 1px; /* Espaciado entre letras para mejorar la legibilidad */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    background-color: #f2f8fc; /* Fondo suave para mayor contraste */
+    border-radius: 5px; /* Bordes redondeados para un aspecto más suave */
 }
-
 h3 {
     color: #000000;
     margin-top: 0; 
@@ -21,23 +29,26 @@ h3 {
 .info-perfil {
     max-width: 700px; 
     margin: 20px auto;
-    padding: 20px;
+    padding: 30px; /* Aumenté el padding para más espacio interno */
     border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff; 
+    border-radius: 10px; /* Bordes más suaves */
+    background-color: #f9f9f9; /* Fondo ligeramente gris para mayor contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para mayor profundidad */
+    overflow: hidden; /* Evitar que elementos flotantes se salgan del contenedor */
 }
 
 .info-perfil label {
     display: block;
-    font-weight: bold;
+    font-weight: 600; /* Un poco más grueso, pero no tanto como "bold" */
     margin-bottom: 5px;
-    color: #555;
+    color: #333; /* Un tono de gris más oscuro para mejor legibilidad */
 }
 
 .info-perfil p {
     margin: 0 0 15px 0;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6; /* Espaciado de línea más cómodo */
+    color: #666; /* Un tono más suave para el texto */
 }
 
 .info-perfil p:last-child {
@@ -48,20 +59,73 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Error Handling */
 .error {
-    color: red;
+    color: #ff4d4d; /* Color rojo más claro y moderno */
     font-weight: bold;
-} 
+    margin-top: 10px; /* Espacio superior para separar el error del contenido */
+    font-size: 14px; /* Tamaño de fuente menor */
+}
+
 .info-perfil img {
-    position: absolute;
-    margin-top: -13.5rem;
-    left: 65rem;
-    width: 9.8rem;
-} 
+    display: block; /* Para mantener la alineación vertical del contenedor */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+    width: 150px; /* Tamaño estándar para la imagen */
+    height: 150px; /* Tamaño fijo para mantener la proporción */
+    object-fit: cover; /* Asegura que la imagen llene el espacio sin distorsionarse */
+    border-radius: 50%; /* Forma circular para un estilo moderno */
+    border: 2px solid #ddd; /* Añadir un borde suave */
+}
 
 .info-perfil .imagen {
-    position: absolute;
-    margin-top: -15rem; 
-    left: 65.5rem;
+    text-align: center; /* Centrar la etiqueta de la imagen */
+    margin-top: 10px; /* Añadir espacio entre la etiqueta y la imagen */
+    color: #666;
+    font-weight: bold;
+    font-size: 14px; 
+}
+
+/* Media Queries para diseño responsive */
+@media (max-width: 768px) {
+    .info-perfil {
+        padding: 20px;
+        max-width: 100%; /* Hacer que ocupe todo el ancho en pantallas pequeñas */
+        box-shadow: none; /* Eliminar sombra en pantallas pequeñas */
+    }
+
+    .info-perfil img {
+        width: 120px; /* Reducción de tamaño de imagen para pantallas pequeñas */
+        height: 120px;
+    }
+
+    .info-perfil .imagen {
+        font-size: 12px; /* Texto más pequeño en pantallas pequeñas */
+    }
+} 
+.volver {
+    display: inline-block; /* Para que se comporte como un botón */
+    position: absolute; /* Ubicación absoluta para posicionarlo donde quieras */
+    top: 20px; /* Distancia desde la parte superior de la página */
+    left: 20px; /* Distancia desde el lado izquierdo de la página */
+    padding: 10px 20px; /* Espaciado interno para hacerlo más grande */
+    background-color: #72b7df; /* Color de fondo */
+    color: #fff; /* Color del texto en blanco */
+    text-decoration: none; /* Eliminar el subrayado */
+    font-weight: bold; /* Hacer que el texto sea más prominente */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición para hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
+}
+
+.volver:hover {
+    background-color: #5a9bc0; /* Un tono más oscuro al pasar el ratón */
+}
+
+.volver:active {
+    background-color: #4b8ba9; /* Color más oscuro cuando se presiona */
+    box-shadow: none; /* Eliminar la sombra cuando se presiona */
+}
+
+.volver-container {
+    text-align: center; /* Centrar el enlace en su contenedor */
+    margin-top: 30px; /* Añadir un poco de espacio extra por encima */
 }

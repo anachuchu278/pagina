@@ -8,7 +8,12 @@ use App\Models\UsuarioModelo;
 class AdminController extends BaseController {
 
     public function Admin(){
-        return view('nuevoAdmin');
+        $usuarioModelo = new UsuarioModelo();
+
+        $admin = $usuarioModelo->getAdmin();
+        $data['admin'] = $admin;
+        return view('nuevoAdmin', $data); 
+
     }
 
     public function nuevoAdmin(){ 
@@ -57,6 +62,16 @@ class AdminController extends BaseController {
         return redirect()->to('pagina');
 
 
+    }
+    public function eliminarAdmin(){
+        $id_Usuario = $this->request->getPost('id_Usuario'); 
+        if ($id_Usuario){
+            $usuarioModelo = new UsuarioModelo(); 
+            
+            $usuarioModelo->deleteAdmin($id_Usuario); 
+
+            return redirect()->to('vistaAdmin')->with('success', 'Administrador eliminado con exito');
+        }
     }
     }
 
