@@ -51,11 +51,16 @@ class AdminController extends BaseController {
         // Hash de la contraseña después de todas las verificaciones
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+        if (empty($imagen)) { 
+            $imagen = '/img/imagen.png';
+        }
+
         $data = [
             'nombre' => $name,
             'email' => $email,
             'password' => $hashedPassword,
-            'id_rol' => $id_rol
+            'id_rol' => $id_rol,
+            'imagen_ruta' => $imagen
         ];
 
         $UsuarioModelo->insert($data);
