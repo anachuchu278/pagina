@@ -24,6 +24,7 @@ class AdminController extends BaseController {
         $name = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+        $imagen = $this->request->getPost('imagen_ruta');
         $id_rol = 2;
 
         // Verificar si el email ya está registrado
@@ -64,7 +65,7 @@ class AdminController extends BaseController {
         ];
 
         $UsuarioModelo->insert($data);
-        return redirect()->to('pagina');
+        return redirect()->to('vistaAdmin');
 
 
     }

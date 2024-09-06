@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\UsuarioModelo;
+use App\Models\TurnoModel;
 use CodeIgniter\Controller;
 
 class PaginaController extends Controller{
@@ -12,8 +13,13 @@ class PaginaController extends Controller{
         echo view('pagina-main', $data); 
         return view('layout/footer');
     } 
-    public function Calendario(){
-        return view('calendario');
+    public function Calendario($userID){ 
+        $turnoModelo = new TurnoModel(); 
+        $turno = $turnoModelo->getTurnosPorUsuario($userID); 
+
+        $data['turnos'] = $turno;
+
+        return view('calendario', $data);
     } 
     public function perfil(){ 
         $session = \Config\Services::session();

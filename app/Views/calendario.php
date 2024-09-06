@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        Calendar
-    </title>
-    <link rel="stylesheet" href="<?php echo base_url('css/calendario.css')?>">
+    <title>Calendario Dinámico</title>
+    <link rel="stylesheet" href="<?= base_url('css/calendario.css')?>">
 </head>
-
-<body class="light">
-
-    <div class="calendar">
+<body>
+    <div class="calendar-container">
         <div class="calendar-header">
-            <span class="month-picker" id="month-picker">February</span>
-            <div class="year-picker">
-                <span class="year-change" id="prev-year">
-                    <pre><</pre>
-                </span>
-                <span id="year">2021</span>
-                <span class="year-change" id="next-year">
-                    <pre>></pre>
-                </span>
-            </div>
+            <button id="prev-month">&lt;</button>
+            <h2 id="month-year"></h2>
+            <button id="next-month">&gt;</button>
         </div>
         <div class="calendar-body">
-            <div class="calendar-week-day">
+            <div class="calendar-weekdays">
                 <div>Sun</div>
                 <div>Mon</div>
                 <div>Tue</div>
@@ -35,20 +23,34 @@
                 <div>Fri</div>
                 <div>Sat</div>
             </div>
-            <div class="calendar-days"></div>
+            <div class="calendar-days" id="calendar-days"></div>
         </div>
-        <div class="calendar-footer">
-            <div class="toggle">
-                <span>Dark Mode</span>
-                <div class="dark-mode-switch">
-                    <div class="dark-mode-switch-ident"></div>
-                </div>
-            </div>
-        </div>
-        <div class="month-list"></div>
-    </div>
-
-    <script src="<?php echo base_url('assets/script.js')?>"></script>
+    </div> 
+    <h3>Turnos del Usuario</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Turno</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($turno)) : ?>
+                <?php foreach ($turno as $tur) : ?>
+                    <tr>
+                        <td><?=  $tur['fecha_hora'] ?></td>
+                        <td><?=  $tur['codigo_turno'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="4">No hay turnos disponibles.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <script src="<?= base_url('script.js')?>"></script> 
 </body>
-
 </html>

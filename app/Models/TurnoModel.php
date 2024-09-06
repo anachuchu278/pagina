@@ -10,7 +10,7 @@ class TurnoModel extends Model{
     protected $allowedFields =[
         'fecha_hora',
         'codigo_turno',
-        'id_usuario',
+        'id_Usuario',
         'id_paciente',
         'id_estado',
         'id_pago'
@@ -43,10 +43,16 @@ class TurnoModel extends Model{
         return $query;
     } 
     public function getTurnosPorUsuario($userId) {
-        return $this->where('id_usuario', $userId)->findAll();
+        return $this->where('id_Usuario', $userId)->findAll();
     }
 
     public function getEstado($idEstado){
         return $this->where('id_estado',$idEstado)->findAll();
+    } 
+    public function getTurnosPorfechaUsuario($idUsuario) {
+            return $this->db->table('*')
+                ->where('id_Usuario', $idUsuario) 
+                ->get(); 
+            return $query->result();
     }
 }
