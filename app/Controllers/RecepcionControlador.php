@@ -26,8 +26,9 @@ class RecepcionControlador extends BaseController{
             return redirect()->to('/');
         }
     }
-    public function indexMed()
+    public function indexMed() // Vista para el crud de Medicos 
     {
+        $session = \Config\Services::session();
         $usuarioModelo = new UsuarioModelo();
         $horarioModelo = new HorarioModelo();
         $medicos = $usuarioModelo->where('id_rol', 4)->findAll();
@@ -39,6 +40,9 @@ class RecepcionControlador extends BaseController{
             'horarios' => $horarios,
         ];
 
+        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        echo view('layout/navbar',$data);
         return view('crudMedico', $data);
     }
     public function newMedVista()
@@ -73,14 +77,25 @@ class RecepcionControlador extends BaseController{
         $usuarioModelo->update($id, $data);
         return redirect()->to('crudPaciente');
     }
-    public function horMed() //Vista para añadir horarios
+    public function horMed($id = null) //Vista para añadir horarios
     {
+        $session = \Config\Services::session();
         // Obtener médicos con rol 3
         $UsuarioModelo = new UsuarioModelo();
-        $medicos = $UsuarioModelo->where('id_rol', 4)->findAll();
-        return view('HorarioMedico', ['medicos' => $medicos]);
-    }
+        $data['medicos'] = $UsuarioModelo->where('id_rol', 4)->findAll();
+        $data['horarios'] = [];
 
+        if ($id){
+            $HorarioModelo = new HorarioModelo();
+            $data['usuario'] = $UsuarioModelo->find($id);
+            $data['horarios'] = $HorarioModelo->where('id_usuario', $id)->findAll();
+        }
+
+        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        echo view('layout/navbar.php', $data);
+        return view('HorarioMedico', $data);
+    }
     public function guardarHorario() //funcion que añade horarios
     {
         $HorarioModelo = new HorarioModelo();
@@ -100,6 +115,7 @@ class RecepcionControlador extends BaseController{
         $HorarioModelo->insertData($data);
         return redirect()->to('');
     }
+    
     public function turnoDisp() // Vista de turnos disponibles
     {
         $HorarioModelo = new HorarioModelo();

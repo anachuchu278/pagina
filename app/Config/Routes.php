@@ -35,8 +35,9 @@ $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para e
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
 $routes->get('NewMedView', 'RecepcionControlador::newMedVista');
-$routes->get('horario_medico', 'RecepcionControlador::horMed'); // Vista para añadir horarios de medico
-$routes->post('guardarH', 'RecepcionControlador::guardarHorario'); // Guardar horarios
+$routes->get('horario_medico/(:num)', 'RecepcionControlador::horMed/$1'); // Vista para añadir horarios de medico
+$routes->post('guardarH/(:num)', 'RecepcionControlador::guardarHorario/$1'); // Guardar horarios
+$routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
 $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
 
 //Creacion de Admins 
