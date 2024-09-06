@@ -50,7 +50,7 @@
         <tbody>
             <?php foreach ($pacientes as $paciente): ?>
                 <tr>
-                    <td><?= $paciente['dni']; ?></td>
+                    <td><?php $dni= $paciente['dni']; strval($dni); echo number_format($dni ,0 , ',' ,'.'); ?></td>
                     <td><?= $paciente['nombre']; ?></td>
                     <td><?= $paciente['apellido']; ?></td>
                     <td><?= $paciente['edad']; ?></td>
