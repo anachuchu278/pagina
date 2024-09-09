@@ -49,10 +49,4 @@ class TurnoModel extends Model{
     public function getEstado($idEstado){
         return $this->where('id_estado',$idEstado)->findAll();
     } 
-    public function getTurnosPorfechaUsuario($idUsuario) {
-            return $this->db->table('*')
-                ->where('id_Usuario', $idUsuario) 
-                ->get(); 
-            return $query->result();
-    }
 }

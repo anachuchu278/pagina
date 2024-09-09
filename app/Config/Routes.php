@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 //Pagina Principal
 $routes->get('pagina', 'PaginaController::Ingresar'); 
-$routes->get('calendario/(:num)','PaginaController::calendario/$1');
+$routes->get('calendario','PaginaController::Calendario/$1');
 $routes->get('perfil','PaginaController::perfil');  
 $routes->get('preguntas','PaginaController::preguntas');
 
