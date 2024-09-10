@@ -39,6 +39,7 @@ $routes->get('horario_medico/(:num)', 'RecepcionControlador::horMed/$1'); // Vis
 $routes->post('guardarH/(:num)', 'RecepcionControlador::guardarHorario/$1'); // Guardar horarios
 $routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
 $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
+$routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
