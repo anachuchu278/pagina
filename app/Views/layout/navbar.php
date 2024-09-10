@@ -19,5 +19,6 @@
     </li> 
     <?php if ($showAdmin):?>
         <li><a class="nav-link text-white " href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+        <li><a class="nav-link text-white " href="<?= site_url('crudMeds') ?>">Medicos</a></li>
     <?php endif; ?>
 </ul> 
