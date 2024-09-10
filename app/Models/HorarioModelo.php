@@ -19,4 +19,9 @@ class HorarioModelo extends Model{
         $this->db->table($this->table)-> insert($data);
         return redirect()->to('');
     }
+    public function deleteHorario($id)
+    {
+        $query = $this->db->table($this->table)->delete(array('id_Horario' => $id));
+        return $query;
+    } 
 }

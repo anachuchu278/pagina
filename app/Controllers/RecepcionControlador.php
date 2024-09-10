@@ -115,7 +115,13 @@ class RecepcionControlador extends BaseController{
         $HorarioModelo->insertData($data);
         return redirect()->to('');
     }
-    
+    public function deleteHorario($id)
+    {
+        $horarioModel = new HorarioModelo();
+        $horarioModel->deleteHorario($id);
+
+        return redirect()->to('crudMeds');
+    }
     public function turnoDisp() // Vista de turnos disponibles
     {
         $HorarioModelo = new HorarioModelo();
