@@ -15,7 +15,7 @@ class PacienteModel extends Model{
         'edad',
         'dni',
         'historia_clinica',
-        'id_usuario',
+        'id_Usuario',
         'id_Sangre',
         'id_Obra'
     ];

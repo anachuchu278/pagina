@@ -4,10 +4,14 @@ body {
     margin: 0;
     padding: 0;
 }
+h1{
+    text-align: center;
+}
 
 /* Contenedor del formulario */
 form {
     width: 100%;
+    display: flex;
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;

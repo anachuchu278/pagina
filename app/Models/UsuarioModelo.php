@@ -7,7 +7,7 @@ class UsuarioModelo extends Model{
     protected $table      = 'usuario';
     
     protected $primaryKey = 'id_Usuario'; 
-  
+
     protected $useAutoIncrement = true; 
 
     protected $allowedFields = ['nombre','password','email','id_rol','id_especialidad','id_horamed','imagen_ruta']; 
@@ -31,10 +31,6 @@ class UsuarioModelo extends Model{
         $query = $this->db->table($this->table)->update($data);
         return $query;
     }
-    public function getMedicos()
-    {
-        
-    } 
     public function getRol($idUsuario){
         return $this->db->table($this->table)
             ->select('usuario.*, rol.nombre_rol') 

@@ -13,12 +13,12 @@ $routes->get('perfil','PaginaController::perfil');
 $routes->get('preguntas','PaginaController::preguntas');
 
 //Paciente
-$routes->get('crudPaciente', 'PacienteControlador::index',);
-$routes->get('newPacienteView', 'PacienteControlador::newVista',);
-$routes->post('newPaciente', 'PacienteControlador::new',);
-$routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1',);
-$routes->post('editarPaciente/(:num)', 'PacienteControlador::edit/$1', );
-$routes->get('eliminarPaciente/(:num)', 'PacienteControlador::delete/$1', );
+$routes->get('crudPaciente', 'PacienteControlador::index');
+$routes->get('newPacienteView', 'PacienteControlador::newVista');
+$routes->post('newPaciente', 'PacienteControlador::new');
+$routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1');
+$routes->post('editarPaciente/(:num)', 'PacienteControlador::edit/$1');
+$routes->get('eliminarPaciente/(:num)', 'PacienteControlador::delete/$1');
 //Usuario
 $routes->get('/','RegisterControlador::index'); 
 $routes->post('register', 'RegisterControlador::registrarse'); 
@@ -32,10 +32,18 @@ $routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turno
 $routes->get('newTurno', 'TurnoControlador::newVista');// Vista para añadir nuevos turnos
 $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
+$routes->get('pay', 'Home::pay');
 //Medico
-$routes->get('NewMedView', 'RecepcionControlador::newMedVista'); 
+$routes->get('crudMeds', 'RecepcionControlador::indexMed');
+$routes->get('NewMedView', 'RecepcionControlador::newMedVista');
+$routes->get('horario_medico/(:num)', 'RecepcionControlador::horMed/$1'); // Vista para añadir horarios de medico
+$routes->post('guardarH/(:num)', 'RecepcionControlador::guardarHorario/$1'); // Guardar horarios
+$routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
+$routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
+$routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
+$routes->post('nuevoadmin', 'adminController::nuevoAdmin');
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
 $routes->post('admin/eliminar', 'adminController::eliminarAdmin');

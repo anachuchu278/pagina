@@ -7,13 +7,8 @@ body {
 }
 
 nav {
-    background-color: #333;
-    padding: 15px;
-    color: white;
-    text-align: center;
-    font-size: 18px;
+    background-color: #008198;
 }
-
 /* Estilos de la tabla */
 table {
     width: 100%;

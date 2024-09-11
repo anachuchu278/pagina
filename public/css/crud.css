@@ -8,6 +8,9 @@ body {
     height: 100vh;
     margin: 0;
 }
+nav {
+    background-color: #009fbb;
+}
 
 /* Estilos de la tabla */
 table {
@@ -17,7 +20,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #ccc;
+    border: 1px solid #009fbb;
     padding: 8px;
     text-align: left;
 }
