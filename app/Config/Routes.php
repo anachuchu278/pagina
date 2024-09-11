@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 //Pagina Principal
 $routes->get('pagina', 'PaginaController::Ingresar'); 
-$routes->get('calendario','PaginaController::calendario' );
+$routes->get('calendario','PaginaController::Calendario/$1');
 $routes->get('perfil','PaginaController::perfil');  
 $routes->get('preguntas','PaginaController::preguntas');
 
@@ -32,6 +32,7 @@ $routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turno
 $routes->get('newTurno', 'TurnoControlador::newVista');// Vista para añadir nuevos turnos
 $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
+$routes->get('pay', 'Home::pay');
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
 $routes->get('NewMedView', 'RecepcionControlador::newMedVista');
@@ -44,5 +45,5 @@ $routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1')
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');
-
-$routes->get('pay', 'Home::pay');
+$routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
+$routes->post('admin/eliminar', 'adminController::eliminarAdmin');

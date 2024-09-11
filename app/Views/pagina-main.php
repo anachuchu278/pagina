@@ -19,7 +19,7 @@
         .card {
             height: 100%;
         }
-        .car-body {
+        .card-body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -49,7 +49,7 @@
             <a class="nav-link text-white " href="<?= site_url('preguntas') ?>">Preguntas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('perfil') ?>">Perfil</a>
+            <a class="nav-link text-white " href="<?= site_url('/perfil') ?>">Perfil</a>
         </li> 
         <li class="nav-item">
             <a class="nav-link text-white " href="<?= site_url('logout') ?>">Cerrar Sesion</a>
@@ -60,7 +60,7 @@
             
     </ul> 
     <div class="imagen">
-        <img src="img/1.jpg" alt="">
+        <img src="img/1.jpg" alt="" >
     </div>
         <div class="container center-screen">
             <div class="row justify content-center">

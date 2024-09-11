@@ -8,7 +8,12 @@ use App\Models\UsuarioModelo;
 class adminController extends BaseController {
 
     public function Admin(){
-        return view('nuevoAdmin');
+        $usuarioModelo = new UsuarioModelo();
+
+        $admin = $usuarioModelo->getAdmin();
+        $data['admin'] = $admin;
+        return view('nuevoAdmin', $data); 
+
     }
 
     public function nuevoAdmin(){ 
@@ -19,6 +24,7 @@ class adminController extends BaseController {
         $name = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+        $imagen = $this->request->getPost('imagen_ruta');
         $id_rol = 2;
 
         // Verificar si el email ya está registrado
@@ -46,17 +52,32 @@ class adminController extends BaseController {
         // Hash de la contraseña después de todas las verificaciones
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+        if (empty($imagen)) { 
+            $imagen = '/img/imagen.png';
+        }
+
         $data = [
             'nombre' => $name,
             'email' => $email,
             'password' => $hashedPassword,
-            'id_rol' => $id_rol
+            'id_rol' => $id_rol,
+            'imagen_ruta' => $imagen
         ];
 
         $UsuarioModelo->insert($data);
-        return redirect()->to('pagina');
+        return redirect()->to('vistaAdmin');
 
 
+    }
+    public function eliminarAdmin(){
+        $id_Usuario = $this->request->getPost('id_Usuario'); 
+        if ($id_Usuario){
+            $usuarioModelo = new UsuarioModelo(); 
+            
+            $usuarioModelo->deleteAdmin($id_Usuario); 
+
+            return redirect()->to('vistaAdmin')->with('success', 'Administrador eliminado con exito');
+        }
     }
     }
 

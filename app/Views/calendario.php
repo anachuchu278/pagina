@@ -1,52 +1,56 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendario</title>
-    <link rel="stylesheet" href="<?php echo base_url('css/calendario.css')?>">
+    <title>Calendario Dinámico</title>
+    <link rel="stylesheet" href="<?= base_url('css/calendario.css')?>">
 </head>
 <body>
-    <div class="root">
-        <div class="calendar" id="calendar">
-            <div clas="calendar_header">
-                <button class="control control--prev">&lt;
-                </button>
-                <span class="month-name">Agosto 2024</span>
-                <button class="control control--next">&gt;</button>
-            </div>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <h2 id="month-year"></h2>
+            <button id="next-month">&gt;</button>
         </div>
-        <div class="calendar_body" id="calendar2">
-            <div class="grid">
-                <div class="grid_header">
-                    <div class="grid__body">
-                        <span class="grid__cell grid_cell--gh">Lun</span>
-                        <span class="grid__cell grid_cell--gh">Mar</span>
-                        <span class="grid__cell grid_cell--gh">Mie</span>
-                        <span class="grid__cell grid_cell--gh">Jue</span>
-                        <span class="grid__cell grid_cell--gh">Vie</span>
-                        <span class="grid__cell grid_cell--gh">Sab</span>
-                        <span class="grid__cell grid_cell--gh">Dom</span>
-                    </div>
-                </div>
+        <div class="calendar-body">
+            <div class="calendar-weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
             </div>
-
+            <div class="calendar-days" id="calendar-days"></div>
         </div>
-    </div>
-    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
-    <script  type="text/javascript" src="<?php base_url('script.js')?>"></script>
-    <script type="text/javascript">
-        let calendar = new Calendar('calendar');
-        calendar.getElement().addEventListener('change', e => {
-            console.log(calendar.value().format('LLL'));
-        });
-
-        let calendar2 = new Calendar('calendar2');
-        calendar2.getElement().addEventListener('change', e => {
-            console.log(calendar2.value().format('LLL'));
-        });
-    </script>
+    </div> 
+    <h3>Turnos del Usuario</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Turno</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($turno)) : ?>
+                <?php foreach ($turno as $tur) : ?>
+                    <tr>
+                        <td><?=  $tur['fecha_hora'] ?></td>
+                        <td><?=  $tur['codigo_turno'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="4">No hay turnos disponibles.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <script src="<?= base_url('script.js')?>"></script> 
 </body>
 </html>

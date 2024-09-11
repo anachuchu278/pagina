@@ -33,7 +33,7 @@ class TurnoControlador extends BaseController{
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
 
-        echo view('layout/navbar.php', $data);
+        
         return view('turnoVista.php', $data);
     }
     public function newVista() { // Vista para agendar un turno
@@ -49,7 +49,7 @@ class TurnoControlador extends BaseController{
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
 
-        echo view('layout/navbar.php');
+  
         return view('TurnoNew.php', $data);
     }
     public function new(){ // Guardar datos del nuevo turno

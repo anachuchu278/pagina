@@ -41,5 +41,9 @@ text-decoration: none;
 background-color: #008aca;
 border-radius: 5px;
 } 
+.advanced-search {
+    text-decoration: none;
+    border-radius: 5px;
+}
 
 

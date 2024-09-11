@@ -25,7 +25,6 @@ class Filters extends BaseFilters
      * or [filter_name => [classname1, classname2, ...]]
      */
     public array $aliases = [
-		'auth' => \App\Filters\AuthFilter::class, //Añadido
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
@@ -35,7 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class, 
-        'SessionAdmin'  => \App\Filters\SessionAdmin::class
+        //'SessionAdmin'  => \App\Filters\SessionAdmin::class
     ];
 
     /**
@@ -105,11 +104,11 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [ 
-        "SessionAdmin" => [
-            "before" => [
-                "vistaAdmin"
-            ]
-        ] 
-    ]; 
+    //public array $filters = [ 
+       // "SessionAdmin" => [
+         //   "before" => [
+           //     "vistaAdmin"
+            //]
+        //] 
+    //]; 
 }
