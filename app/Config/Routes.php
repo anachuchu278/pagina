@@ -8,17 +8,17 @@ use CodeIgniter\Router\RouteCollection;
 
 //Pagina Principal
 $routes->get('pagina', 'PaginaController::Ingresar'); 
-$routes->get('calendario','PaginaController::calendario' );
+$routes->get('calendario','PaginaController::Calendario/$1');
 $routes->get('perfil','PaginaController::perfil');  
 $routes->get('preguntas','PaginaController::preguntas');
 
 //Paciente
-$routes->get('crudPaciente', 'PacienteControlador::index', ['filter' => 'auth']);
-$routes->get('newPacienteView', 'PacienteControlador::newVista', ['filter' => 'auth']);
-$routes->post('newPaciente', 'PacienteControlador::new', ['filter' => 'auth']);
-$routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1', ['filter' => 'auth']);
-$routes->post('editarPaciente/(:num)', 'PacienteControlador::edit/$1', ['filter' => 'auth']);
-$routes->get('eliminarPaciente/(:num)', 'PacienteControlador::delete/$1', ['filter' => 'auth']);
+$routes->get('crudPaciente', 'PacienteControlador::index',);
+$routes->get('newPacienteView', 'PacienteControlador::newVista',);
+$routes->post('newPaciente', 'PacienteControlador::new',);
+$routes->get('editPaciente/(:num)', 'PacienteControlador::editView/$1',);
+$routes->post('editarPaciente/(:num)', 'PacienteControlador::edit/$1', );
+$routes->get('eliminarPaciente/(:num)', 'PacienteControlador::delete/$1', );
 //Usuario
 $routes->get('/','RegisterControlador::index'); 
 $routes->post('register', 'RegisterControlador::registrarse'); 
@@ -37,4 +37,5 @@ $routes->get('NewMedView', 'RecepcionControlador::newMedVista');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
-$routes->post('nuevoadmin', 'adminController::nuevoAdmin');
+$routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
+$routes->post('admin/eliminar', 'adminController::eliminarAdmin');

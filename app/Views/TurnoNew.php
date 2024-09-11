@@ -7,6 +7,7 @@
     <title>Nuevo Turno</title>
 </head>
 <body>
+    <a href="<?php echo base_url('pagina') ?>" class="boton-volver">Volver</a>
     <form action="newTurno1" method="POST">
 
         <label for="fecha">Fecha y hora:</label><br>

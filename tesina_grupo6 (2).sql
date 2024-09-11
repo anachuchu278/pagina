@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2024 a las 17:55:04
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 30-08-2024 a las 15:24:51
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -294,7 +294,11 @@ CREATE TABLE `turno` (
 --
 
 INSERT INTO `turno` (`id_Turno`, `fecha_hora`, `codigo_turno`, `id_usuario`, `id_paciente`, `id_estado`, `id_pago`) VALUES
-(1, '2024-06-06 10:30:00', '27066', 3, 1, 2, 1);
+(1, '2024-06-06 10:30:00', '27066', 3, 1, 2, 1),
+(2, '2024-08-24 17:00:00', 'e3ade602', 1, 1, 1, 1),
+(3, '2024-08-01 16:06:00', '7a5068e7', 1, 1, 1, 1),
+(4, '2024-08-23 07:57:00', '42abe488', 1, 1, 1, 1),
+(5, '2024-08-08 11:24:00', '7c1cf32a', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -308,19 +312,28 @@ CREATE TABLE `usuario` (
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `id_rol` int(11) NOT NULL,
-  `id_especialidad` int(11) DEFAULT NULL
+  `id_especialidad` int(11) DEFAULT NULL,
+  `imagen_ruta` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_Usuario`, `nombre`, `password`, `email`, `id_rol`, `id_especialidad`) VALUES
-(1, 'admin', '$2a$12$wPLg.wxcYrdrTTL3grmO/.2XGhJ51a2BuivivivP1QblORA.WKsZy', 'admin@admin.com', 2, NULL),
-(2, 'cristian', '$2a$12$mC20LFjJkQFp.v8J7Gl0j.83ixU9ut8kCyLBwiPlp3P9IuHqj4j2W', 'cristian@admin.org', 2, NULL),
-(3, 'MCristian', '$2y$10$fU/aGOOCFpB9NCVbb2AZkuDUug0DJMqN2zGibvHK0u3MsH6v0IPw6', 'cristianbustos@gmail.com', 4, 10),
-(4, 'Francesco', '$2y$10$T2NCpky7bvfF0pBRMyIxBeLbDyuX1KuMdgLRovBQ4e8bvl1EQYyY6', 'francescocapellino@gmail.com', 1, NULL),
-(5, 'mateo', '$2y$10$gEI/8qL0mAF/uuYHZgVfCur20Rq4n0qCMg5rvIgvW74eHTXxTZlI6', 'mateoobar51@gmail.com', 2, NULL);
+INSERT INTO `usuario` (`id_Usuario`, `nombre`, `password`, `email`, `id_rol`, `id_especialidad`, `imagen_ruta`) VALUES
+(1, 'admin', '$2a$12$wPLg.wxcYrdrTTL3grmO/.2XGhJ51a2BuivivivP1QblORA.WKsZy', 'admin@admin.com', 2, NULL, ''),
+(2, 'cristian', '$2a$12$mC20LFjJkQFp.v8J7Gl0j.83ixU9ut8kCyLBwiPlp3P9IuHqj4j2W', 'cristian@admin.org', 2, NULL, ''),
+(3, 'MCristian', '$2y$10$fU/aGOOCFpB9NCVbb2AZkuDUug0DJMqN2zGibvHK0u3MsH6v0IPw6', 'cristianbustos@gmail.com', 4, 10, ''),
+(4, 'Francesco', '$2y$10$T2NCpky7bvfF0pBRMyIxBeLbDyuX1KuMdgLRovBQ4e8bvl1EQYyY6', 'francescocapellino@gmail.com', 1, NULL, ''),
+(6, 'aaa', '$2y$10$R8I6F9kT6fZURjdAiKH7pO2FCJbQJYMIIZ.1zlH9XcW5GdIIOiPtC', 'aaa@gmail.com', 2, NULL, ''),
+(7, 'mateo', '$2y$10$u5FpLf5IQ/eGD2Y0YsmMeObPvW0Y7.NrRyq5dLQXF6EnAOtq7Sf0e', 'mateoobar51@gmail.com', 2, NULL, ''),
+(8, 'hola', '$2y$10$SS9bBoYsJuWnn.KerwVu3u0JafN1Uwl/dMbiO3lhKR9FJ5ujiweeS', 'aaaaaaaa12@gmail.com', 1, NULL, ''),
+(9, 'Nahuel', '$2y$10$SYDa826DYqA8mU4htWCceejp6.8w84S.J2l8T/1Qp4I767f6D2dI2', 'nahuelalvarez@gmail.com', 1, NULL, ''),
+(10, 'mateooooo', '$2y$10$A80uq/andk7cOhViUxvaAO0Wc/2ROM5jvZH72XUaljUv4iEP93tU2', 'holis@gmail.com', 1, NULL, 'public/img/imagen.png'),
+(11, 'dasdad', '$2y$10$7isBGlsrGyQOZqAgWfIDWuJELXeFOK5zE5G5aAVuMybuVxJ8sC7NS', 'd@gmail.com', 1, NULL, 'public/img/imagen.png'),
+(12, 's', '$2y$10$wbqvH2Exhzmqnae5IqK6xOrqVhdGM./7I6Esk15BhoV42gfLr7yVi', 's@gmail.com', 1, NULL, '/img/imagen.png'),
+(13, 'medo', '$2y$10$OdTPwtGEFpUTbKl.Tzs..OLtaviotr7Wo9cfPuSClY4/eyaB61y/K', 'medo@gmail.com', 1, NULL, '/img/imagen.png'),
+(14, 'medoo', '$2y$10$NtJCbHBVXyCMFWkzkI30b.PCq8tO4q58tuS8fnbI926m/XhJauy7y', 'medo2@gmail.com', 1, NULL, '/img/imagen.png');
 
 --
 -- Índices para tablas volcadas
@@ -478,13 +491,13 @@ ALTER TABLE `tipo_sanguineo`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
@@ -508,7 +521,7 @@ ALTER TABLE `horario_medico`
 --
 ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`id_Sangre`) REFERENCES `tipo_sanguineo` (`id_Sangre`),
-  ADD CONSTRAINT `paciente_ibfk_4` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`);
+  ADD CONSTRAINT `paciente_ibfk_4` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`id_Usuario`);
 
 --
 -- Filtros para la tabla `turno`

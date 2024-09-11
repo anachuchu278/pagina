@@ -57,3 +57,22 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
+.boton-volver {
+        display: inline-block;
+        padding: 10px 20px; /* Espaciado interno para hacer el botón más grande */
+        background-color: #007bff; /* Color de fondo del botón */
+        color: white; /* Color del texto */
+        text-align: center;
+        text-decoration: none; /* Elimina el subrayado del enlace */
+        border-radius: 5px; /* Bordes redondeados */
+        font-size: 16px; /* Tamaño de fuente */
+        font-weight: bold; 
+        position: relative; 
+        z-index: 10; 
+        cursor: pointer;
+    }
+    
+    
+.boton-volver:hover {
+        background-color: #0056b3; 
+}

@@ -19,6 +19,7 @@ class RegisterControlador extends Controller
         $name = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+        $imagen = $this->request->getPost('imagen_ruta');
         $id_rol = 1;
 
         // Verificar si el email ya está registrado
@@ -46,17 +47,21 @@ class RegisterControlador extends Controller
         // Hash de la contraseña después de todas las verificaciones
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+        if (empty($imagen)) { 
+            $imagen = '/img/imagen.png';
+        }
+
         $data = [
             'nombre' => $name,
             'email' => $email,
             'password' => $hashedPassword,
-            'id_rol' => $id_rol
+            'id_rol' => $id_rol,
+            'imagen_ruta' => $imagen
+
         ];
 
         $UsuarioModelo->insert($data);
         return redirect()->to('loginVista')->with('success', 'Se ha registrado correctamente.');
-
-
     }
     //
 }
