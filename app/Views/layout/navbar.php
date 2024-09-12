@@ -22,7 +22,7 @@
     </li> 
     <?php if ($showAdmin):?>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="<?= site_url('vistaAdmin') ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
