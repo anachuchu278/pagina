@@ -11,7 +11,6 @@ h1{
 /* Contenedor del formulario */
 form {
     width: 100%;
-    display: flex;
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
