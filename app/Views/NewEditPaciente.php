@@ -38,19 +38,19 @@
         <input type="text" id="apellido" name="apellido" value="<?= isset($paciente['apellido']) ? $paciente['apellido'] : '' ?>" required><br>
 
         <label for="dni">DNI:</label><br>
-        <input type="number" id="dni" name="dni" value="<?= isset($paciente['dni']) ? $paciente['dni'] : '' ?>"><br>
+        <input type="number" id="dni" name="dni" value="<?= isset($paciente['dni']) ? $paciente['dni'] : '' ?>" min="1000000" max="99999999"><br>
 
         <label for="edad">Edad:</label><br>
-        <input type="number" id="edad" name="edad" value="<?= isset($paciente['edad']) ? $paciente['edad'] : '' ?>"><br>
+        <input type="number" id="edad" name="edad" value="<?= isset($paciente['edad']) ? $paciente['edad'] : '' ?>" max="100"><br>
 
         <label for="altura_cm">Altura (cm):</label><br>
-        <input type="number" id="altura_cm" name="altura_cm" value="<?= isset($paciente['altura_cm']) ? $paciente['altura_cm'] : '' ?>"><br>
+        <input type="number" id="altura_cm" name="altura_cm" value="<?= isset($paciente['altura_cm']) ? $paciente['altura_cm'] : '' ?>" max="250"><br>
 
-        <label for="peso">Peso:</label><br>
-        <input type="number" id="peso" name="peso" value="<?= isset($paciente['peso']) ? $paciente['peso'] : '' ?>"><br>
+        <label for="peso">Peso(kg):</label><br>
+        <input type="number" id="peso" name="peso" value="<?= isset($paciente['peso']) ? $paciente['peso'] : '' ?>" max="200"><br>
 
         <label for="historia_clinica">Historia clínica:</label><br>
-        <input type="text" id="historia_clinica" name="historia_clinica" value="<?= isset($paciente['historia_clinica']) ? $paciente['historia_clinica'] : '' ?>"><br>
+        <input type="text" id="historia_clinica" name="historia_clinica" value="<?= isset($paciente['historia_clinica']) ? $paciente['historia_clinica'] : '' ?>" max="99999999999"><br>
 
         <label for="id_Obra">Obra:</label><br>
         <select name="id_Obra" id="id_Obra" required>
