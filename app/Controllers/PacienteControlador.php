@@ -116,7 +116,7 @@ class PacienteControlador extends BaseController
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $data = [
-            'id_usuario' => $this->request->getPost('id_Usuario'),
+            'id_Usuario' => $this->request->getPost('id_Usuario'),
             'nombre' => $this->request->getPost('nombre'),
             'apellido' => $this->request->getPost('apellido'),
             'dni' => $this->request->getPost('dni'),
@@ -140,14 +140,16 @@ class PacienteControlador extends BaseController
             }
 
             $pacienteModel->update($pacienteId, $data);
-            $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
+            $usuarioModel->update($data['id_Usuario'], ['id_especialidad' => $idEspecialidad]);
         } else {
             if ($session->get('user_rol') == 2) {
                 $pacienteModel->insertarPaciente($data);
-                $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
+                $usuarioModel->update($data['id_Usuario'], ['id_especialidad' => $idEspecialidad]);
             } else {
+                $pacienteModel->insertarPaciente($data);
                 return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para añadir un nuevo paciente.');
             }
+            return redirect()->to('crudPaciente');
         }
 
         return redirect()->to('crudPaciente');
@@ -180,7 +182,7 @@ class PacienteControlador extends BaseController
         $usuarioModel = new UsuarioModelo();
 
         $data = [
-            'id_usuario' => $this->request->getPost('id_Usuario'),
+            'id_Usuario' => $this->request->getPost('id_Usuario'),
             'nombre' => $this->request->getPost('nombre'),
             'apellido' => $this->request->getPost('apellido'),
             'dni' => $this->request->getPost('dni'),
@@ -188,13 +190,13 @@ class PacienteControlador extends BaseController
             'altura_cm' => $this->request->getPost('altura_cm'),
             'peso' => $this->request->getPost('peso'),
             'historia_clinica' => $this->request->getPost('historia_clinica'),
-            'id_obra' => $this->request->getPost('id_obra'),
-            'id_tipo_sangre' => $this->request->getPost('id_tipo_sangre')
+            'id_Obra' => $this->request->getPost('id_obra'),
+            'id_Sangre' => $this->request->getPost('id_tipo_sangre')
         ];
         $idEspecialidad = $this->request->getPost('especialidad');
 
         $pacienteModel->editarPaciente($id, $data);
-        $usuarioModel->update($data['id_usuario'], ['id_especialidad' => $idEspecialidad]);
+        // $usuarioModel->update($data['id_Usuario'], ['id_especialidad' => $idEspecialidad]);
 
         return redirect()->to('crudPaciente');
     }

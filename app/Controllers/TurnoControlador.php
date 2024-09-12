@@ -49,7 +49,6 @@ class TurnoControlador extends BaseController{
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
 
-  
         return view('TurnoNew.php', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
@@ -72,7 +71,9 @@ class TurnoControlador extends BaseController{
                 'id_paciente' => $idPaciente,
                 'id_estado' => 1
             ];
-        
+            
+            $turnoModel->insertarTurno($data);
+            return redirect()->to('pagina');
         } else {
             return redirect()->to('/');
         }
