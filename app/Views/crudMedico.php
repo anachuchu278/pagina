@@ -25,17 +25,17 @@
                     <td>
                         <?php foreach ($horarios as $horario): ?>
                             <?php if ($horario['id_usuario'] == $medico['id_Usuario']): ?>
-                                <?= $horario['hora_inicio']; ?>-<?= $horario['hora_final']; ?>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Acciones
+                                <p class="d-inline-flex gap-1">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        <?= $horario['hora_inicio']; ?>-<?= $horario['hora_final']; ?>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="<?= site_url('horario_medico/'. $horario['id_Horario']); ?>">Editar</a></li>
-                                        <li><a class="dropdown-item" href="<?= site_url('eliminarHorario/'. $horario['id_Horario']); ?>">Eliminar</a></li>
-                                    </ul>
-                                </div>
-                                <br>
+                                </p>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <a class="dropdown-item" href="<?= site_url('horario_medico/'. $horario['id_Horario']); ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?= site_url('eliminarHorario/'. $horario['id_Horario']); ?>">Eliminar</a>
+                                    </div>
+                                </div><br>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </td>
