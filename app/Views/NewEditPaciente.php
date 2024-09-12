@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-    <link rel="stylesheet" href="<?php echo base_url('css/editPaciente.css')?>">
+    <link rel="stylesheet" href="<?= base_url('css/editPaciente.css')?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($paciente['id_Paciente']) ? "Editar " . $paciente['nombre'] : "Añadir Paciente" ?></title>
