@@ -46,4 +46,7 @@ $routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1')
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
-$routes->post('admin/eliminar', 'adminController::eliminarAdmin');
+$routes->post('admin/eliminar', 'adminController::eliminarAdmin'); 
+//Pagina de Confirmacion 
+$routes->get('confirmacion', 'paginaController::pagina_confirmacion'); 
+$routes->post('validar-codigo', 'paginaController::validarCodigo'); 

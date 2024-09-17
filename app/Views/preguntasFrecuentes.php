@@ -23,7 +23,7 @@
                 <h2>Contactanos en nuestras Redes.</h2>
                 <p>Puedes encontrar más información en nuestras redes.
                     <a href="https://www.instagram.com">Instagram</a>
-                    <a href="https://github.com/anachuchu278/tesina.git">Github</a>
+                    <a href="https://github.com/anachuchu278/pagina.git">Github</a>
                 </p>
             </div>
         </div>
