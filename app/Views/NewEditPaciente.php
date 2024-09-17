@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-    <link rel="stylesheet" href="<?php echo base_url('css/editPaciente.css')?>">
+    <link rel="stylesheet" href="<?= base_url('css/editPaciente.css')?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($paciente['id_Paciente']) ? "Editar " . $paciente['nombre'] : "Añadir Paciente" ?></title>
@@ -13,13 +13,23 @@
         <?php endif; ?>
 
         <label for="id_Usuario">Usuario:</label><br>
-        <select name="id_Usuario" id="id_Usuario" <?= isset($paciente['id_Paciente']) ? 'disabled' : 'required' ?>>
+        <select name="id_Usuario" id="id_Usuario" <?= isset($paciente['id_Paciente']) ? 'disabled' : 'required' ?> onchange="checkUserRole()">
+            <option value="">Seleccione un usuario</option>
             <?php foreach ($usuarios as $usuario): ?>
                 <?php if ($usuario['id_rol'] != 2): ?> <!-- Excluir usuarios con rol de administrador -->
-                    <option value="<?= $usuario['id_Usuario'] ?>" <?= (isset($paciente['id_Usuario']) && $paciente['id_Usuario'] == $usuario['id_Usuario']) ? 'selected' : '' ?>><?= $usuario['nombre'] ?></option>
+                    <option value="<?= $usuario['id_Usuario'] ?>" data-id-rol="<?= $usuario['id_rol'] ?>" <?= (isset($paciente['id_Usuario']) && $paciente['id_Usuario'] == $usuario['id_Usuario']) ? 'selected' : '' ?>><?= $usuario['nombre'] ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
         </select><br>
+
+        <div id="especialidad-container" style="display: none;">
+            <label for="especialidad">Seleccionar especialidad:</label>
+            <select name="especialidad" id="especialidad">
+                <?php foreach ($especialidades as $especialidad): ?>
+                    <option value="<?= esc($especialidad['id_Especialidad']) ?>"><?= esc($especialidad['tipo']) ?></option>
+                <?php endforeach; ?>
+            </select><br>
+        </div>
 
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" value="<?= isset($paciente['nombre']) ? $paciente['nombre'] : '' ?>" required><br>
@@ -62,4 +72,21 @@
         <input type="submit" value="<?= isset($paciente['id_Paciente']) ? 'Guardar Cambios' : 'Añadir' ?>">
     </form>
 </body>
+<script>
+    function checkUserRole() {
+        var select = document.getElementById('id_Usuario');
+        var selectedOption = select.options[select.selectedIndex];
+        var idRol = selectedOption.getAttribute('data-id-rol');
+        var especialidadContainer = document.getElementById('especialidad-container');
+
+        if (idRol == '4') {
+            especialidadContainer.style.display = 'block';
+        } else {
+            especialidadContainer.style.display = 'none';
+        }
+    }
+
+    // Llamar a la función al cargar la página para verificar el rol del usuario seleccionado
+    window.onload = checkUserRole;
+</script>
 </html>
