@@ -66,3 +66,17 @@ body {
 .login-form button:hover {
     background-color: #8e98a37e;
 }
+.container {
+    display: flex;
+    justify-content: center;
+}
+.pass {
+    font-size: 1.5rem;
+    width: 400px;
+    padding: 10px 5px;
+} 
+.bx {
+    font-size: 30px;
+    transform: translateX(5px);
+    cursor: pointer; 
+}
