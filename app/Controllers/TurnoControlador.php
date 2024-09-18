@@ -6,6 +6,7 @@ use App\Models\TurnoModel;
 use App\Models\PacienteModel;
 use App\Models\UsuarioModelo;
 use App\Models\PagoModel;
+use App\Models\HorarioModelo;
 use App\Models\EstadoModel;
 use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
@@ -18,7 +19,6 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-
         $turnos = $turnoModel->getTurnosPorUsuario($userId); 
 
         // Cargar la información de especialidad para cada usuario en los turnos
@@ -33,23 +33,27 @@ class TurnoControlador extends BaseController{
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
 
-        
-        return view('turnoVista.php', $data);
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2);
+        echo view('layout/navbar', $data);
+        return view('turnoVista', $data);
     }
     public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
+        $HorarioModel = new HorarioModelo();
         $userId = $session->get('user_id');
 
         $user = $pacienteModel->getPaciente($userId);
         $turnos = $turnoModel->getTurnosPorUsuario($userId);
-
+        $data['horarios'] = $HorarioModel->findAll();
+        $data['medicos'] = $usuarioModel->findAll();
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
 
-        return view('TurnoNew.php', $data);
+        return view('TurnoNew', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
         $session = \Config\Services::session();
@@ -65,14 +69,15 @@ class TurnoControlador extends BaseController{
             }
             $codigoturno = getRandomHex(4);
             $data = [
-                'fecha_hora' => $this->request->getPost('fecha_hora'),
-                'codigo turno' => $codigoturno,
-                'id_usuario' => $this->request->getPost('medico'),
+                'fecha_hora' => $this->request->getPost('id_Horario'),
+                'codigo_turno' => $codigoturno,
+                'id_Usuario' => $this->request->getPost('id_Medico'),
                 'id_paciente' => $idPaciente,
-                'id_estado' => 1
+                'id_estado' => 1,
+                'id_pago' => null
             ];
             
-            $turnoModel->insertarTurno($data);
+            $turnoModel->insertData($data);
             return redirect()->to('pagina');
         } else {
             return redirect()->to('/');

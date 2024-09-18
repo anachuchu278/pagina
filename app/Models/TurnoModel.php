@@ -16,7 +16,8 @@ class TurnoModel extends Model{
         'id_pago'
     ];
 
-    public function insertarTurno($data){
+
+    public function insertData($data){
         $query = $this->db->table($this->table)->insert($data);
         return $query;
     }

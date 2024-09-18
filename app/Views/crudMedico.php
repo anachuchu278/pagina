@@ -25,17 +25,15 @@
                     <td>
                         <?php foreach ($horarios as $horario): ?>
                             <?php if ($horario['id_usuario'] == $medico['id_Usuario']): ?>
-                                <p class="d-inline-flex gap-1">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-target="false" aria-expanded="false">
                                         <?= $horario['hora_inicio']; ?>-<?= $horario['hora_final']; ?>
                                     </button>
-                                </p>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        <a class="dropdown-item" href="<?= site_url('horario_medico/'. $horario['id_Horario']); ?>">Editar</a>
-                                        <a class="dropdown-item" href="<?= site_url('eliminarHorario/'. $horario['id_Horario']); ?>">Eliminar</a>
-                                    </div>
-                                </div><br>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="<?= site_url('horario_medico/'. $horario['id_Horario']); ?>">Editar</a></li>
+                                        <li><a class="dropdown-item" href="<?= site_url('eliminarHorario/'. $horario['id_Horario']); ?>">Eliminar</a></li>
+                                    </ul>
+                                </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </td>
@@ -50,8 +48,6 @@
     <div class="box-new">
         <a class="btn btn-success" href="newMedicoView">Añadir</a><br>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzOgQpeKBmRa8N1l9K/r+7B0GR8Q0x0BSWS9aPpbbPyr" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12W8B2G5y5z2QpH1ANe1XmWl5r5Vxj1KSk8pcq5d5pVb5d5M" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 </body>
 </html>
