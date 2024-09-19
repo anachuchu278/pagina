@@ -66,17 +66,32 @@ body {
 .login-form button:hover {
     background-color: #8e98a37e;
 }
+/* Contenedor para el input de contraseña y el icono */
+/* Contenedor para el input de contraseña y el icono */
 .container {
-    display: flex;
-    justify-content: center;
+    position: relative;  /* Posicionamiento relativo para que el icono quede dentro */
+    width: 100%;
 }
+
+/* Input de contraseña */
 .pass {
     font-size: 1.5rem;
-    width: 400px;
-    padding: 10px 5px;
-} 
-.bx {
-    font-size: 30px;
-    transform: translateX(5px);
-    cursor: pointer; 
+    width: 100%;  /* Para que ocupe todo el ancho del contenedor */
+    padding: 10px;
+    padding-right: 40px;  /* Espacio a la derecha para el icono */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
+
+/* Icono para mostrar/ocultar contraseña */
+.bx {
+    position: absolute;
+    top: 50%;  /* Posiciona el icono en el centro vertical */
+    right: 10px;  /* Alineado a la derecha del input */
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    transform: translateY(-50%);  /* Centra el icono verticalmente */
+}
+    

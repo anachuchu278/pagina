@@ -1,5 +1,5 @@
 const pass = document.getElementById("pass"), 
-      icon = document.getQuerySelector(".bx"); 
+      icon = document.QuerySelector(".bx"); 
 
 icon.addEventListener("click", e => {
     if (pass.type === "password") {

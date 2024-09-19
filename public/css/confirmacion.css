@@ -12,13 +12,14 @@ body {
 }
 
 h1 {
-    color: #50add8; 
+    color: #50add8;
     font-size: 2.5em;
     margin-bottom: 20px;
     text-align: center;
 }
 
-form {
+/* Envolvemos el formulario y el h1 en un contenedor */
+.form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -28,9 +29,15 @@ form {
     text-align: center;
 }
 
+form {
+    width: 100%;
+}
+
 label {
     font-size: 1.2em;
     color: #333;
+    display: block;
+    margin-bottom: 8px;
 }
 
 input[type="text"] {
