@@ -4,6 +4,7 @@ use App\Models\UsuarioModelo;
 use App\Models\HorarioModelo;
 use CodeIgniter\Controller;
 use App\Models\PacienteModel;
+use App\Models\EspecialidadModel;
 use App\Models\TurnoModel;
 
 class RecepcionControlador extends BaseController{
@@ -48,10 +49,16 @@ class RecepcionControlador extends BaseController{
     public function newMedVista()
     {
         $session = \Config\Services::session();
+        $usuario = new UsuarioModelo();
+        $espec = new EspecialidadModel();
+
+        $data['usuarios'] = $usuario->findAll();
+        $data['especialidades'] = $espec->findAll();
+
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
         echo view('layout/navbar.php', $data);
-        return view('newMedVista');
+        return view('nuevoMedico', $data);
     }
     public function newMed()
     {
@@ -59,8 +66,8 @@ class RecepcionControlador extends BaseController{
         $usuarioModelo= new UsuarioModelo();
 
         $data=[
-            'id_Usuario' => $this->request->getPost('id_usuario'),
-            'id_especialidad' => $this->request->getPost('id_especialidad'),
+            'id_Usuario' => $this->request->getPost('id_Usuario'),
+            'id_especialidad' => $this->request->getPost('especialidad'),
             'id_rol' => 4
         ];
         $usuarioModelo->editarUsuario($data);

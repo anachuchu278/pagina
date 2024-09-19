@@ -53,6 +53,9 @@ class TurnoControlador extends BaseController{
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
 
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2);
+        echo view('layout/navbar', $data);
         return view('TurnoNew', $data);
     }
     public function new(){ // Guardar datos del nuevo turno
