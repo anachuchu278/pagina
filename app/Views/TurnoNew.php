@@ -22,7 +22,7 @@
         <label for="id_Horario">Hora:</label><br>
             <select class="form-select" name="id_Horario" id="id_Horario" required>
                 <?php foreach ($horarios as $horario): ?>
-                    <option value="<?= $horario['id_Horario'] ?>"><?= $horario['dia_sem']; ?> - <?= $horario['hora_inicio']; ?> - <?= $horario['hora_final']; ?></option>
+                    <option value="<?= $horario['id_Horario'] ?>"><?= $horario['dia_sem']; ?> - <?= substr($horario['hora_inicio'], 0, -3); ?> - <?= substr($horario['hora_final'], 0, -3); ?></option>
                 <?php endforeach; ?>
             </select><br>
         <input type="submit" value="Añadir Turno">
