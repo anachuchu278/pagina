@@ -24,4 +24,12 @@ class HorarioModelo extends Model{
         $query = $this->db->table($this->table)->delete(array('id_Horario' => $id));
         return $query;
     } 
+    public function getUsuario($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll() ? $this->findAll() : [];
+        } else {
+            return $this->where(['id_Horario' => $id])->first() ? $this->where(['id_Horario' => $id])->first() : [];
+        }
+    }
 }

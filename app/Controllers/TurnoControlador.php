@@ -16,11 +16,14 @@ class TurnoControlador extends BaseController{
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $estadoModel = new EstadoModel();
+        $HorarioModel = new HorarioModelo();
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
         $turnos = $turnoModel->getTurnosPorUsuario($userId); 
 
+        // $id = $turnos['fecha_hora'];
+        // $data ['horarios'] = $HorarioModel->find($id);
         // Cargar la información de especialidad para cada usuario en los turnos
         foreach ($turnos as $turno) {
             $idT = $turno['id_estado'];

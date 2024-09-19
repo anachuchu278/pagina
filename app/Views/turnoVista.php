@@ -20,8 +20,15 @@
             <tbody>
                 <?php foreach ($turnos as $turno) :?>
                     <tr>
-                        <td><?= $turno['fecha_hora']; ?></td>
-                        <td><?= $turno['id_usuario']; ?></td>
+                        <?php if (!empty($horarios)):?>
+                        <?php foreach($horarios as $horario):?>
+                            <?php if($horario['id_Horario'] == $turno['fecha_hora']):?>
+                                <td><?= $horario['hora_inicio'];?> - <?= $horario['hora_final']; ?></td>
+                            <?php endif;?>
+                        <?php endforeach;?>
+                        <td><?= $turnos['fecha_hora'];?></td>
+                        <?php endif;?>
+                        <td><?= $turno['id_Usuario']; ?></td>
                         <td><?= $turno['id_paciente']; ?></td>
                         <td>
                             <a href="<?= site_url('editarTurno/'. $turno['id_Turno']); ?>">Reprogramar Turno</a>
