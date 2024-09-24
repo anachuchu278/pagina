@@ -35,12 +35,13 @@ $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para e
 $routes->get('pay', 'Home::pay');
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
-$routes->get('NewMedView', 'RecepcionControlador::newMedVista');
-$routes->get('horario_medico/(:num)', 'RecepcionControlador::horMed/$1'); // Vista para añadir horarios de medico
-$routes->post('guardarH/(:num)', 'RecepcionControlador::guardarHorario/$1'); // Guardar horarios
+$routes->get('newMedView', 'RecepcionControlador::newMedVista');
+$routes->post('newMed', 'RecepcionControlador::newMed');
+$routes->get('horario_medico', 'RecepcionControlador::horMed'); // Vista para añadir horarios de medico
+$routes->post('guardarH', 'RecepcionControlador::guardarHorario'); // Guardar horarios
+$routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1');
 $routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
 $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
-$routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1');
 
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
