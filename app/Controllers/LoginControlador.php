@@ -32,10 +32,10 @@ class LoginControlador extends BaseController{
                 $redirect_url = $session->get('redirect_url') ?? 'pagina';
                 return redirect()->to($redirect_url);
             } else {
-                return redirect()->back()->with('error', 'Contraseña incorrecta.');
+                return redirect()->back()->with('error', 'Credenciales incorrectas.');
             }
         } else {
-            return redirect()->back()->with('error', 'Usuario no encontrado.');
+            return redirect()->back()->with('error', 'Credenciales incorrectas.');
         }
     }
     public function logout()

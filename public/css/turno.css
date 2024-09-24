@@ -1,43 +1,48 @@
-/* Estilos generales del cuerpo */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+}
+h1{
+    text-align: center;
 }
 
-/* Estilo del formulario */
+/* Contenedor del formulario */
 form {
     width: 100%;
-    max-width: 400px;
-    background-color: #fff;
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 /* Estilo de las etiquetas */
 label {
     display: block;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #333;
 }
 
 /* Estilo de los campos de entrada */
-input[type="datetime-local"] {
-    width: 100%;
+input[type="text"],
+input[type="number"],
+select {
+    width: calc(100% - 22px); /* Ajusta el ancho para el padding y borde */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 14px;
+}
+
+/* Estilo del checkbox */
+input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 /* Estilo del botón de envío */
@@ -57,22 +62,9 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
-.boton-volver {
-        display: inline-block;
-        padding: 10px 20px; /* Espaciado interno para hacer el botón más grande */
-        background-color: #007bff; /* Color de fondo del botón */
-        color: white; /* Color del texto */
-        text-align: center;
-        text-decoration: none; /* Elimina el subrayado del enlace */
-        border-radius: 5px; /* Bordes redondeados */
-        font-size: 16px; /* Tamaño de fuente */
-        font-weight: bold; 
-        position: relative; 
-        z-index: 10; 
-        cursor: pointer;
-    }
-    
-    
-.boton-volver:hover {
-        background-color: #0056b3; 
+
+/* Estilo de los elementos deshabilitados */
+select[disabled] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
 }
