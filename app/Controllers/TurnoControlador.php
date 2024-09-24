@@ -70,6 +70,7 @@ class TurnoControlador extends BaseController{
             // TODO Revisar como añadir el id_pago  -!- Cambiar relacion id_turno -> tabla Pago, no id_pago ->Tabla Turno
             $id = $session->get('user_id');
             $idPaciente = $pacienteModel->getPaciente($id);
+            $idP = $idPaciente['id_Paciente'];
             function getRandomHex($num_bytes=4) {
                 return bin2hex(openssl_random_pseudo_bytes($num_bytes));
             }
@@ -78,7 +79,7 @@ class TurnoControlador extends BaseController{
                 'fecha_hora' => $this->request->getPost('id_Horario'),
                 'codigo_turno' => $codigoturno,
                 'id_Usuario' => $this->request->getPost('id_Medico'),
-                'id_paciente' => $idPaciente['id_Paciente'],
+                'id_paciente' => $idP,
                 'id_estado' => 1,
                 'id_pago' => null
             ];
