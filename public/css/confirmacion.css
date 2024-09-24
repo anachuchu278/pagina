@@ -1,0 +1,98 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #50add8;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Envolvemos el formulario y el h1 en un contenedor */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+}
+
+label {
+    font-size: 1.2em;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #56cbcf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #42b1c0;
+}
+
+p {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Steps section */
+#pasos-a-seguir {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 400px;
+}
+
+#pasos-a-seguir h2 {
+    color: #47c7c1;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+#pasos-a-seguir ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    color: #333;
+}
+
+#pasos-a-seguir li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}

@@ -35,5 +35,21 @@ class PaginaController extends Controller{
     } 
     public function preguntas(){
         return view('preguntasFrecuentes');
+    } 
+    public function pagina_confirmacion(){
+        return view('pagina_confirmacion');
+    } 
+    public function validarCodigo(){
+        $codigoIngresado = $this->request->getPost('codigo_turno'); 
+        $turnoModel = new TurnoModel(); 
+
+        $turno = $turnoModel->where('codigo_turno', $codigoIngresado)->first(); 
+
+        if($turno) {
+            session()->setFlashdata('codigoValido', true);
+            return redirect()->to('confirmacion');
+        } else {
+            return redirect()->back()->with('error', 'El codigo no coincide');
+        }
     }
 }
