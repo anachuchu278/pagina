@@ -25,7 +25,6 @@
                     <option value="<?= $horario['id_Horario'] ?>"><?= $horario['dia_sem']; ?> - <?= substr($horario['hora_inicio'], 0, -3); ?> - <?= substr($horario['hora_final'], 0, -3); ?></option>
                 <?php endforeach; ?>
             </select><br>
-            <p><?php var_dump($horario)?></p>
         <input type="submit" value="Añadir Turno">
     </form>
 </body>

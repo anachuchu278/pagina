@@ -3,64 +3,93 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333;
 }
-h1{
+
+h1 {
     text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+    color: #007B8A; /* Coherente con la paleta de colores anterior */
 }
 
 /* Contenedor del formulario */
 form {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px; /* Más espacioso */
+    background-color: #ffffff;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra más notable */
+    border: 1px solid #e0e0e0; /* Borde ligero */
+    transition: all 0.3s ease;
+}
+
+/* Cambios en el formulario cuando se hace hover */
+form:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Sombra al hacer hover */
+    transform: translateY(-2px); /* Ligero desplazamiento hacia arriba */
 }
 
 /* Estilo de las etiquetas */
 label {
     display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #333;
+    font-size: 15px; /* Tamaño de letra más grande */
+    margin-bottom: 8px;
+    color: #007B8A; /* Color acorde al diseño general */
+    font-weight: bold;
 }
 
 /* Estilo de los campos de entrada */
 input[type="text"],
 input[type="number"],
 select {
-    width: calc(100% - 22px); /* Ajusta el ancho para el padding y borde */
-    padding: 10px;
-    margin-bottom: 15px;
+    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
+    padding: 12px 10px; /* Más espacio interno */
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px; /* Bordes más suaves */
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 15px;
+    background-color: #f9f9f9; /* Fondo más claro */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Cambio de color al enfocar los campos */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007B8A; /* Color de borde al enfocar */
+    background-color: #fff; /* Fondo blanco al enfocar */
+    outline: none;
 }
 
 /* Estilo del checkbox */
 input[type="checkbox"] {
     margin-right: 10px;
+    transform: scale(1.2); /* Hace el checkbox más grande */
 }
 
 /* Estilo del botón de envío */
 input[type="submit"] {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 12px;
+    background-color: #007B8A; /* Acorde con el esquema de colores */
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra inicial */
 }
 
 /* Cambio de color del botón al pasar el cursor */
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #005f73;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más profunda al hacer hover */
 }
 
 /* Estilo de los elementos deshabilitados */
