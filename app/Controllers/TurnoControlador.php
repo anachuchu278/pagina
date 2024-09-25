@@ -20,21 +20,13 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-        $turnos = $turnoModel->getTurnosPorUsuario($userId); 
+        //$turnos = $turnoModel->getTurnosPorUsuario($userId); 
+        $turnos = $turnoModel->findAll();
+        $horarios = $HorarioModel->findAll();
 
-        // $id = $turnos['fecha_hora'];
-        // $data ['horarios'] = $HorarioModel->find($id);
-        // Cargar la información de especialidad para cada usuario en los turnos
-        foreach ($turnos as $turno) {
-            $idT = $turno['id_estado'];
-            // $nameID = $estadoModel->getNombrePorID($idT);
-            // $turno['id_ usuario'] = $nameID;
-        }
-        $data['usuario'] = $user;
+        $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
-
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $data['horarios'] = $horarios;
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
@@ -69,8 +61,7 @@ class TurnoControlador extends BaseController{
             $usuarioModel = new UsuarioModelo();
             // TODO Revisar como añadir el id_pago  -!- Cambiar relacion id_turno -> tabla Pago, no id_pago ->Tabla Turno
             $id = $session->get('user_id');
-            $idPaciente = $pacienteModel->getPaciente($id);
-            $idP = $idPaciente['id_Paciente'];
+            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
             function getRandomHex($num_bytes=4) {
                 return bin2hex(openssl_random_pseudo_bytes($num_bytes));
             }
@@ -79,12 +70,12 @@ class TurnoControlador extends BaseController{
                 'fecha_hora' => $this->request->getPost('id_Horario'),
                 'codigo_turno' => $codigoturno,
                 'id_Usuario' => $this->request->getPost('id_Medico'),
-                'id_paciente' => $idP,
+                'id_paciente' => $id,
                 'id_estado' => 1,
                 'id_pago' => null
             ];
             
-            $turnoModel->insertData($data);
+            $turnoModel->insertarDatos($data);
             return redirect()->to('pagina');
         } else {
             return redirect()->to('/');
