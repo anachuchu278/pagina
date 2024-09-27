@@ -5,39 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="<?= base_url('css/paginaMain.css')?>">
 </head>
 
 <body>
-    <style>
-        .center-screen {
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
-        }  
-        .card {
-            height: 100%;
-        }
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .custom-navbar {
-            background-color: #50A5E4;
-        } 
-        .imagen  {
-            align-items: center;
-            margin-bottom: -25%;
-        } 
-        .imagen img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        } 
-    </style>
     <ul class="nav nav-tabs custom-navbar">
         <li class="nav-item">
             <a class="nav-link text-white " aria-current="page" href="<?= site_url('crudPaciente') ?>">Tus turnos</a>

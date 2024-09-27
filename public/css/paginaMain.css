@@ -1,0 +1,27 @@
+.center-screen {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}  
+.card {
+    height: 100%;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.custom-navbar {
+    background-color: #50A5E4;
+} 
+.imagen  {
+    align-items: center;
+    margin-bottom: -25%;
+} 
+.imagen img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}  

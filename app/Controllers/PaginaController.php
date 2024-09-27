@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\EstadoModel;
 use App\Models\UsuarioModelo;
 use App\Models\TurnoModel;
 use CodeIgniter\Controller;
@@ -42,14 +43,26 @@ class PaginaController extends Controller{
     public function validarCodigo(){
         $codigoIngresado = $this->request->getPost('codigo_turno'); 
         $turnoModel = new TurnoModel(); 
+        $estadoModel = new EstadoModel();
 
         $turno = $turnoModel->where('codigo_turno', $codigoIngresado)->first(); 
 
         if($turno) {
-            session()->setFlashdata('codigoValido', true);
-            return redirect()->to('confirmacion');
+            // Obtener el ID del estado "confirmado" de la tabla Estado
+            $estadoConfirmado = $estadoModel->where('estado', 'confirmado')->first();
+            
+            // Verificar que se encontró el estado "confirmado"
+            if($estadoConfirmado) {
+                // Actualizar el estado del turno con el ID del estado "confirmado"
+                $turnoModel->update($turno['id_Turno'], ['id_Estado' => $estadoConfirmado['id_Estado']]);
+    
+                session()->setFlashdata('codigoValido', true);
+                return redirect()->to('confirmacion');
+            } else {
+                return redirect()->back()->with('error', 'No se encontró el estado "confirmado".');
+            }
         } else {
-            return redirect()->back()->with('error', 'El codigo no coincide');
+            return redirect()->back()->with('error', 'El código no coincide.');
         }
     }
 }
