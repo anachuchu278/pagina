@@ -10,27 +10,24 @@
 </head>
 
 <body>
-    <ul class="nav nav-tabs custom-navbar">
-        <li class="nav-item">
-            <a class="nav-link text-white " aria-current="page" href="<?= site_url('crudPaciente') ?>">Tus turnos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('calendario') ?>">Calendario</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('preguntas') ?>">Preguntas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('/perfil') ?>">Perfil</a>
-        </li> 
-        <li class="nav-item">
-            <a class="nav-link text-white " href="<?= site_url('logout') ?>">Cerrar Sesion</a>
-        </li> 
-        <?php if ($showAdmin):?>
-            <li><a class="nav-link text-white " href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+    <nav>
+        <ul class="menu-horizontal">
+            <li>
+                <a href="">Gestion</a>
+                <ul class="menu-vertical">
+                    <li><a href="">Turnos</a></li>
+                    <li><a href="">Generar un turno</a></li>
+                    <li><a href="">Añadir un Paciente</a></li>
+                </ul>
+            </li>
+            <li><a href="">Perfil</a></li>
+            <li><a href="">Preguntas Frecuentes</a></li> 
+            <li><a href="<?= base_url('logout')?>">Cerrar Sesion</a></li> 
+            <?php if ($showAdmin):?>
+            <li><a class="" href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
             <?php endif; ?>
-            
-    </ul> 
+        </ul>
+    </nav>
     <div class="imagen">
         <img src="img/1.jpg" alt="" >
     </div><br>

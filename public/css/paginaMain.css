@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .center-screen {
     justify-content: center;
     display: flex;
@@ -12,9 +17,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.custom-navbar {
-    background-color: #50A5E4;
-} 
+
 .imagen  {
     align-items: center;
     margin-bottom: -25%;
@@ -25,3 +28,42 @@
     display: block;
     margin: 0 auto;
 }  
+nav {
+    max-width: 900px;
+    margin: auto;
+    background-color: #333;
+    font-size: 20px;
+    margin-top: 50px;
+}
+.menu-horizontal {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.menu-horizontal > li > a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+.menu-horizontal > li:hover {
+    background-color: darkgray; 
+}
+.menu-vertical {
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 100px;
+    background-color: rgba(0, 0, 0, .5);
+}
+.menu-horizontal li:hover .menu-vertical{
+    display: block;
+} 
+.menu-vertical li:hover {
+    background-color: black;
+} 
+.menu-vertical li a {
+    display: block;
+    color: white;
+    padding: 15px 15px 15px 20px;
+}
