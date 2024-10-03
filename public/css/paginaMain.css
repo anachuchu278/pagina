@@ -1,88 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #1f56bb;
+    background-color: #173b80;
     font-family: 'Roboto Mono', sans-serif;
 }
-.center-screen {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-}  
-.card {
-    height: 100%;
-}
-.card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+.img {
+    position: relative;
+    width: 100%;
+    height: 800px; /* Asegura que la imagen cubra toda la primera sección */
+    overflow: hidden;
 }
 
-.imagen  {
-    align-items: center;
-    margin-bottom: -25%;
-} 
-.imagen img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}  
-nav {
-    max-width: 900px;
-    margin: auto;
-    background-color: #042564;
-    font-size: 20px;
-    margin-top: 50px;
-    border-radius: 30px;
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que cubra todo el área sin perder proporciones */
 }
+
+nav {
+    width: 100%; /* Asegura que el navbar cubra todo el ancho de la página */
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0;
+    left: 0;
+    background-color: #091c41;
+    font-size: 20px;
+    z-index: 10; /* Asegura que el navbar esté sobre el contenido */
+}
+
 .menu-horizontal {
     list-style: none;
     display: flex;
     justify-content: space-around;
     margin: 0;
-    padding: 0;
+    padding: 15px 0; /* Ajusta el padding para darle espacio vertical */
 }
+
 .menu-horizontal > li > a {
     display: block;
     padding: 15px 20px;
     color: white;
     text-decoration: none;
 }
+
 .menu-horizontal > li:hover {
     background-color: #5E548E; 
     transition: .5s;
     border-radius: 19px;
     margin-top: 2px;
 }
+
 .menu-vertical {
     position: absolute;
     display: none;
     list-style: none;
     width: 250px;
-    background-color:#5a183f;
+    background-color: #5a183f;
     text-decoration: none;
     transition: .5s;
     border-radius: 7px;
     margin: 0;
     padding: 0;
 }
-.menu-horizontal li:hover .menu-vertical{
+
+.menu-horizontal li:hover .menu-vertical {
     display: block;
-} 
+}
+
 .menu-vertical li:hover {
-    background-color:rgba(255, 255, 255, 0.671);
+    background-color: rgba(255, 255, 255, 0.671);
     transition: .5s;
     border-radius: 7px;
-    
-} 
+}
+
 .menu-vertical li a {
     display: block;
-    color:#6C757D;
+    color: #6C757D;
     padding: 15px 15px 15px 20px;
     text-decoration: none;
     transition: .5s;
 }
+
+.contenido {
+    padding: 20px;
+    background-color: white;
+    margin-top: 80px; /* Deja espacio debajo del navbar para el contenido */
+}
+
+.otra-seccion {
+    padding: 20px;
+    background-color: lightgray;
+} 

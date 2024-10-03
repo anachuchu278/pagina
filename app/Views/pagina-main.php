@@ -22,7 +22,7 @@
                 </ul>
             </li>
             <li><a href="">Perfil</a></li>
-            <li><a href="">Preguntas Frecuentes</a></li> 
+            <li><a href="">Calendario</a></li> 
             <li><a href="<?= base_url('logout')?>">Cerrar Sesion</a></li> 
             <?php if ($showAdmin):?>
             <li><a class="" href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
@@ -31,8 +31,14 @@
     </nav>
     </div>
     <div class="img">
-        <img src="<?= base_url('fondo.jpg')?>" alt="">
-    </div>
+        <img src="<?= base_url('img/mejorada.jpeg')?>" alt="">
+    </div> 
+    <section class="contenido">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam necessitatibus natus exercitationem maiores voluptate quos sequi earum suscipit hic fugit, quasi cupiditate. Sunt minus, alias non voluptas hic harum suscipit?</p>
+    </section>
+    <section class="otra-seccion">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, commodi voluptatum consectetur necessitatibus iste sed obcaecati minima fugiat molestiae modi ipsa debitis. At, impedit explicabo esse enim necessitatibus quis natus!</p>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
