@@ -9,30 +9,41 @@ body {
     scroll-behavior: smooth;
 }
 
-
-
-
 .inicio {
     width: 100%;
     height: 100vh;
     background-image: url('../img/mejorada.jpeg');
-    background-size: cover;
+    background-size: cover;            /* Cubre toda la pantalla */
     background-repeat: no-repeat;
+    background-position: center;       /* Centra la imagen */
+    display: flex;                     /* Para centrar el contenido */
     justify-content: center;
-    padding-top: 100px;
+    align-items: center;
 }
 
 .text h2 {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 3.2em;
+    font-size: 3.5em;                   /* Un tamaño de fuente ligeramente mayor */
     text-align: center;
-    color: white;
+    color: white;                       /* Texto blanco para buen contraste */
     font-weight: bold;
-    margin-top: 7em;
-
+    text-transform: uppercase;          /* Hace que el texto sea más llamativo */
+    letter-spacing: 3px;                /* Espaciado entre letras para un estilo más limpio */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada para legibilidad sobre la imagen */
+    padding: 20px;
+    border-radius: 10px;                /* Bordes suavizados */
+    background: rgba(102, 116, 163, 0.5);     /* Fondo oscuro semitransparente para mejorar la legibilidad del texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra externa para dar profundidad */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transiciones suaves */
+    opacity: 0;
+    transform: translateY(20px);        /* Animación inicial */
+}
+.text h2.visible {
+    opacity: 1;
+    transform: translateY(0);           /* Animación de entrada */
 }
 
-
+/* Navbar */
 nav {
     width: 100%; /* Asegura que el navbar cubra todo el ancho de la página */
     position: fixed; /* Fija el navbar en la parte superior */
@@ -41,6 +52,8 @@ nav {
     background-color: #091c41;
     font-size: 20px;
     z-index: 10; /* Asegura que el navbar esté sobre el contenido */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 .menu-horizontal {
@@ -95,11 +108,70 @@ nav {
     text-decoration: none;
     transition: .5s;
 }
+/*Seccion de Preguntas*/
 
-.contenido {
+.Preguntas {
+    background: rgba(73, 108, 136, 0.541);
+}
+.cards-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    flex-wrap: wrap;         
+    gap: 20px;               
     padding: 20px;
-    background-color: white;
-    margin-top: 80px; /* Deja espacio debajo del navbar para el contenido */
+}
+.card-container {
+    position: relative;
+    width: 250px;
+    height: 320px;
+    border-style: none;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+    border: none;
+}
+.card:hover {
+    transform: rotateY(180deg);
+}
+.card-front {
+    color: #333;
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 1.5rem;        /* Tamaño de la fuente mayor para destacar */
+    font-weight: bold;        /* Negrita para hacerlo más legible */
+    text-align: center;
+    border-radius: 10px;      /* Bordes redondeados para suavizar el diseño */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Efecto suave */
+}
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: #fafafa;
+    color: #333;
+    transform: rotateY(180deg);
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    justify-content: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+}
+h3 {
+    text-align: center;
+    color: white;
 }
 
 .otra-seccion {

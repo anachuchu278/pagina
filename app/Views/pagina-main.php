@@ -37,19 +37,48 @@
             </div>
         </section>
 
-        <div id="smooth-scroll"></div>
 
-        <section class="contenido">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam necessitatibus natus exercitationem maiores voluptate quos sequi earum suscipit hic fugit, quasi cupiditate. Sunt minus, alias non voluptas hic harum suscipit?</p>
+
+        <section class="Preguntas">
+            <h3>Preguntas Frecuentes</h3>
+            <div class="cards-wrapper">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">¿Quienes Somos?</div>
+                        <div class="card-back">
+                            <p>Somos InfoSolutions una empresa dedicada al desarrollo de software y hardware, destinado a la gestion de lugares con alta recurrencia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">¿Cual es el Proposito de la Página?</div>
+                        <div class="card-back">
+                            <p>El proposito de esta pagina es la de favorecer la experiencia que tiene el usuario a la hora de solicitar la atención medica.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-front">¿Quienes Somos?</div>
+                        <div class="card-back">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam necessitatibus natus exercitationem maiores voluptate quos sequi earum suscipit hic fugit, quasi cupiditate. Sunt minus, alias non voluptas hic harum suscipit?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="otra-seccion" id="pene">
+        <section class="otra-seccion">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, commodi voluptatum consectetur necessitatibus iste sed obcaecati minima fugiat molestiae modi ipsa debitis. At, impedit explicabo esse enim necessitatibus quis natus!</p>
         </section>
     </div>
 
-    <!-- Incluye smooth-scrollbar y la inicialización aquí -->
-    
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelector('.text h2').classList.add('visible');
+        });
+    </script>
 </body>
 
 </html>
