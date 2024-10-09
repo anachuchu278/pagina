@@ -37,7 +37,7 @@
             </div>
         </section>
 
-
+        <div class="wave-separador"></div>
 
         <section class="Preguntas">
             <h3>Preguntas Frecuentes</h3>
@@ -60,17 +60,31 @@
                 </div>
                 <div class="card-container">
                     <div class="card">
-                        <div class="card-front">¿Quienes Somos?</div>
+                        <div class="card-front">¿Cual es nuestra vision?</div>
                         <div class="card-back">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam necessitatibus natus exercitationem maiores voluptate quos sequi earum suscipit hic fugit, quasi cupiditate. Sunt minus, alias non voluptas hic harum suscipit?</p>
+                            <p>La vision de nuestra empresa es lograr ser lideres en el rubro en el cual se aplique nuestro sistema.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <div class="wave-separador"></div>
 
         <section class="otra-seccion">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, commodi voluptatum consectetur necessitatibus iste sed obcaecati minima fugiat molestiae modi ipsa debitis. At, impedit explicabo esse enim necessitatibus quis natus!</p>
+            <h4>Nuestros Servicios</h4>
+            <div class="container-servicios">
+                <div class="servicios-virtuales">
+                    <h5>Servicios Virtuales</h5>
+                    <li><a href="">Generacion de Turnos</a></li>
+                    <li><a href="">Añadir un Paciente</a></li>
+                    <li><a href="">Ver tus Turnos</a></li>
+                </div>
+                <div class="servicios-fisicos">
+                    <h5>Servicios Fisicos</h5>
+                    <p>En cuanto a los servicios fisicos que ofrece la empresa encontramos la instalacion del dispositivo donde se lo solicite, con toda la infraestructura que esto implica, ademas de un servicio tecnico gratuit0 si este resulta necesario.</p>
+                    <img src="<?= base_url('img/medico.png')?>" alt="">
+                </div>
+            </div>
         </section>
     </div>
 
