@@ -68,24 +68,49 @@
                 </div>
             </div>
         </section>
-        <div class="wave-separador"></div>
+        <div class="wave-separador-2" id="2"></div>
 
         <section class="otra-seccion">
             <h4>Nuestros Servicios</h4>
             <div class="container-servicios">
-                <div class="servicios-virtuales">
-                    <h5>Servicios Virtuales</h5>
-                    <li><a href="">Generacion de Turnos</a></li>
-                    <li><a href="">Añadir un Paciente</a></li>
-                    <li><a href="">Ver tus Turnos</a></li>
+                <div class="card-2">
+                    <div class="card-img">
+                        <img src="<?= base_url('img/medico.png') ?>" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h2>Ejemplo</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur,
+                            adipisicing elit. A at atque recusandae sed,
+                            rem velit necessitatibus facilis quisquam repellat
+                            nemo pariatur perferendis aut saepe sunt culpa,
+                            eos tenetur illum odit.
+                        </p>
+                    </div>
                 </div>
-                <div class="servicios-fisicos">
-                    <h5>Servicios Fisicos</h5>
-                    <p>En cuanto a los servicios fisicos que ofrece la empresa encontramos la instalacion del dispositivo donde se lo solicite, con toda la infraestructura que esto implica, ademas de un servicio tecnico gratuit0 si este resulta necesario.</p>
-                    <img src="<?= base_url('img/medico.png')?>" alt="">
+            
+            <div class="card-2">
+                    <div class="card-img">
+                        <img src="<?= base_url('img/medico.png') ?>" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h2>Ejemplo</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur,
+                            adipisicing elit. A at atque recusandae sed,
+                            rem velit necessitatibus facilis quisquam repellat
+                            nemo pariatur perferendis aut saepe sunt culpa,
+                            eos tenetur illum odit.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
+
+            </div>
+
+    </div>
+    </div>
+    </section>
     </div>
 
     <script>

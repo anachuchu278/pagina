@@ -202,73 +202,63 @@ nav {
 }
 
 .otra-seccion {
-    padding: 20px;
+    padding: 0px;
+    padding: 0px;
+    border: 0px;
+    box-sizing: border-box;
+    height: 100vh;
     background-color: lightgray;
-    height: 100VH;
 } 
 .otra-seccion h4 {
     display: flex;
     justify-content: center;
 }
-.servicios-virtuales {
-   
-    margin: 20px 0;
-}
-
-.servicios-virtuales h5 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #333;
-    font-weight: bold;
-}
-
-.servicios-virtuales li {
-    list-style-type: none; 
-    margin: 10px 0; 
-}
-
-.servicios-virtuales li a {
-    display: inline-block; 
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #007bff; 
-    border-radius: 25px;
-    text-decoration: none; 
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-}
 .container-servicios {
-    display: flex; 
-    justify-content: space-between; 
-    gap: 20px;
-    margin: 40px 0; 
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; /* Alinear en la parte superior */
+    justify-content: center; /* Centrarlas horizontalmente */ /* Permitir que las cards se ajusten si es necesario */
+    margin: 0 auto;
+    max-width: 1000px; /* Aumentar el tamaño según sea necesario */
+    gap: 20px; /* Espacio entre las cards */
 }
 
-.servicios-virtuales, .servicios-fisicos {
-    flex: 1; 
-    padding: 20px;
-    background-color: #f4f4f4; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.card-2 {
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 300px; /* Altura fija para las cards */
+    width: 450px;
+    margin: 30px;
+    padding: 15px;
+    overflow: hidden;
+    transition: height 1s;
+    border-radius: 11px;
 }
 
-.servicios-virtuales h5, .servicios-fisicos h5 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #333;
+.card-img img {
+    max-width: 100%; /* Asegurarse de que la imagen ocupe el ancho de la card */
+    height: auto; /* Ajuste de altura automático */
 }
 
-.servicios-fisicos p {
-    font-size: 1.1rem;
-    color: #555;
+.card-content {
+    margin-top: 20px;
+    text-align: center; /* Centrar el texto */
 }
-.servicios-virtuales li a:hover {
-    background-color: #0056b3; 
-    transform: scale(1.05); 
-} 
+
+.card-2:hover {
+    height: 680px;
+}
 .wave-separador {
     width: 100%;
     height: 20px;
     background-size: cover;
-    background-image: linear-gradient(#186cda, #0f64d4);
-} 
+    background-image: linear-gradient(#a8b6c7,#77a6e0, #0f64d4);
+}  
+.wave-separador-2 {
+    width: 100%;
+    height: 20px;
+    background-size: cover;
+    background-image: linear-gradient(#0f64d4, #77a6e0,lightgray);
+}
