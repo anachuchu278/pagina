@@ -39,7 +39,7 @@
 
         <div class="wave-separador"></div>
 
-        <section class="Preguntas">
+        <section class="Preguntas" id="preguntas">
             <h3>Preguntas Frecuentes</h3>
             <div class="cards-wrapper">
                 <div class="card-container">
@@ -70,37 +70,29 @@
         </section>
         <div class="wave-separador-2" id="2"></div>
 
-        <section class="otra-seccion">
+        <section class="otra-seccion" id="hola">
             <h4>Nuestros Servicios</h4>
             <div class="container-servicios">
                 <div class="card-2">
                     <div class="card-img">
-                        <img src="<?= base_url('img/medico.png') ?>" alt="">
+                        <img src="<?= base_url('img/card1.jpg') ?>" alt="">
                     </div>
                     <div class="card-content">
-                        <h2>Ejemplo</h2>
+                        <h2>Servicios Fisicos</h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur,
-                            adipisicing elit. A at atque recusandae sed,
-                            rem velit necessitatibus facilis quisquam repellat
-                            nemo pariatur perferendis aut saepe sunt culpa,
-                            eos tenetur illum odit.
+                            En cuanto a los servicios fisicos que se ofrecen dentro de la empresa, se mencionan los servicios que se utilizan fisicamente, por ejemplo el dispositivo para la confirmacion de turnos.
                         </p>
                     </div>
                 </div>
             
             <div class="card-2">
                     <div class="card-img">
-                        <img src="<?= base_url('img/medico.png') ?>" alt="">
+                        <img src="<?= base_url('img/card.jpg') ?>" alt="" id="img">
                     </div>
                     <div class="card-content">
-                        <h2>Ejemplo</h2>
+                        <h2>Servicios Virtuales</h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur,
-                            adipisicing elit. A at atque recusandae sed,
-                            rem velit necessitatibus facilis quisquam repellat
-                            nemo pariatur perferendis aut saepe sunt culpa,
-                            eos tenetur illum odit.
+                            Los servicios virtuales son los actuales que permiten la gestion y utilizacion del sistema sin tener que recurrir de forma fisica a aquel establecimiento en el cual sea utilizado.
                         </p>
                     </div>
                 </div>

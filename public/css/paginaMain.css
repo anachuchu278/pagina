@@ -1,3 +1,9 @@
+:root {
+    --color-main: #13509e;
+}
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 body {
@@ -72,7 +78,7 @@ nav {
 }
 
 .menu-horizontal > li:hover {
-    background-color: #5E548E; 
+    background-color: #3c26ac; 
     transition: .5s;
     border-radius: 19px;
     margin-top: 2px;
@@ -83,7 +89,7 @@ nav {
     display: none;
     list-style: none;
     width: 250px;
-    background-color: #5a183f;
+    background-color: rgb(21, 23, 34);
     text-decoration: none;
     transition: .5s;
     border-radius: 7px;
@@ -96,14 +102,14 @@ nav {
 }
 
 .menu-vertical li:hover {
-    background-color: rgba(255, 255, 255, 0.671);
+    background-color: rgba(230, 240, 236, 0.849);
     transition: .5s;
     border-radius: 7px;
 }
 
 .menu-vertical li a {
     display: block;
-    color: #6C757D;
+    color: #e7eaee;
     padding: 15px 15px 15px 20px;
     text-decoration: none;
     transition: .5s;
@@ -212,6 +218,12 @@ nav {
 .otra-seccion h4 {
     display: flex;
     justify-content: center;
+    font-size: 2rem; 
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
 }
 .container-servicios {
     display: flex;
@@ -228,27 +240,37 @@ nav {
     flex-direction: column;
     align-items: center;
     background-color: white;
-    height: 300px; /* Altura fija para las cards */
-    width: 450px;
+    height: 350px; /* Altura fija para las cards */
+    width: 500px;
     margin: 30px;
-    padding: 15px;
+    padding: 10px 5px;
+    text-align: center;
     overflow: hidden;
     transition: height 1s;
     border-radius: 11px;
+    interpolate-size: allow-keywords;
+    border: 1px solid rgb(29, 39, 71);
 }
 
 .card-img img {
-    max-width: 100%; /* Asegurarse de que la imagen ocupe el ancho de la card */
-    height: auto; /* Ajuste de altura automático */
+    
+    width: 400px;
+    height: 300px;
 }
-
+.card-content h2{
+    padding-top: 15px;
+}
+.card-content p{
+    height: auto;
+    justify-content: space-around;
+}
 .card-content {
-    margin-top: 20px;
+    margin-top: 20px; 
     text-align: center; /* Centrar el texto */
 }
 
 .card-2:hover {
-    height: 680px;
+ height: auto;
 }
 .wave-separador {
     width: 100%;
@@ -261,4 +283,5 @@ nav {
     height: 20px;
     background-size: cover;
     background-image: linear-gradient(#0f64d4, #77a6e0,lightgray);
-}
+} 
+
