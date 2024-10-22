@@ -17,7 +17,7 @@ class TurnoModel extends Model{
     ];
 
 
-    public function insertData($data){
+    public function insertarDatos($data){
         $query = $this->db->table($this->table)->insert($data);
         return $query;
     }
