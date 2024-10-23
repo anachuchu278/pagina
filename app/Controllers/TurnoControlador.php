@@ -11,29 +11,40 @@ use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
 use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
-    public function index(){
+    public function index() {
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $estadoModel = new EstadoModel();
         $HorarioModel = new HorarioModelo();
-
-        $userId = $session->get('user_id');
+    
+        $userId = $session->get('user_id'); 
         $user = $pacienteModel->find($userId);
-        //$turnos = $turnoModel->getTurnosPorUsuario($userId); 
+        
         $turnos = $turnoModel->findAll();
         $horarios = $HorarioModel->findAll();
+    
+        // Almacenar usuarios de los turnos
+        $usuariosTurnos = [
 
+        ];
+        foreach ($turnos as $turno) {
+            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
+        }
+    
         $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
-
+        $data['usuariosTurnos'] = $usuariosTurnos;
+    
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
+        
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
+    
     public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
