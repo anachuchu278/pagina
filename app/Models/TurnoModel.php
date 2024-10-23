@@ -12,7 +12,7 @@ class TurnoModel extends Model{
         'codigo_turno',
         'id_Usuario',
         'id_paciente',
-        'id_estado',
+        'id_Estado',
         'id_pago'
     ];
     public function insertarDatos($data){
