@@ -8,6 +8,7 @@ use App\Models\UsuarioModelo;
 use App\Models\PagoModel;
 use App\Models\HorarioModelo;
 use App\Models\EstadoModel;
+use App\Models\MetPagoModel;
 use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
     public function index(){
@@ -39,12 +40,14 @@ class TurnoControlador extends BaseController{
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $HorarioModel = new HorarioModelo();
+        $MetpagoModel = new MetPagoModel();
         $userId = $session->get('user_id');
 
         $user = $pacienteModel->getPaciente($userId);
         $turnos = $turnoModel->getTurnosPorUsuario($userId);
         $data['horarios'] = $HorarioModel->findAll();
         $data['medicos'] = $usuarioModel->findAll();
+        $data['metpagos'] = $MetpagoModel->findAll();
         $data['usuario'] = $user;
         $data['turnos'] = $turnos;
 
@@ -71,12 +74,25 @@ class TurnoControlador extends BaseController{
                 'codigo_turno' => $codigoturno,
                 'id_Usuario' => $this->request->getPost('id_Medico'),
                 'id_paciente' => $id,
+
                 'id_estado' => 1,
                 'id_pago' => null
             ];
             
             $turnoModel->insertarDatos($data);
-            return redirect()->to('pagina');
+
+            $id_Metpago = $this->request->getPost('id_Metpago');
+            switch ($id_Metpago) {
+                case 1:
+                    return redirect()->to('pay');
+                case 2:
+                    return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
+                case 3:
+                    return redirect()->to('pay');
+                case 4:
+                    return redirect()->to('ruta_para_id_metpago_4');
+                default:
+                    return redirect()->to('pagina'); }
         } else {
             return redirect()->to('/');
         }
