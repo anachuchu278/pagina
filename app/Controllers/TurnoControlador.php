@@ -21,21 +21,13 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-        $turnos = $turnoModel->getTurnosPorUsuario($userId); 
+        //$turnos = $turnoModel->getTurnosPorUsuario($userId); 
+        $turnos = $turnoModel->findAll();
+        $horarios = $HorarioModel->findAll();
 
-        // $id = $turnos['fecha_hora'];
-        // $data ['horarios'] = $HorarioModel->find($id);
-        // Cargar la información de especialidad para cada usuario en los turnos
-        foreach ($turnos as $turno) {
-            $idT = $turno['id_estado'];
-            // $nameID = $estadoModel->getNombrePorID($idT);
-            // $turno['id_ usuario'] = $nameID;
-        }
-        $data['usuario'] = $user;
+        $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
-
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $data['horarios'] = $horarios;
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
@@ -80,13 +72,15 @@ class TurnoControlador extends BaseController{
             $data = [
                 'fecha_hora' => $this->request->getPost('id_Horario'),
                 'codigo_turno' => $codigoturno,
-                'id_usuario' => $this->request->getPost('id_Medico'),
-                'id_paciente' => 1,
+                'id_Usuario' => $this->request->getPost('id_Medico'),
+                'id_paciente' => $id,
+
                 'id_estado' => 1,
                 'id_pago' => null
             ];
             
             $turnoModel->insertarDatos($data);
+
             $id_Metpago = $this->request->getPost('id_Metpago');
             switch ($id_Metpago) {
                 case 1:

@@ -47,4 +47,7 @@ $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turn
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin'); 
-$routes->post('admin/eliminar', 'adminController::eliminarAdmin');
+$routes->post('admin/eliminar', 'adminController::eliminarAdmin'); 
+//Pagina de Confirmacion 
+$routes->get('confirmacion', 'paginaController::pagina_confirmacion'); 
+$routes->post('validar-codigo', 'paginaController::validarCodigo'); 
