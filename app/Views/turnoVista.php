@@ -7,13 +7,16 @@
     <title>Turnos</title>
 </head>
 <body>
+    <?php //var_dump($turnos);?>
+    <?php //var_dump($usuarios);?>
+    <?php //var_dump($horarios);?>
     <?php if (!empty($turnos)): ?>
         <table>
             <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Medico</th>
-                    <th>Especialidad</th>
+                    <th>Paciente</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -23,17 +26,16 @@
                         <?php if (!empty($horarios)):?>
                         <?php foreach($horarios as $horario):?>
                             <?php if($horario['id_Horario'] == $turno['fecha_hora']):?>
-                                <td><?= $horario['hora_inicio'];?> - <?= $horario['hora_final']; ?></td>
+                                <td><?= $horario['dia_sem']; ?> | <?= $horario['hora_inicio'];?> - <?= $horario['hora_final']; ?></td>
                             <?php endif;?>
                         <?php endforeach;?>
-                        <td><?= $turnos['fecha_hora'];?></td>
                         <?php endif;?>
                         <td><?= $turno['id_Usuario']; ?></td>
-                        <td><?= $turno['id_paciente']; ?></td>
+                        <td><?= $usuarios['id_Usuario']; ?></td>
                         <td>
                             <a href="<?= site_url('editarTurno/'. $turno['id_Turno']); ?>">Reprogramar Turno</a>
                             <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']); ?>">Cancelar Turno</a>
-                            <a href="<?= site_url('PDFTurno/'. $turno['id_Turno']); ?>">Descargar PDF</a>
+                            <!-- <a href="<?= site_url('PDFTurno/'. $turno['id_Turno']); ?>">Descargar PDF</a> -->
                         </td>
                     </tr>
                 <?php endforeach; ?>

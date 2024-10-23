@@ -12,35 +12,53 @@ nav {
 /* Estilos de la tabla */
 table {
     width: 100%;
+    max-width: 1000px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 20px auto; /* Centra la tabla en la pantalla */
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 16px;
-    text-align: center;
+    text-align: left; /* Alineación izquierda para mejor legibilidad */
     background-color: #fff; 
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden; /* Para que los bordes redondeados funcionen */
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 15px 20px; /* Espacio más grande para mejor visualización */
+    border-bottom: 1px solid #e0e0e0; /* Separadores más suaves */
 }
 
 thead tr {
-    background-color: #008198;
-    color: white;
-    text-align: center;
+    background-color: #007B8A; /* Color más oscuro y moderno */
+    color: #ffffff;
+    text-align: left;
     font-weight: bold;
 }
 
 tbody tr {
-    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.3s ease; /* Transición suave al hacer hover */
 }
 
 tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #f9f9f9; /* Color más suave para filas pares */
+}
+
+tbody tr:hover {
+    background-color: #e0f7fa; /* Efecto hover */
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: none; /* Remueve el borde inferior de la última fila */
 }
+
+td:first-of-type, th:first-of-type {
+    border-left: none; /* Evita bordes extra en la primera columna */
+}
+
+td:last-of-type, th:last-of-type {
+    border-right: none; /* Evita bordes extra en la última columna */
+}
+
 
 /* Estilos de los enlaces */
 a {
@@ -64,19 +82,24 @@ a:hover {
 /* Botón para añadir nuevo paciente */
 .box-new {
     margin-top: 20px;
+    text-align: center; /* Alinea el botón al centro */
 }
 
 a.new {
-    background-color: #008198;
+    background-color: #007B8A; /* Mismo color que la cabecera de la tabla */
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px; /* Espaciado un poco mayor para que sea más visible */
+    border-radius: 8px; /* Esquinas más redondeadas para armonizar con la tabla */
     text-align: center;
     display: inline-block;
     font-size: 16px;
     margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade una sombra suave */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar color */
 }
 
 a.new:hover {
-    background-color: #007f5f;
+    background-color: #007f5f; /* Mismo efecto hover de la tabla */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta la sombra al hacer hover */
 }
+
