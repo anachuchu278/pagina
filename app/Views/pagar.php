@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <h1>Page el turno</h1>
+        <h1>Pague el turno</h1>
         <p>El total es de: U$D 5</p>
     </div>
     <div id="paypal-button-container" class="pay">

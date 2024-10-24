@@ -1,7 +1,8 @@
-footer {
+.footer {
     background-color: #333;
-    color: #fff;
-    padding: 20px 0;
+    color: white;
+    padding: 40px 0;
+    text-align: left;
 }
 
 .footer-container {
@@ -16,19 +17,18 @@ footer {
 .footer-section {
     flex: 1;
     min-width: 250px;
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
-.footer-section h2 {
-    margin-bottom: 10px;
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .footer-section p,
-.footer-section ul,
-.footer-section a {
-    margin: 5px 0;
-    text-decoration: none;
-    color: #fff;
+.footer-section ul {
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .footer-section ul {
@@ -36,8 +36,34 @@ footer {
     padding: 0;
 }
 
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section .social-links a {
+    margin-right: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.footer-section .social-links a:hover {
+    color: #00aced;
+}
+
 .footer-bottom {
-    text-align: center;
+    background-color: #222;
+    color: #aaa;
     padding: 10px 0;
-    border-top: 1px solid #444;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
 }

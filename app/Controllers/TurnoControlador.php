@@ -56,61 +56,98 @@ class TurnoControlador extends BaseController{
         echo view('layout/navbar', $data);
         return view('TurnoNew', $data);
     }
-    public function new(){ // Guardar datos del nuevo turno
-        $session = \Config\Services::session();
-        if ($session->get('user_id')) {
-            $turnoModel = new TurnoModel();
-            $pacienteModel = new PacienteModel();
-            $usuarioModel = new UsuarioModelo();
-            // TODO Revisar como añadir el id_pago  -!- Cambiar relacion id_turno -> tabla Pago, no id_pago ->Tabla Turno
-            $id = $session->get('user_id');
-            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
-            function getRandomHex($num_bytes=4) {
-                return bin2hex(openssl_random_pseudo_bytes($num_bytes));
-            }
-            $codigoturno = getRandomHex(4);
-            $data = [
-                'fecha_hora' => $this->request->getPost('id_Horario'),
-                'codigo_turno' => $codigoturno,
-                'id_Usuario' => $this->request->getPost('id_Medico'),
-                'id_paciente' => $id,
+    public function new()
+{ 
+    // Guardar datos del nuevo turno
+    $session = \Config\Services::session();
+    
+    if ($session->get('user_id')) {
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
 
-                'id_estado' => 1,
-                'id_pago' => null
-            ];
-            
-            $turnoModel->insertarDatos($data);
+        $id = $session->get('user_id');
+        $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
 
-            $id_Metpago = $this->request->getPost('id_Metpago');
-            switch ($id_Metpago) {
-                case 1:
-                    return redirect()->to('pay');
-                case 2:
-                    return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
-                case 3:
-                    return redirect()->to('pay');
-                case 4:
-                    return redirect()->to('ruta_para_id_metpago_4');
-                default:
-                    return redirect()->to('pagina'); }
-        } else {
-            return redirect()->to('/');
+        function getRandomHex($num_bytes = 4) {
+            return bin2hex(openssl_random_pseudo_bytes($num_bytes));
         }
-    }
-    public function PDF($id){ 
-        $dompdf = new Dompdf();
-        $turnoModelo = new TurnoModel();
-        $turno = $turnoModelo->asObject()->find($id);
-        $query = $turnoModelo->asObject()->select("t.*, u.email, u.especialidad")
-                                                                // ->join("turno as t", "t.id_Turno ");
-                                                                ->join("usuarios as u", "t.id_usuario = id_Usuario");
+
+        $id_pago = $this->request->getPost('id_pago');
+        if ($id_pago === null) {
+            $id_pago = 0;
+        }
+
+        $codigoturno = getRandomHex(4);
+
         $data = [
-            'turno' => $turno,
-            'turnoPDF' => $query->where('id_Turno', $id)
+            'fecha_hora' => $this->request->getPost('id_Horario'),
+            'codigo_turno' => $codigoturno,
+            'id_Usuario' => $this->request->getPost('id_Medico'),
+            'id_paciente' => $id,
+            'id_estado' => 1,
+            'id_pago' => $id_pago
         ];
-        $dompdf->loadHTML(view('layout/turno-pdf.php', $data));
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $dompdf->stream();
+
+        $turnoModel->insertarDatos($data);
+
+        // Enviar correo electrónico dinámicamente
+        $email = \Config\Services::email();
+
+        // Configurar la dirección del remitente (quien envía el correo)
+        $email->setFrom('mateobargas@alumnos.itr3.edu.ar', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
+
+        // Obtener el usuario por su ID para obtener su correo
+        $usuario = $usuarioModel->find($id); 
+        $destinatario = $usuario['email'];
+
+        $email->setTo($destinatario); 
+        $email->setSubject('Confirmación de Turno'); 
+
+        $mensaje = "Su turno ha sido generado exitosamente.\n\n";
+        $mensaje .= "Código de Turno: {$codigoturno}\n";
+        $mensaje .= "Fecha y Hora: " . $this->request->getPost('id_Horario') . "\n";
+
+        $email->setMessage($mensaje);
+
+        if (!$email->send()) {
+            echo $email->printDebugger(['headers']);
+            exit;
+        }
+
+        $id_Metpago = $this->request->getPost('id_Metpago');
+        switch ($id_Metpago) {
+            case 1:
+                return redirect()->to('pay');
+            case 2:
+                return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
+            case 3:
+                return redirect()->to('pay');
+            case 4:
+                return redirect()->to('ruta_para_id_metpago_4');
+            default:
+                return redirect()->to('pagina');
+        }
+    } else {
+        return redirect()->to('/');
     }
+}
+
+    
+    // public function PDF($id){ 
+    //     $dompdf = new Dompdf();
+    //     $turnoModelo = new TurnoModel();
+    //     $turno = $turnoModelo->asObject()->find($id);
+    //     $query = $turnoModelo->asObject()->select("t.*, u.email, u.especialidad")
+    //                                                             // ->join("turno as t", "t.id_Turno ");
+    //                                                             ->join("usuarios as u", "t.id_usuario = id_Usuario");
+    //     $data = [
+    //         'turno' => $turno,
+    //         'turnoPDF' => $query->where('id_Turno', $id)
+    //     ];
+    //     $dompdf->loadHTML(view('layout/turno-pdf.php', $data));
+    //     $dompdf->setPaper('A4', 'portrait');
+    //     $dompdf->render();
+    //     $dompdf->stream();
+    // }
 }
