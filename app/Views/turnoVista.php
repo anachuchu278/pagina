@@ -31,7 +31,7 @@
                         <?php endforeach;?>
                         <?php endif;?>
                         <td><?= $turno['id_Usuario']; ?></td>
-                        <td><?= $usuarios['id_Usuario']; ?></td>
+                        <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td>
                         <td>
                             <a href="<?= site_url('editarTurno/'. $turno['id_Turno']); ?>">Reprogramar Turno</a>
                             <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']); ?>">Cancelar Turno</a>
