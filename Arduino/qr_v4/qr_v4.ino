@@ -1,6 +1,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 #include "qrcodem.h"
+#include <WiFi.h>
 // TFT display use software SPI interface.
 // #define TFT_MOSI 11  // Data out
 // #define TFT_SCLK 12  // Clock out
@@ -8,12 +9,31 @@
 #define TFT_CS  7  // Chip select line for TFT display
 #define TFT_DC   2 // Data/command line for TFT
 #define TFT_RST  3  // Reset line for TFT (or connect to VCC)
+#define ssid "placa"
+#define pass "12345678"
+
 Adafruit_ST7735 tft_ST7735 = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 void setup() {
     delay(1000);
     Serial.begin(115200);
     delay(1000);
+    while (!Serial) { }
+
+  Serial.print("Attempting to connect to SSID: ");
+  Serial.println(ssid);
+
+  WiFi.useStaticBuffers(true);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  delay(1000);
+
+  Serial.println("");
+  Serial.println("Connected to WiFi");
     Serial.println("- setup() started -");
     tft_ST7735.initR(INITR_BLACKTAB);
     tft_ST7735.setRotation(2);
