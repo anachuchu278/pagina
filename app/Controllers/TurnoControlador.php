@@ -21,13 +21,19 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-        //$turnos = $turnoModel->getTurnosPorUsuario($userId); 
         $turnos = $turnoModel->findAll();
+        
+        $usuariosTurnos = [];
+        foreach ($turnos as $turno) {
+            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
+        }
+
         $horarios = $HorarioModel->findAll();
 
         $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
+        $data['usuariosTurno'] = $usuariosTurnos;
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
