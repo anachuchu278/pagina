@@ -26,7 +26,11 @@
                 <li><a href="">Calendario</a></li>
                 <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
                 <?php if ($showAdmin): ?>
-                    <li><a class="" href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+                    <ul class="menu-verticall">
+                        <li><a href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+                        <li><a href="crudMeds">Medicos</a></li> 
+                        <li><a href="crudPaciente">Pacientes</a></li>
+                    </ul>
                 <?php endif; ?>
             </ul>
         </nav>

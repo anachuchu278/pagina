@@ -12,7 +12,7 @@ class HorarioModelo extends Model{
         'dia_sem',
         'hora_inicio',
         'hora_final',
-        'id_usuario'
+        'id_Usuario'
     ];
     public function insertData($data)
     {

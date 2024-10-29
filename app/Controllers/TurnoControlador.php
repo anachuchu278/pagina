@@ -79,11 +79,11 @@ class TurnoControlador extends BaseController{
 
         $id = $session->get('user_id');
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
-
+        $fechahora = $this->request->getPost('fecha_hora');
         function getRandomHex($num_bytes = 4) {
             return bin2hex(openssl_random_pseudo_bytes($num_bytes));
         }
-
+        
         $id_pago = $this->request->getPost('id_pago');
         if ($id_pago === null) {
             $id_pago = 0;
@@ -92,7 +92,7 @@ class TurnoControlador extends BaseController{
         $codigoturno = getRandomHex(4);
 
         $data = [
-            'fecha_hora' => $this->request->getPost('id_Horario'),
+            'fecha_hora' => $fechahora,
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
             'id_paciente' => $id,
