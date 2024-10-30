@@ -17,9 +17,9 @@
                 <li>
                     <a href="">Gestion</a>
                     <ul class="menu-vertical">
-                        <li><a href="">Turnos</a></li>
-                        <li><a href="">Generar un turno</a></li>
-                        <li><a href="">Añadir un Paciente</a></li>
+                        <li><a href="turnos">Turnos</a></li>
+                        <li><a href="newTurno">Generar un turno</a></li>
+                        <li><a href="newPacienteView">Añadir un Paciente</a></li>
                     </ul>
                 </li>
                 <li><a href="">Perfil</a></li>
