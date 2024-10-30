@@ -100,6 +100,8 @@ class TurnoControlador extends BaseController{
             'id_pago' => $id_pago
         ];
 
+        var_dump($fechahora);
+        return;
         $turnoModel->insertarDatos($data);
 
         // Enviar correo electrónico dinámicamente
