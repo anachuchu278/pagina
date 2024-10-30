@@ -20,19 +20,27 @@
                         <li><a href="turnos">Turnos</a></li>
                         <li><a href="newTurno">Generar un turno</a></li>
                         <li><a href="newPacienteView">Añadir un Paciente</a></li>
+                   
                     </ul>
                 </li>
                 <li><a href="">Perfil</a></li>
                 <li><a href="">Calendario</a></li>
                 <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
+          
+        
+                   
                 <?php if ($showAdmin): ?>
-                    <ul class="menu-verticall">
+                    <li>
+                    <a href="">Administración</a>
+                    <ul class="menu-vertical">
                         <li><a href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
                         <li><a href="crudMeds">Medicos</a></li> 
                         <li><a href="crudPaciente">Pacientes</a></li>
-                    </ul>
-                <?php endif; ?>
-            </ul>
+                        <?php endif; ?>
+                    
+                        </li>
+               
+                      
         </nav>
 
         <section class="inicio">

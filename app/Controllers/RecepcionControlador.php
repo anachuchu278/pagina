@@ -47,7 +47,7 @@ class RecepcionControlador extends BaseController
 
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
-        echo view('layout/navbar', $data);
+        
         return view('crudMedico', $data);
     }
     public function newMedVista()
