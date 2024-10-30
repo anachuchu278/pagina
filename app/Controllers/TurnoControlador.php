@@ -83,7 +83,7 @@ class TurnoControlador extends BaseController{
             'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
-            'id_paciente' => $idPaciente,
+            'id_paciente' => $id,
             'id_estado' => 1,
             'id_det_pago' => null
         ];
