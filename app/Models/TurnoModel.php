@@ -13,7 +13,7 @@ class TurnoModel extends Model{
         'id_Usuario',
         'id_paciente',
         'id_Estado',
-        'id_pago'
+        'id_det_pago'
     ];
     public function insertarDatos($data){
         $query = $this->db->table($this->table)->insert($data);

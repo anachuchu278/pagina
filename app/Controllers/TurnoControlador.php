@@ -5,11 +5,9 @@ use CodeIgniter\Controller;
 use App\Models\TurnoModel;
 use App\Models\PacienteModel;
 use App\Models\UsuarioModelo;
-use App\Models\PagoModel;
 use App\Models\HorarioModelo;
 use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
-use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
     public function index(){
         $session = \Config\Services::session();
@@ -75,13 +73,8 @@ class TurnoControlador extends BaseController{
         $id = $session->get('user_id');
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
 
-        function getRandomHex($num_bytes = 4) {
+        function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
             return bin2hex(openssl_random_pseudo_bytes($num_bytes));
-        }
-
-        $id_pago = $this->request->getPost('id_pago');
-        if ($id_pago === null) {
-            $id_pago = 0;
         }
 
         $codigoturno = getRandomHex(4);
@@ -90,9 +83,9 @@ class TurnoControlador extends BaseController{
             'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
-            'id_paciente' => $id,
+            'id_paciente' => $idPaciente,
             'id_estado' => 1,
-            'id_pago' => $id_pago
+            'id_det_pago' => null
         ];
 
         $turnoModel->insertarDatos($data);
@@ -121,7 +114,7 @@ class TurnoControlador extends BaseController{
             exit;
         }
 
-        $id_Metpago = $this->request->getPost('id_Metpago');
+        $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
         switch ($id_Metpago) {
             case 1:
                 return redirect()->to('pay');
@@ -138,22 +131,4 @@ class TurnoControlador extends BaseController{
         return redirect()->to('/');
     }
 }
-
-    
-    // public function PDF($id){ 
-    //     $dompdf = new Dompdf();
-    //     $turnoModelo = new TurnoModel();
-    //     $turno = $turnoModelo->asObject()->find($id);
-    //     $query = $turnoModelo->asObject()->select("t.*, u.email, u.especialidad")
-    //                                                             // ->join("turno as t", "t.id_Turno ");
-    //                                                             ->join("usuarios as u", "t.id_usuario = id_Usuario");
-    //     $data = [
-    //         'turno' => $turno,
-    //         'turnoPDF' => $query->where('id_Turno', $id)
-    //     ];
-    //     $dompdf->loadHTML(view('layout/turno-pdf.php', $data));
-    //     $dompdf->setPaper('A4', 'portrait');
-    //     $dompdf->render();
-    //     $dompdf->stream();
-    // }
 }
