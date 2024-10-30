@@ -11,40 +11,35 @@ use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
 use Dompdf\Dompdf;
 class TurnoControlador extends BaseController{
-    public function index() {
+    public function index(){
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $estadoModel = new EstadoModel();
         $HorarioModel = new HorarioModelo();
-    
-        $userId = $session->get('user_id'); 
-        $user = $pacienteModel->find($userId);
-        
-        $turnos = $turnoModel->findAll();
-        $horarios = $HorarioModel->findAll();
-    
-        // Almacenar usuarios de los turnos
-        $usuariosTurnos = [
 
-        ];
+        $userId = $session->get('user_id');
+        $user = $pacienteModel->find($userId);
+        $turnos = $turnoModel->findAll();
+        
+        $usuariosTurnos = [];
         foreach ($turnos as $turno) {
             $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
         }
-    
+
+        $horarios = $HorarioModel->findAll();
+
         $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
-        $data['usuariosTurnos'] = $usuariosTurnos;
-    
+        $data['usuariosTurno'] = $usuariosTurnos;
+
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
-        
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
-    
     public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
@@ -79,11 +74,11 @@ class TurnoControlador extends BaseController{
 
         $id = $session->get('user_id');
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
-        $fechahora = $this->request->getPost('fecha_hora');
+
         function getRandomHex($num_bytes = 4) {
             return bin2hex(openssl_random_pseudo_bytes($num_bytes));
         }
-        
+
         $id_pago = $this->request->getPost('id_pago');
         if ($id_pago === null) {
             $id_pago = 0;
@@ -92,7 +87,7 @@ class TurnoControlador extends BaseController{
         $codigoturno = getRandomHex(4);
 
         $data = [
-            'fecha_hora' => $fechahora,
+            'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
             'id_paciente' => $id,
@@ -100,8 +95,6 @@ class TurnoControlador extends BaseController{
             'id_pago' => $id_pago
         ];
 
-        var_dump($fechahora);
-        return;
         $turnoModel->insertarDatos($data);
 
         // Enviar correo electrónico dinámicamente
@@ -111,7 +104,7 @@ class TurnoControlador extends BaseController{
         $email->setFrom('mateobargas@alumnos.itr3.edu.ar', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
 
         // Obtener el usuario por su ID para obtener su correo
-        $usuario = $usuarioModel->find($id); 
+        $usuario = $usuarioModel->getUsuario($id); 
         $destinatario = $usuario['email'];
 
         $email->setTo($destinatario); 
