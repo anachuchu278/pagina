@@ -19,7 +19,10 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
+            <div class="volver-container">
+            <a class="volver" href="pagina">Volver</a>
+            </div>
             <?php foreach ($medicos as $medico): ?>
                 <tr>
                     <td><?= $medico['nombre']; ?></td>

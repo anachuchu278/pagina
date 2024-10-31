@@ -47,7 +47,7 @@ class RecepcionControlador extends BaseController
 
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
-        
+
         return view('crudMedico', $data);
     }
     public function newMedVista()
@@ -190,7 +190,8 @@ class RecepcionControlador extends BaseController
         return view('formMedico', ['especialidades' => $especialidades]);
     }
     public function nuevoMed()
-    {   
+    {
+        $session = \Config\Services::session();
         $HorarioModelo = new HorarioModelo();
         $UsuarioModelo = new UsuarioModelo();
 
@@ -229,7 +230,7 @@ class RecepcionControlador extends BaseController
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         if (empty($imagen)) {
-            $imagen = '/img/imagen.png';
+            $imagen = '/img/medico_imagen.png';
         }
 
         $data = [
@@ -238,11 +239,12 @@ class RecepcionControlador extends BaseController
             'password' => $hashedPassword,
             'id_rol' => $id_rol,
             'imagen_ruta' => $imagen,
-            'id_especialidad' => $idEspecialidad
+            'id_especialidad' => $idEspecialidad,
+
         ];
         $id_user = $UsuarioModelo->insert($data);
         if ($horarios) {
-            foreach($horarios as $horario) {
+            foreach ($horarios as $horario) {
                 $dataHorario = [
                     'dia_sem' => $horario['dia_sem'],
                     'hora_inicio' => $horario['hora_inicio'],
@@ -252,16 +254,40 @@ class RecepcionControlador extends BaseController
                 $HorarioModelo->insert($dataHorario);
             }
         }
+
         return redirect()->to('crudMeds');
-    } 
-    public function deleteMedico(){
-        $id_Usuario = $this->request->getPost('id_Usuario'); 
-        if ($id_Usuario){
-            $usuarioModelo = new UsuarioModelo(); 
-            
-            $usuarioModelo->deleteAdmin($id_Usuario); 
+    }
+    public function deleteMedico()
+    {
+        $id_Usuario = $this->request->getPost('id_Usuario');
+        if ($id_Usuario) {
+            $usuarioModelo = new UsuarioModelo();
+
+            $usuarioModelo->deleteAdmin($id_Usuario);
 
             return redirect()->to('crudMeds');
         }
+    }
+    public function perfilMedico($id)
+    {
+        $UsuarioModelo = new UsuarioModelo();
+        $EspecialidadModelo = new EspecialidadModel();
+
+        // Recuperar los datos del médico por ID
+        $medico = $UsuarioModelo->find($id);
+
+        // Verificar si el médico existe
+        if (!$medico) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Médico no encontrado');
+        }
+
+        // Obtener la especialidad del médico
+        $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
+
+        // Pasar los datos a la vista
+        return view('datosMedico', [
+            'medico' => $medico,
+            'especialidad' => $especialidad,
+        ]);
     }
 }

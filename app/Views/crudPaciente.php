@@ -23,7 +23,10 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
+            <div class="volver-container">
+                <a href="pagina" class="volver">Volver</a>
+            </div>
             <?php foreach ($pacientes as $paciente): ?>
                 <tr>
                     <td><?php $dni= $paciente['dni']; strval($dni); echo number_format($dni ,0 , ',' ,'.'); ?></td>

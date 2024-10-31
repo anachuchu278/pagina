@@ -85,5 +85,35 @@ a.new {
 a.new:hover {
     background-color: #007f5f; /* Mismo efecto hover de la tabla */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta la sombra al hacer hover */
+} 
+.volver {
+    display: inline-block; /* Para que se comporte como un botón */
+    position: absolute; /* Ubicación absoluta para posicionarlo donde quieras */
+    top: 20px; /* Distancia desde la parte superior de la página */
+    left: 20px; /* Distancia desde el lado izquierdo de la página */
+    padding: 10px 20px; /* Espaciado interno para hacerlo más grande */
+    background-color: #72b7df; /* Color de fondo */
+    color: #fff; /* Color del texto en blanco */
+    text-decoration: none; /* Eliminar el subrayado */
+    font-weight: bold; /* Hacer que el texto sea más prominente */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición para hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
 }
+
+.volver:hover {
+    background-color: #5a9bc0; /* Un tono más oscuro al pasar el ratón */
+}
+
+.volver:active {
+    background-color: #4b8ba9; /* Color más oscuro cuando se presiona */
+    box-shadow: none; /* Eliminar la sombra cuando se presiona */
+}
+
+.volver-container {
+    text-align: center; /* Centrar el enlace en su contenedor */
+    margin-top: 30px; /* Añadir un poco de espacio extra por encima */
+}
+
+
 

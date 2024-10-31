@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="<?= base_url('css/formMedico.css')?>">
 </head>
 
 <body>
@@ -52,10 +53,8 @@
                         <input type="time" name="horarios[0][hora_final]" required><br>
                     </div>
                 </div>
-                <button type="button" onclick="agregarHorario()">Agregar otro horario</button><br><br>
 
-
-                <button type="submit" href="<?= base_url('nuevoMed') ?>">Registrar nuevo admin</button>
+                <button type="submit" href="<?= base_url('nuevoMed') ?>">Registrar nuevo medico</button>
             </form><br>
         </div>
     
