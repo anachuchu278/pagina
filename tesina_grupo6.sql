@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 11, 2024 at 11:11 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 31-10-2024 a las 12:52:21
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,33 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tesina_grupo6`
+-- Base de datos: `tesina_grupo6`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `det_pago`
+-- Estructura de tabla para la tabla `det_pago`
 --
 
 CREATE TABLE `det_pago` (
   `id_Det_pago` int(11) NOT NULL,
-  `id_pago` int(11) NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `monto` int(10) NOT NULL,
   `id_metodop` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `det_pago`
+-- Volcado de datos para la tabla `det_pago`
 --
 
-INSERT INTO `det_pago` (`id_Det_pago`, `id_pago`, `monto`, `id_metodop`) VALUES
-(1, 1, 5000, 4);
+INSERT INTO `det_pago` (`id_Det_pago`, `fecha_hora`, `monto`, `id_metodop`) VALUES
+(1, '2024-10-29 15:36:48', 5000, 4),
+(2, '2024-10-31 11:17:26', 5000, 1),
+(3, '2024-10-31 11:21:32', 5000, 1),
+(4, '2024-10-31 11:48:56', 5000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `especialidad`
+-- Estructura de tabla para la tabla `especialidad`
 --
 
 CREATE TABLE `especialidad` (
@@ -54,7 +57,7 @@ CREATE TABLE `especialidad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `especialidad`
+-- Volcado de datos para la tabla `especialidad`
 --
 
 INSERT INTO `especialidad` (`id_Especialidad`, `tipo`, `descrip`) VALUES
@@ -105,7 +108,7 @@ INSERT INTO `especialidad` (`id_Especialidad`, `tipo`, `descrip`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estado`
+-- Estructura de tabla para la tabla `estado`
 --
 
 CREATE TABLE `estado` (
@@ -114,7 +117,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `estado`
+-- Volcado de datos para la tabla `estado`
 --
 
 INSERT INTO `estado` (`id_Estado`, `estado`) VALUES
@@ -125,7 +128,7 @@ INSERT INTO `estado` (`id_Estado`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `horario_medico`
+-- Estructura de tabla para la tabla `horario_medico`
 --
 
 CREATE TABLE `horario_medico` (
@@ -137,16 +140,16 @@ CREATE TABLE `horario_medico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `horario_medico`
+-- Volcado de datos para la tabla `horario_medico`
 --
 
 INSERT INTO `horario_medico` (`id_Horario`, `dia_sem`, `hora_inicio`, `hora_final`, `id_usuario`) VALUES
-(1, 'Lunes', '08:30:00', '12:30:00', 3);
+(2, 'Lunes', '08:30:00', '09:00:00', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `met_pago`
+-- Estructura de tabla para la tabla `met_pago`
 --
 
 CREATE TABLE `met_pago` (
@@ -155,7 +158,7 @@ CREATE TABLE `met_pago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `met_pago`
+-- Volcado de datos para la tabla `met_pago`
 --
 
 INSERT INTO `met_pago` (`id_Metpago`, `metodo`) VALUES
@@ -167,7 +170,7 @@ INSERT INTO `met_pago` (`id_Metpago`, `metodo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obra_social`
+-- Estructura de tabla para la tabla `obra_social`
 --
 
 CREATE TABLE `obra_social` (
@@ -176,7 +179,7 @@ CREATE TABLE `obra_social` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `obra_social`
+-- Volcado de datos para la tabla `obra_social`
 --
 
 INSERT INTO `obra_social` (`id_Obra`, `nombre`) VALUES
@@ -187,7 +190,7 @@ INSERT INTO `obra_social` (`id_Obra`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paciente`
+-- Estructura de tabla para la tabla `paciente`
 --
 
 CREATE TABLE `paciente` (
@@ -207,34 +210,19 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `paciente`
+-- Volcado de datos para la tabla `paciente`
 --
 
 INSERT INTO `paciente` (`id_Paciente`, `id_Usuario`, `nombre`, `apellido`, `peso`, `altura_cm`, `edad`, `dni`, `historia_clinica`, `id_Obra`, `id_Sangre`, `RH_tipo_sangre`, `ultima_mod`) VALUES
-(1, 2, 'Cristian', 'Bustos', 70.00, 175, 18, '11111111', '50524', 1, 4, 1, '2024-05-24 11:45:50');
+(13, 4, 'Francesco', 'Capellino', 81.00, 118, 18, '45455454', '54645', 1, 1, 0, '2024-09-12 11:19:57'),
+(19, 3, 'Cristian', 'Bustos', 70.00, 170, 44, '4545451', '707770', 1, 1, 0, '2024-09-12 11:54:59'),
+(20, 1, 'Admin', '1', 100.00, 100, 1, '10000000', '1', 1, 1, 0, '2024-10-30 13:02:13'),
+(21, 6, 'Cristian', 'Bustos', 70.00, 175, 18, '46888530', '55954', 1, 4, 1, '2024-10-31 11:48:44');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pago`
---
-
-CREATE TABLE `pago` (
-  `id_Pago` int(11) NOT NULL,
-  `fecha_pago` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pago`
---
-
-INSERT INTO `pago` (`id_Pago`, `fecha_pago`) VALUES
-(1, '2024-06-05 12:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `rol` (
@@ -243,7 +231,7 @@ CREATE TABLE `rol` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `rol`
+-- Volcado de datos para la tabla `rol`
 --
 
 INSERT INTO `rol` (`id_Rol`, `nombre_rol`) VALUES
@@ -255,7 +243,7 @@ INSERT INTO `rol` (`id_Rol`, `nombre_rol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_sanguineo`
+-- Estructura de tabla para la tabla `tipo_sanguineo`
 --
 
 CREATE TABLE `tipo_sanguineo` (
@@ -264,7 +252,7 @@ CREATE TABLE `tipo_sanguineo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tipo_sanguineo`
+-- Volcado de datos para la tabla `tipo_sanguineo`
 --
 
 INSERT INTO `tipo_sanguineo` (`id_Sangre`, `tipo`) VALUES
@@ -276,30 +264,34 @@ INSERT INTO `tipo_sanguineo` (`id_Sangre`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `turno`
+-- Estructura de tabla para la tabla `turno`
 --
 
 CREATE TABLE `turno` (
   `id_Turno` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `fecha_hora` int(11) NOT NULL,
   `codigo_turno` varchar(255) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
+  `id_Usuario` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
-  `id_pago` int(11) NOT NULL
+  `id_det_pago` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `turno`
+-- Volcado de datos para la tabla `turno`
 --
 
-INSERT INTO `turno` (`id_Turno`, `fecha_hora`, `codigo_turno`, `id_usuario`, `id_paciente`, `id_estado`, `id_pago`) VALUES
-(1, '2024-06-06 10:30:00', '27066', 3, 1, 2, 1);
+INSERT INTO `turno` (`id_Turno`, `fecha_hora`, `codigo_turno`, `id_Usuario`, `id_paciente`, `id_estado`, `id_det_pago`) VALUES
+(1, 2, '27066', 3, 1, 2, 1),
+(2, 2, '668e6dd9', 3, 1, 1, 0),
+(3, 2, '7e08feb1', 3, 1, 1, 0),
+(4, 2, '6de70f56', 3, 3, 1, 0),
+(5, 2, 'f3256473', 3, 21, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -313,61 +305,61 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_Usuario`, `nombre`, `password`, `email`, `id_rol`, `id_especialidad`, `imagen_ruta`) VALUES
-(1, 'admin', '$2a$12$wPLg.wxcYrdrTTL3grmO/.2XGhJ51a2BuivivivP1QblORA.WKsZy', 'admin@admin.com', 2, NULL, ''),
-(2, 'cristian', '$2a$12$mC20LFjJkQFp.v8J7Gl0j.83ixU9ut8kCyLBwiPlp3P9IuHqj4j2W', 'cristian@admin.org', 2, NULL, ''),
-(3, 'MCristian', '$2y$10$fU/aGOOCFpB9NCVbb2AZkuDUug0DJMqN2zGibvHK0u3MsH6v0IPw6', 'cristianbustos@gmail.com', 4, 10, ''),
+(1, 'admin', '$2a$12$pu8p/BCf0f3nPGtulm0tUO/fy0hMfm1wD9xZGy1oWHCGpoTYejTLG', 'admin@admin.com', 2, NULL, ''),
+(2, 'cristian', '$2a$12$Uy9a5LpgSyNOcGdZbTO1dezV0M5WXHZVrV43upR68D0OX4ZAtJnkW', 'cristian@admin.org', 2, NULL, ''),
+(3, 'MCristian', '$2a$12$Uy9a5LpgSyNOcGdZbTO1dezV0M5WXHZVrV43upR68D0OX4ZAtJnkW', 'cristianbustos@gmail.com', 4, 1, ''),
 (4, 'Francesco', '$2y$10$T2NCpky7bvfF0pBRMyIxBeLbDyuX1KuMdgLRovBQ4e8bvl1EQYyY6', 'francescocapellino@gmail.com', 1, NULL, ''),
-(5, 'mateo', '$2y$10$gEI/8qL0mAF/uuYHZgVfCur20Rq4n0qCMg5rvIgvW74eHTXxTZlI6', 'mateoobar51@gmail.com', 2, NULL, '');
+(5, 'mateo', '$2y$10$gEI/8qL0mAF/uuYHZgVfCur20Rq4n0qCMg5rvIgvW74eHTXxTZlI6', 'mateoobar51@gmail.com', 2, NULL, ''),
+(6, 'CristianB', '$2y$10$32IRpUbkwgylLJtl0msj5uAFIMiD9UEuJeWpHD0LbcDejLScGYLl.', 'cristianbustos@alumnos.itr3.edu.ar', 1, NULL, '/img/imagen.png');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `det_pago`
+-- Indices de la tabla `det_pago`
 --
 ALTER TABLE `det_pago`
   ADD PRIMARY KEY (`id_Det_pago`),
-  ADD KEY `id_pago` (`id_pago`),
   ADD KEY `id_metodop` (`id_metodop`);
 
 --
--- Indexes for table `especialidad`
+-- Indices de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
   ADD PRIMARY KEY (`id_Especialidad`);
 
 --
--- Indexes for table `estado`
+-- Indices de la tabla `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id_Estado`);
 
 --
--- Indexes for table `horario_medico`
+-- Indices de la tabla `horario_medico`
 --
 ALTER TABLE `horario_medico`
   ADD PRIMARY KEY (`id_Horario`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `met_pago`
+-- Indices de la tabla `met_pago`
 --
 ALTER TABLE `met_pago`
   ADD PRIMARY KEY (`id_Metpago`);
 
 --
--- Indexes for table `obra_social`
+-- Indices de la tabla `obra_social`
 --
 ALTER TABLE `obra_social`
   ADD PRIMARY KEY (`id_Obra`);
 
 --
--- Indexes for table `paciente`
+-- Indices de la tabla `paciente`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id_Paciente`),
@@ -376,35 +368,30 @@ ALTER TABLE `paciente`
   ADD KEY `id_obra` (`id_Obra`);
 
 --
--- Indexes for table `pago`
---
-ALTER TABLE `pago`
-  ADD PRIMARY KEY (`id_Pago`);
-
---
--- Indexes for table `rol`
+-- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_Rol`);
 
 --
--- Indexes for table `tipo_sanguineo`
+-- Indices de la tabla `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
   ADD PRIMARY KEY (`id_Sangre`);
 
 --
--- Indexes for table `turno`
+-- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
   ADD PRIMARY KEY (`id_Turno`),
   ADD KEY `id_estado` (`id_estado`),
   ADD KEY `id_paciente` (`id_paciente`),
-  ADD KEY `id_pago` (`id_pago`),
-  ADD KEY `turno_ibfk_4` (`id_usuario`);
+  ADD KEY `id_pago` (`id_det_pago`),
+  ADD KEY `turno_ibfk_4` (`id_Usuario`),
+  ADD KEY `fecha_hora` (`fecha_hora`) USING BTREE;
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_Usuario`),
@@ -412,120 +399,90 @@ ALTER TABLE `usuario`
   ADD KEY `id_especialidad` (`id_especialidad`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `det_pago`
+-- AUTO_INCREMENT de la tabla `det_pago`
 --
 ALTER TABLE `det_pago`
-  MODIFY `id_Det_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Det_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `especialidad`
+-- AUTO_INCREMENT de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
   MODIFY `id_Especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT for table `estado`
+-- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_Estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `horario_medico`
+-- AUTO_INCREMENT de la tabla `horario_medico`
 --
 ALTER TABLE `horario_medico`
-  MODIFY `id_Horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `met_pago`
+-- AUTO_INCREMENT de la tabla `met_pago`
 --
 ALTER TABLE `met_pago`
   MODIFY `id_Metpago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `obra_social`
+-- AUTO_INCREMENT de la tabla `obra_social`
 --
 ALTER TABLE `obra_social`
   MODIFY `id_Obra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `paciente`
+-- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_Paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_Paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `pago`
---
-ALTER TABLE `pago`
-  MODIFY `id_Pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `rol`
+-- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id_Rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tipo_sanguineo`
+-- AUTO_INCREMENT de la tabla `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
   MODIFY `id_Sangre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `turno`
+-- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `det_pago`
+-- Filtros para la tabla `det_pago`
 --
 ALTER TABLE `det_pago`
-  ADD CONSTRAINT `det_pago_ibfk_1` FOREIGN KEY (`id_pago`) REFERENCES `pago` (`id_Pago`),
   ADD CONSTRAINT `det_pago_ibfk_2` FOREIGN KEY (`id_metodop`) REFERENCES `met_pago` (`id_Metpago`);
 
 --
--- Constraints for table `horario_medico`
+-- Filtros para la tabla `horario_medico`
 --
 ALTER TABLE `horario_medico`
   ADD CONSTRAINT `horario_medico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`);
-
---
--- Constraints for table `paciente`
---
-ALTER TABLE `paciente`
-  ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`id_Sangre`) REFERENCES `tipo_sanguineo` (`id_Sangre`),
-  ADD CONSTRAINT `paciente_ibfk_4` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`id_Usuario`);
-
---
--- Constraints for table `turno`
---
-ALTER TABLE `turno`
-  ADD CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_Estado`),
-  ADD CONSTRAINT `turno_ibfk_2` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_Paciente`),
-  ADD CONSTRAINT `turno_ibfk_3` FOREIGN KEY (`id_pago`) REFERENCES `pago` (`id_Pago`),
-  ADD CONSTRAINT `turno_ibfk_4` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`);
-
---
--- Constraints for table `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_Rol`),
-  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_Especialidad`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
