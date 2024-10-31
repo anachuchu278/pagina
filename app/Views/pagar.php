@@ -36,7 +36,7 @@ paypal.Buttons({
                 });
             },
             onCancel: function(data) {
-                window.location.href = '';
+                window.location.href = 'errorP';
             }
 }).render('#paypal-button-container');
     </script>
