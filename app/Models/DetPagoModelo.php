@@ -11,8 +11,8 @@ class DetPagoModelo extends Model{
         'monto',
         'id_metodop'
     ];
-    public function insertarDatos($data){
-        $query = $this->db->table($this->table)->insert($data);
+    public function insertarDatos($dato){
+        $query = $this->db->table($this->table)->insert($dato);
         return $query;
     }
 }

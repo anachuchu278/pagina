@@ -8,6 +8,7 @@ use App\Models\UsuarioModelo;
 use App\Models\HorarioModelo;
 use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
+use App\Models\DetPagoModelo;
 class TurnoControlador extends BaseController{
     public function index(){
         $session = \Config\Services::session();
@@ -25,6 +26,10 @@ class TurnoControlador extends BaseController{
         foreach ($turnos as $turno) {
             $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
         }
+        $pacienteTurnos = [];
+        foreach ($turnos as $turno){
+            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+        }
 
         $horarios = $HorarioModel->findAll();
 
@@ -32,6 +37,7 @@ class TurnoControlador extends BaseController{
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
         $data['usuariosTurno'] = $usuariosTurnos;
+        $data['pacienteTurno'] = $pacienteTurnos;
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
@@ -69,6 +75,7 @@ class TurnoControlador extends BaseController{
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
+        $detpagoModel = new DetPagoModelo();
 
         $id = $session->get('user_id');
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
@@ -79,13 +86,19 @@ class TurnoControlador extends BaseController{
 
         $codigoturno = getRandomHex(4);
 
+        $dato = [
+            'id_metodop' => $this->request->getPost('id_Metpago'),
+            'monto' => 5000
+        ];
+        $id_Detpago = $detpagoModel->insertarDatos($dato);
+
         $data = [
             'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
-            'id_paciente' => $id,
+            'id_paciente' => $idPaciente['id_Paciente'],
             'id_estado' => 1,
-            'id_det_pago' => null
+            'id_det_pago' => $id_Detpago
         ];
 
         $turnoModel->insertarDatos($data);
