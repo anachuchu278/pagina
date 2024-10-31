@@ -20,8 +20,14 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-        $turnos = $turnoModel->findAll();
-        
+        $estados = $estadoModel->findAll();
+        $horarios = $HorarioModel->findAll();
+        $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
+
+        $estadosMap = [];
+        foreach ($estados as $estado) {
+            $estadosMap[$estado['id_Estado']] = $estado['estado'];
+        }     
         $usuariosTurnos = [];
         foreach ($turnos as $turno) {
             $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
@@ -31,7 +37,19 @@ class TurnoControlador extends BaseController{
             $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
         }
 
-        $horarios = $HorarioModel->findAll();
+        foreach ($turnos as &$turno) {
+            $paciente = $pacienteModel->find($turno['id_paciente']);
+            if ($paciente) {
+                $turno['paciente'] = $paciente['nombre'];
+            } else {
+                $turno['paciente'] = 'Desconocido';
+            }
+            if (isset($estadosMap[$turno['id_estado']])) {
+                $turno['estado'] = $estadosMap[$turno['id_estado']];
+            } else {
+                $turno['estado'] = 'Desconocido';
+            }
+        }
 
         $data['usuarios'] = $user;
         $data['turnos'] = $turnos;

@@ -14,6 +14,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Estado</th>
                     <th>Fecha</th>
                     <th>Medico</th>
                     <th>Paciente</th>
@@ -23,6 +24,7 @@
             <tbody>
                 <?php foreach ($turnos as $turno) :?>
                     <tr>
+                        <td><?= $turno['estado'];?></td>
                         <?php if (!empty($horarios)):?>
                         <?php foreach($horarios as $horario):?>
                             <?php if($horario['id_Horario'] == $turno['fecha_hora']):?>
@@ -30,8 +32,8 @@
                             <?php endif;?>
                         <?php endforeach;?>
                         <?php endif;?>
-                        <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td>
-                        
+                        <td><?= $turno['paciente'];?></td> <!-- Paciente -->
+                        <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td> <!-- Medico -->
                         <td>
                             <a href="<?= site_url('editarTurno/'. $turno['id_Turno']); ?>">Reprogramar Turno</a>
                             <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']); ?>">Cancelar Turno</a>
