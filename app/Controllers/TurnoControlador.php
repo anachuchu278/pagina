@@ -94,10 +94,13 @@ class TurnoControlador extends BaseController{
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
         $detpagoModel = new DetPagoModelo();
+        $HorarioModel = new HorarioModelo();
 
         $id = $session->get('user_id');
+        $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
 
+        $horario = $HorarioModel->getHorario($this->request->getPost('id_Horario'));
         function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
             return bin2hex(openssl_random_pseudo_bytes($num_bytes));
         }
@@ -106,7 +109,8 @@ class TurnoControlador extends BaseController{
 
         $dato = [
             'id_metodop' => $this->request->getPost('id_Metpago'),
-            'monto' => 5000
+            'monto' => 5000,
+            'id_Usuario' => $id
         ];
         $id_Detpago = $detpagoModel->insertarDatos($dato);
 
@@ -115,8 +119,7 @@ class TurnoControlador extends BaseController{
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
             'id_paciente' => $idPaciente['id_Paciente'],
-            'id_estado' => 1,
-            'id_det_pago' => $id_Detpago
+            'id_estado' => 1
         ];
 
         $turnoModel->insertarDatos($data);
@@ -136,7 +139,7 @@ class TurnoControlador extends BaseController{
 
         $mensaje = "Su turno ha sido generado exitosamente.\n\n";
         $mensaje .= "Código de Turno: {$codigoturno}\n";
-        $mensaje .= "Fecha y Hora: " . $this->request->getPost('id_Horario') . "\n";
+        $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
 
         $email->setMessage($mensaje);
 

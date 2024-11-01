@@ -28,7 +28,7 @@
                         <?php if (!empty($horarios)):?>
                         <?php foreach($horarios as $horario):?>
                             <?php if($horario['id_Horario'] == $turno['fecha_hora']):?>
-                                <td><?= $horario['dia_sem']; ?> | <?= $horario['hora_inicio'];?> - <?= $horario['hora_final']; ?></td>
+                                <td><?= $horario['dia_sem']; ?> | <?= substr($horario['hora_inicio'],0,-3);?> - <?= substr($horario['hora_final'],0,-3); ?></td>
                             <?php endif;?>
                         <?php endforeach;?>
                         <?php endif;?>

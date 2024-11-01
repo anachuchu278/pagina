@@ -9,7 +9,8 @@ class DetPagoModelo extends Model{
     protected $primaryKey = 'id_Det_pago';
     protected $allowedFields = [
         'monto',
-        'id_metodop'
+        'id_metodop',
+        'id_Usuario'
     ];
     public function insertarDatos($dato){
         $query = $this->db->table($this->table)->insert($dato);

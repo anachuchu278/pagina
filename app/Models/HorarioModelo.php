@@ -14,6 +14,13 @@ class HorarioModelo extends Model{
         'hora_final',
         'id_usuario'
     ];
+    public function getHorario($id = false){
+        if ($id === false) {
+            return $this->findAll() ? $this->findAll() : [];
+        } else {
+            return $this->where(['id_Horario' => $id])->first() ? $this->where(['id_Horario' => $id])->first() : [];
+        }
+    }
     public function insertData($data)
     {
         $this->db->table($this->table)-> insert($data);
