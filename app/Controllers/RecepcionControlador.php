@@ -268,23 +268,22 @@ class RecepcionControlador extends BaseController
             return redirect()->to('crudMeds');
         }
     }
-    public function perfilMedico($id)
+    public function perfilMedico()
     {
+        $session = \Config\Services::session();
+        $idUsuario = $session->get('user_id');
         $UsuarioModelo = new UsuarioModelo();
         $EspecialidadModelo = new EspecialidadModel();
 
-        // Recuperar los datos del médico por ID
-        $medico = $UsuarioModelo->find($id);
+        $medico = $UsuarioModelo->find($idUsuario);
 
-        // Verificar si el médico existe
+
         if (!$medico) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Médico no encontrado');
         }
 
-        // Obtener la especialidad del médico
         $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
 
-        // Pasar los datos a la vista
         return view('datosMedico', [
             'medico' => $medico,
             'especialidad' => $especialidad,

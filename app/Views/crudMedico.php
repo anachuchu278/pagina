@@ -30,7 +30,7 @@
                     <td>
                         <?php if (!empty($horarios)): ?>
                             <?php foreach ($horarios as $horario): ?>
-                                <?php if ($horario['id_Usuario'] == $medico['id_Usuario']): ?>
+                                <?php if ($horario['id_usuario'] == $medico['id_Usuario']): ?>
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-target="false" aria-expanded="false">
                                             <?= $horario['dia_sem']; ?> | <?= substr($horario['hora_inicio'], 0, -3); ?>-<?= substr($horario['hora_final'], 0, -3); ?>

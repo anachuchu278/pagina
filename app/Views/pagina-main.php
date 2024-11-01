@@ -24,7 +24,7 @@
                     </ul>
                 </li>
                 <li><a href="perfil">Perfil</a></li>
-                <li><a href="">Calendario</a></li>
+                <li><a href="calendario">Calendario</a></li>
                 <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
           
         
@@ -39,7 +39,7 @@
                         <?php endif; ?>
                         </li>
                     <?php if ($showMedico): ?>
-                    <li><a href="<?php echo base_url('medico')?>">Medico</a></li>
+                    <li><a href="<?= base_url('medico/');?>">Medico</a></li>
                     <?php endif; ?>
                
                       
