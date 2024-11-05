@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2024 a las 12:52:21
+-- Tiempo de generación: 01-11-2024 a las 13:55:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -31,18 +31,19 @@ CREATE TABLE `det_pago` (
   `id_Det_pago` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `monto` int(10) NOT NULL,
-  `id_metodop` int(11) NOT NULL
+  `id_metodop` int(11) NOT NULL,
+  `id_Usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `det_pago`
 --
 
-INSERT INTO `det_pago` (`id_Det_pago`, `fecha_hora`, `monto`, `id_metodop`) VALUES
-(1, '2024-10-29 15:36:48', 5000, 4),
-(2, '2024-10-31 11:17:26', 5000, 1),
-(3, '2024-10-31 11:21:32', 5000, 1),
-(4, '2024-10-31 11:48:56', 5000, 1);
+INSERT INTO `det_pago` (`id_Det_pago`, `fecha_hora`, `monto`, `id_metodop`, `id_Usuario`) VALUES
+(7, '2024-11-01 12:32:59', 5000, 1, 6),
+(8, '2024-11-01 12:45:24', 5000, 1, 6),
+(9, '2024-11-01 12:46:42', 5000, 1, 6),
+(10, '2024-11-01 12:50:12', 5000, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -273,20 +274,25 @@ CREATE TABLE `turno` (
   `codigo_turno` varchar(255) NOT NULL,
   `id_Usuario` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `id_estado` int(11) NOT NULL,
-  `id_det_pago` int(11) DEFAULT NULL
+  `id_estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `turno`
 --
 
-INSERT INTO `turno` (`id_Turno`, `fecha_hora`, `codigo_turno`, `id_Usuario`, `id_paciente`, `id_estado`, `id_det_pago`) VALUES
-(1, 2, '27066', 3, 1, 2, 1),
-(2, 2, '668e6dd9', 3, 1, 1, 0),
-(3, 2, '7e08feb1', 3, 1, 1, 0),
-(4, 2, '6de70f56', 3, 3, 1, 0),
-(5, 2, 'f3256473', 3, 21, 1, 1);
+INSERT INTO `turno` (`id_Turno`, `fecha_hora`, `codigo_turno`, `id_Usuario`, `id_paciente`, `id_estado`) VALUES
+(1, 2, '27066', 3, 1, 2),
+(2, 2, '668e6dd9', 3, 1, 1),
+(3, 2, '7e08feb1', 3, 1, 1),
+(4, 2, '6de70f56', 3, 3, 1),
+(5, 2, 'f3256473', 3, 21, 1),
+(6, 2, '078f3722', 3, 21, 1),
+(7, 2, '425b3a2b', 3, 21, 1),
+(8, 2, '73fdfa9a', 3, 21, 1),
+(9, 2, '8e6ba5ae', 3, 21, 1),
+(10, 2, '29f50c36', 3, 21, 1),
+(11, 2, '33e570fc', 3, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -386,7 +392,6 @@ ALTER TABLE `turno`
   ADD PRIMARY KEY (`id_Turno`),
   ADD KEY `id_estado` (`id_estado`),
   ADD KEY `id_paciente` (`id_paciente`),
-  ADD KEY `id_pago` (`id_det_pago`),
   ADD KEY `turno_ibfk_4` (`id_Usuario`),
   ADD KEY `fecha_hora` (`fecha_hora`) USING BTREE;
 
@@ -406,7 +411,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `det_pago`
 --
 ALTER TABLE `det_pago`
-  MODIFY `id_Det_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_Det_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
@@ -460,7 +465,7 @@ ALTER TABLE `tipo_sanguineo`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
