@@ -32,7 +32,7 @@ paypal.Buttons({
     },
     onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = 'pagina';
+                    window.location.href = 'successpay';
                 });
             },
             onCancel: function(data) {
