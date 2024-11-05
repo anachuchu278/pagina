@@ -1,3 +1,73 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Información del médico */
+.medico-info {
+    margin-bottom: 20px;
+}
+
+.medico-info img {
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+}
+
+.medico-info p {
+    font-size: 1em;
+    color: #666666;
+    margin: 5px 0;
+}
+
+/* Estilo de texto en negrita */
+.medico-info p strong {
+    color: #333333;
+    font-weight: bold;
+}
+
+/* Enlace de regreso */
+a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;

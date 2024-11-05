@@ -94,4 +94,13 @@ body {
     color: #333;
     transform: translateY(-50%);  /* Centra el icono verticalmente */
 }
-    
+
+a {
+    padding: 2px 4px; 
+    color: #000000;
+}
+  
+  a:hover {
+    background-color: #1f2226; /* Azul más oscuro */
+  }
+  
