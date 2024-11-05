@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.medico-info {
+    margin-bottom: 20px;
+}
+
+.medico-info img {
+    border-radius: 50%;
+    border: 2px solid #333;
+    margin-bottom: 15px;
+}
+
+.medico-info p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 18px;
+}
+
+.medico-info strong {
+    color: #091c41;
+}
+
+a {
+    text-decoration: none;
+    background-color: #091c41;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #3c26ac;
+}
+

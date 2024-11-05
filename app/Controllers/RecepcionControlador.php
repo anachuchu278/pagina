@@ -38,13 +38,13 @@ class RecepcionControlador extends BaseController
         $horarioModelo = new HorarioModelo();
         $medicos = $usuarioModelo->where('id_rol', 4)->findAll();
         $horarios = $horarioModelo->findAll();
-
+         
         // Preparar datos para la vista
-        $data = [
+        $data = [ 
+           
             'medicos' => $medicos,
-            'horarios' => $horarios,
+            'horarios' => $horarios
         ];
-
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
 
@@ -61,7 +61,7 @@ class RecepcionControlador extends BaseController
 
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
-        echo view('layout/navbar.php', $data);
+        echo view('layout/navbar', $data);
         return view('nuevoMedico', $data);
     }
     public function newMed()
@@ -185,8 +185,13 @@ class RecepcionControlador extends BaseController
     }
     public function formMed()
     {
+        $session = \Config\Services::session(); 
         $EspecialidadModelo = new \App\Models\EspecialidadModel();
         $especialidades = $EspecialidadModelo->findAll();
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2); 
+        $data['showMedico'] = ($userRol == 4);
+        echo view('layout/navbar' , $data);
         return view('formMedico', ['especialidades' => $especialidades]);
     }
     public function nuevoMed()
@@ -234,6 +239,7 @@ class RecepcionControlador extends BaseController
         }
 
         $data = [
+            'id_Usuario' => $id_Usuario,
             'nombre' => $name,
             'email' => $email,
             'password' => $hashedPassword,
@@ -284,7 +290,7 @@ class RecepcionControlador extends BaseController
         // Obtener la especialidad del médico
         $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
 
-        // Pasar los datos a la vista
+        
         return view('datosMedico', [
             'medico' => $medico,
             'especialidad' => $especialidad,

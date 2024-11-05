@@ -1,3 +1,6 @@
+<head>
+    <title>Ver Turnos</title>
+</head>
 <tbody>
     <?php foreach ($turnos as $turno) : ?>
         <tr>

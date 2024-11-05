@@ -37,6 +37,7 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
@@ -59,6 +60,7 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('TurnoNew', $data);
     }
@@ -92,7 +94,6 @@ class TurnoControlador extends BaseController{
             'id_Usuario' => $this->request->getPost('id_Medico'),
             'id_paciente' => $id,
             'id_estado' => 1,
-            'id_pago' => $id_pago
         ];
 
         $turnoModel->insertarDatos($data);

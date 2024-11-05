@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Médico</title>
-    <link rel="stylesheet" href="<?= base_url('css/formMedico') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/datosMedico.css') ?>">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             <p><strong>Especialidad:</strong> <?= htmlspecialchars($especialidad['tipo']) ?></p>
         </div>
 
-        <a href="<?= base_url('crudMeds') ?>">Volver a la lista de médicos</a>
+        <a href="<?= base_url('pagina') ?>">Volver a Inicio</a>
     </div>
 </body>
 
