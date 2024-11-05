@@ -86,7 +86,7 @@ class PaginaController extends Controller{
         $email = \Config\Services::email();
 
         // Configurar la dirección del remitente (quien envía el correo)
-        $email->setFrom('mateobargas@alumnos.itr3.edu.ar', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
+        $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
 
         // Obtener el usuario por su ID para obtener su correo
         $usuario = $usuarioModel->find($id); 

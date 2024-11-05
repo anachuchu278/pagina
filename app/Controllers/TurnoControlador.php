@@ -124,30 +124,6 @@ class TurnoControlador extends BaseController{
 
         $turnoModel->insertarDatos($data);
 
-        // // Enviar correo electrónico dinámicamente
-        // $email = \Config\Services::email();
-
-        // // Configurar la dirección del remitente (quien envía el correo)
-        // $email->setFrom('mateobargas@alumnos.itr3.edu.ar', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
-
-        // // Obtener el usuario por su ID para obtener su correo
-        // $usuario = $usuarioModel->find($id); 
-        // $destinatario = $usuario['email'];
-
-        // $email->setTo($destinatario); 
-        // $email->setSubject('Confirmación de Turno'); 
-
-        // $mensaje = "Su turno ha sido generado exitosamente.\n\n";
-        // $mensaje .= "Código de Turno: {$codigoturno}\n";
-        // $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
-
-        // $email->setMessage($mensaje);
-
-        // if (!$email->send()) {
-        //     echo $email->printDebugger(['headers']);
-        //     exit;
-        // }
-
         $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
         switch ($id_Metpago) {
             case 1:

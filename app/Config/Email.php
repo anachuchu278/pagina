@@ -33,12 +33,12 @@ class Email extends BaseConfig
     /**
      * SMTP Username
      */
-    public string $SMTPUser = 'mateobargas@alumnos.itr3.edu.ar';
+    public string $SMTPUser = 'infosolutions.tesina@gmail.com';
 
     /**
      * SMTP Password
      */
-    public string $SMTPPass = 'einb bqhe mqwf sogm';
+    public string $SMTPPass = 'xesd eisc hdcl pvhe';
 
     /**
      * SMTP Port
