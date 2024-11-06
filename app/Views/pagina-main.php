@@ -7,11 +7,33 @@
     <title>Pagina Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= base_url('css/paginaMain.css') ?>">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
 </head>
 
 <body>
 
     <div class="box">
+
+
+        <nav>
+            <ul class="menu-horizontal">
+                <li>
+                    <a href="">Gestion</a>
+                    <ul class="menu-vertical">
+                        <li><a href="turnos">Turnos</a></li>
+                        <li><a href="newTurno">Generar un turno</a></li>
+                        <li><a href="newPacienteView">Añadir un Paciente</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Perfil</a></li>
+                <li><a href="">Calendario</a></li>
+                <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
+                <?php if ($showAdmin): ?>
+                    <li><a class="" href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+
 
         <section class="inicio">
             <div class="text">

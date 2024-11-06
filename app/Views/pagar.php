@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url('css/pay.css')?>">
     <title>Paypal</title>
@@ -37,11 +38,11 @@ paypal.Buttons({
     },
     onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = 'pagina';
+                    window.location.href = 'successpay';
                 });
             },
             onCancel: function(data) {
-                window.location.href = '';
+                window.location.href = 'errorP';
             }
 }).render('#paypal-button-container');
     </script>

@@ -5,11 +5,10 @@ use CodeIgniter\Controller;
 use App\Models\TurnoModel;
 use App\Models\PacienteModel;
 use App\Models\UsuarioModelo;
-use App\Models\PagoModel;
 use App\Models\HorarioModelo;
 use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
-use Dompdf\Dompdf;
+use App\Models\DetPagoModelo;
 class TurnoControlador extends BaseController{
     public function index(){
         $session = \Config\Services::session();
@@ -21,6 +20,7 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
+
         $turnos = $turnoModel->findAll();
         
         $usuariosTurnos = [];
@@ -28,12 +28,46 @@ class TurnoControlador extends BaseController{
             $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
         }
 
+
+        $estados = $estadoModel->findAll();
+
         $horarios = $HorarioModel->findAll();
+        $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
+
+        $estadosMap = [];
+        foreach ($estados as $estado) {
+            $estadosMap[$estado['id_Estado']] = $estado['estado'];
+        }     
+        $usuariosTurnos = [];
+        foreach ($turnos as $turno) {
+            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
+        }
+        $pacienteTurnos = [];
+        foreach ($turnos as $turno){
+            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+        }
+
+        foreach ($turnos as &$turno) {
+            $paciente = $pacienteModel->find($turno['id_paciente']);
+            if ($paciente) {
+                $turno['paciente'] = $paciente['nombre'];
+            } else {
+                $turno['paciente'] = 'Desconocido';
+            }
+            if (isset($estadosMap[$turno['id_estado']])) {
+                $turno['estado'] = $estadosMap[$turno['id_estado']];
+            } else {
+                $turno['estado'] = 'Desconocido';
+            }
+        }
 
         $data['usuarios'] = $user;
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
         $data['usuariosTurno'] = $usuariosTurnos;
+
+        $data['pacienteTurno'] = $pacienteTurnos;
+
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
@@ -73,30 +107,41 @@ class TurnoControlador extends BaseController{
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $usuarioModel = new UsuarioModelo();
+        $detpagoModel = new DetPagoModelo();
+        $HorarioModel = new HorarioModelo();
 
         $id = $session->get('user_id');
+        $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
 
-        function getRandomHex($num_bytes = 4) {
+        $horario = $HorarioModel->getHorario($this->request->getPost('id_Horario'));
+        function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
             return bin2hex(openssl_random_pseudo_bytes($num_bytes));
         }
 
-        $id_pago = $this->request->getPost('id_pago');
-        if ($id_pago === null) {
-            $id_pago = 0;
-        }
-
         $codigoturno = getRandomHex(4);
+
+        $dato = [
+            'id_metodop' => $this->request->getPost('id_Metpago'),
+            'monto' => 5000,
+            'id_Usuario' => $id
+        ];
+        $id_Detpago = $detpagoModel->insertarDatos($dato);
 
         $data = [
             'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
+
             'id_paciente' => $id,
             'id_estado' => 1,
+
+            'id_paciente' => $idPaciente['id_Paciente'],
+            'id_estado' => 1
         ];
 
         $turnoModel->insertarDatos($data);
+
 
         // Enviar correo electrónico dinámicamente
         $email = \Config\Services::email();
@@ -123,12 +168,19 @@ class TurnoControlador extends BaseController{
         }
 
         $id_Metpago = $this->request->getPost('id_Metpago');
+
+        $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
+
         switch ($id_Metpago) {
             case 1:
+                $session->set('codigoturno' , $codigoturno);
+                $session->set('horario' , $horario['id_Horario']);
                 return redirect()->to('pay');
             case 2:
                 return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
             case 3:
+                $session->set('codigoturno' , $codigoturno);
+                $session->set('horario' , $horario['id_Horario']);
                 return redirect()->to('pay');
             case 4:
                 return redirect()->to('ruta_para_id_metpago_4');
@@ -139,22 +191,4 @@ class TurnoControlador extends BaseController{
         return redirect()->to('/');
     }
 }
-
-    
-    // public function PDF($id){ 
-    //     $dompdf = new Dompdf();
-    //     $turnoModelo = new TurnoModel();
-    //     $turno = $turnoModelo->asObject()->find($id);
-    //     $query = $turnoModelo->asObject()->select("t.*, u.email, u.especialidad")
-    //                                                             // ->join("turno as t", "t.id_Turno ");
-    //                                                             ->join("usuarios as u", "t.id_usuario = id_Usuario");
-    //     $data = [
-    //         'turno' => $turno,
-    //         'turnoPDF' => $query->where('id_Turno', $id)
-    //     ];
-    //     $dompdf->loadHTML(view('layout/turno-pdf.php', $data));
-    //     $dompdf->setPaper('A4', 'portrait');
-    //     $dompdf->render();
-    //     $dompdf->stream();
-    // }
 }

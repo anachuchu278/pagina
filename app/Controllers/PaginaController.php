@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\EstadoModel;
 use App\Models\UsuarioModelo;
+use App\Models\HorarioModelo;
 use App\Models\TurnoModel;
 use CodeIgniter\Controller;
 
@@ -73,5 +74,41 @@ class PaginaController extends Controller{
             return redirect()->back()->with('error', 'El código no coincide.');
         }
     }
-    
+    public function successpay(){
+    $session = \Config\Services::session();
+    if ($session->get('user_id')) {
+        $usuarioModel = new UsuarioModelo();
+        $HorarioModel =new HorarioModelo();
+        $id = $session->get('user_id');
+
+        $codigoturno = $session->get('codigoturno');
+        $id_horario = $session->get('horario');
+        $horario = $HorarioModel->getHorario($id_horario);
+
+        // Enviar correo electrónico dinámicamente
+        $email = \Config\Services::email();
+
+        // Configurar la dirección del remitente (quien envía el correo)
+        $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
+
+        // Obtener el usuario por su ID para obtener su correo
+        $usuario = $usuarioModel->find($id); 
+        $destinatario = $usuario['email'];
+
+        $email->setTo($destinatario); 
+        $email->setSubject('Confirmación de Turno'); 
+
+        $mensaje = "Su turno ha sido generado exitosamente.\n\n";
+        $mensaje .= "Código de Turno: {$codigoturno}\n";
+        $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
+
+        $email->setMessage($mensaje);
+
+        if (!$email->send()) {
+            echo $email->printDebugger(['headers']);
+            exit;
+        }
+        return redirect()->to('pagina');
+    }
+    }
 }
