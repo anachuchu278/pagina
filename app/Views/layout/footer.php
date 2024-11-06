@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        &copy; 2024 Empresa. Todos los derechos reservados.
+        &copy; 2024 InfoSolutions. Todos los derechos reservados.
     </div>
 </footer>
 </body>

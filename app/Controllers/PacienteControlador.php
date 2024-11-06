@@ -75,7 +75,8 @@ class PacienteControlador extends BaseController
         $data['pacientes'] = $pacientes; // Modificar aquí para pasar correctamente los datos a la vista
 
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $data['showAdmin'] = ($userRol == 2); 
+        $data['showMedico'] = ($userRol == 4);// Simplificar la lógica para mostrar el admin
 
         echo view('layout/navbar', $data);
         echo view('crudPaciente', $data); // Cambiar a un solo array para pasar datos a la vista
@@ -106,7 +107,7 @@ class PacienteControlador extends BaseController
                 return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
             }
         }
-
+        
         return view('NewEditPaciente', $data);
     }
 
