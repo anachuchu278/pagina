@@ -32,7 +32,8 @@ $routes->get('turnos', 'TurnoControlador::index'); // Pagina principal con turno
 $routes->get('newTurno', 'TurnoControlador::newVista');// Vista para añadir nuevos turnos
 $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
-$routes->get('pay', 'Home::pay');
+$routes->get('pay', 'Home::pay'); // Pagina de pago
+$routes->get('successpay', 'PaginaController::successpay'); // En caso de realizar el pago se ejecuta esto
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
 $routes->get('newMedView', 'RecepcionControlador::newMedVista');

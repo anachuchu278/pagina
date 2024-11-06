@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="<?= base_url('css/confirmacion.css') ?>">
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validar Código</title>
 </head>

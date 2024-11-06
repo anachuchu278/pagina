@@ -1,0 +1,1 @@
+Para lograr que el archivo(qr_v4.ino) funcione se debe modificar la libreria QRCode, sus archivos deben ser renombrados a "qrcodem.h" y "qrcodem.c". Renombrar la carpeta no es necesario pero si desea hacerlo hagalo.
