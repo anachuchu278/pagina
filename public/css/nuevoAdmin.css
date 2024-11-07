@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 
-
+/* Contenedor del formulario */
 .register-form {
     width: 100%;
     max-width: 400px;
@@ -16,14 +16,14 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Título del formulario */
 .register-form h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-
+/* Estilo de las etiquetas del formulario */
 .register-form label {
     display: block;
     font-size: 14px;
@@ -31,7 +31,7 @@ body {
     color: #555;
 }
 
-
+/* Estilo de los campos de entrada */
 .register-form input[type="text"],
 .register-form input[type="email"],
 .register-form input[type="password"] {
@@ -44,7 +44,7 @@ body {
     font-size: 14px;
 }
 
-
+/* Estilo del botón de envío */
 .register-form button {
     width: 100%;
     padding: 10px;
@@ -57,12 +57,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
-
+/* Cambio de color del botón al pasar el cursor */
 .register-form button:hover {
     background-color: #218838;
 }
 
-
+/* Estilo para los mensajes de alerta */
 .alert {
     padding: 10px;
     margin-bottom: 15px;

@@ -4,15 +4,13 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    align-items: center;
-
 }
 
 h1 {
     text-align: center;
     font-size: 24px;
     margin-top: 20px;
-    color: #092ca0; /* Coherente con la paleta de colores anterior */
+    color: #007B8A; /* Coherente con la paleta de colores anterior */
 }
 
 /* Contenedor del formulario */
@@ -39,7 +37,7 @@ label {
     display: block;
     font-size: 15px; /* Tamaño de letra más grande */
     margin-bottom: 8px;
-    color: #000000; /* Color acorde al diseño general */
+    color: #007B8A; /* Color acorde al diseño general */
     font-weight: bold;
 }
 
@@ -77,7 +75,7 @@ input[type="checkbox"] {
 input[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #000e8a; /* Acorde con el esquema de colores */
+    background-color: #007B8A; /* Acorde con el esquema de colores */
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -90,7 +88,7 @@ input[type="submit"] {
 
 /* Cambio de color del botón al pasar el cursor */
 input[type="submit"]:hover {
-    background-color: #001f73;
+    background-color: #005f73;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más profunda al hacer hover */
 }
 

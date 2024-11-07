@@ -13,8 +13,6 @@
 <body>
 
     <div class="box">
-
-
         <nav>
             <ul class="menu-horizontal">
                 <li>
@@ -33,7 +31,6 @@
                 <?php endif; ?>
             </ul>
         </nav>
-
 
         <section class="inicio">
             <div class="text">

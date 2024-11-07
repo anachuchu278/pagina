@@ -4,19 +4,14 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo base_url('css/pay.css')?>">
     <title>Paypal</title>
 </head>
 <body>
     <div>
         <h1>Pague el turno</h1>
-        <p>El total a pagar es de U$D 5</p> 
-        <p>El costo del turno es sujeto a cambios basado en cuestiones de aumentos inflacionarios.</p>
+        <p>El total es de: U$D 5</p>
     </div>
-    <div id="paypal-button-container" class="pay"> 
-    <div class="volver-container">
-        <a href="pagina"class="volver">Volver</a>
-    </div>
+    <div id="paypal-button-container" class="pay">
     <script src="https://sandbox.paypal.com/sdk/js?client-id=AWTpQqOfv58jLKzJ9VI8kpiN16ppP9ZVEORnY2M56R8gUe3Wyt4iHAez5ORX8p31PmKkzdz0SZEbxTwa"></script> 
     <script>
 paypal.Buttons({
