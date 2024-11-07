@@ -50,7 +50,7 @@
             </tbody>
         </table>
         <?php else: ?>
-        <p class="no-turno">No tiene turnos reservados.</p>
+        <p class="no-turno" style="margin-top: 100px;">No tiene turnos reservados.</p>
     <?php endif; ?>
     <div class="box-new">
         <a href="newTurno"><button class="new" >Pedir Turno</button></a>
