@@ -25,7 +25,7 @@
                     <li><a href="crudPaciente">Pacientes</a></li>
                 <?php endif; ?>
             </li>
-            <?php if ($showMedico): ?>
-                <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
-            <?php endif; ?>
+        <?php if ($showMedico): ?>
+            <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
+        <?php endif; ?>
 </nav>

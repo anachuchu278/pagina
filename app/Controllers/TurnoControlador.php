@@ -28,7 +28,6 @@ class TurnoControlador extends BaseController{
             $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
         }
 
-
         $estados = $estadoModel->findAll();
 
         $horarios = $HorarioModel->findAll();
@@ -65,9 +64,7 @@ class TurnoControlador extends BaseController{
         $data['turnos'] = $turnos;
         $data['horarios'] = $horarios;
         $data['usuariosTurno'] = $usuariosTurnos;
-
         $data['pacienteTurno'] = $pacienteTurnos;
-
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
@@ -132,42 +129,11 @@ class TurnoControlador extends BaseController{
             'fecha_hora' => $this->request->getPost('id_Horario'),
             'codigo_turno' => $codigoturno,
             'id_Usuario' => $this->request->getPost('id_Medico'),
-
-            'id_paciente' => $id,
-            'id_estado' => 1,
-
             'id_paciente' => $idPaciente['id_Paciente'],
             'id_estado' => 1
         ];
 
         $turnoModel->insertarDatos($data);
-
-
-        // Enviar correo electrónico dinámicamente
-        $email = \Config\Services::email();
-
-        // Configurar la dirección del remitente (quien envía el correo)
-        $email->setFrom('mateobargas@alumnos.itr3.edu.ar', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
-
-        // Obtener el usuario por su ID para obtener su correo
-        $usuario = $usuarioModel->getUsuario($id); 
-        $destinatario = $usuario['email'];
-
-        $email->setTo($destinatario); 
-        $email->setSubject('Confirmación de Turno'); 
-
-        $mensaje = "Su turno ha sido generado exitosamente.\n\n";
-        $mensaje .= "Código de Turno: {$codigoturno}\n";
-        $mensaje .= "Fecha y Hora: " . $this->request->getPost('id_Horario') . "\n";
-
-        $email->setMessage($mensaje);
-
-        if (!$email->send()) {
-            echo $email->printDebugger(['headers']);
-            exit;
-        }
-
-        $id_Metpago = $this->request->getPost('id_Metpago');
 
         $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
 

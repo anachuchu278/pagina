@@ -10,13 +10,18 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 100px 0;
     font-size: 16px;
     text-align: left;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+}
+
+.no-turno{
+    
+    margin: 100px auto;
 }
 
 th, td {

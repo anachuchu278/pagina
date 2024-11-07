@@ -108,6 +108,8 @@ class PaginaController extends Controller{
             echo $email->printDebugger(['headers']);
             exit;
         }
+        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $data['showMedico'] = ($userRol == 4);
         return redirect()->to('pagina');
     }
     }
