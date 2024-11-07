@@ -39,8 +39,8 @@
                             <a href="<?= site_url('cancelarTurno/'. $turno['id_Turno']); ?>">Cancelar Turno</a>
                         </td>
                     </tr>
-                        <td><?= $turno['id_usuario']; ?></td>
-                        <td><?= isset($usuariosTurnos[$turno['id_usuario']]) ? $usuariosTurnos[$turno['id_Usuario']]['nombre'] : 'Usuario no encontrado'; ?></td>
+                        <td><?= $turno['id_paciente']; ?></td>
+                        <td><?= isset($usuariosTurnos[$turno['id_paciente']]) ? $usuariosTurnos[$turno['id_Usuario']]['nombre'] : 'Usuario no encontrado'; ?></td>
                         <td>
                             <a href="<?= site_url('editarTurno/' . $turno['id_Turno']); ?>">Reprogramar Turno</a>
                             <a href="<?= site_url('cancelarTurno/' . $turno['id_Turno']); ?>">Cancelar Turno</a>

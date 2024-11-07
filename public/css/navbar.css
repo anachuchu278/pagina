@@ -1,49 +1,64 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+nav {
+    width: 100%; /* Asegura que el navbar cubra todo el ancho de la página */
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0;
+    left: 0;
+    background-color: #091c41;
+    font-size: 20px;
+    z-index: 10; /* Asegura que el navbar esté sobre el contenido */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.menu-horizontal {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
     margin: 0;
-}
-/* Estilos para el navbar */
-.navbar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-background-color: #3da2b4;
-color: #fff;
-padding: 10px 20px;
+    padding: 15px 0; /* Ajusta el padding para darle espacio vertical */
 }
 
-.navbar-logo img {
-width: 100px;
-}
-
-.navbar-menu {
-list-style-type: none;
-margin: 0;
-padding: 0;
-display: flex;
-}
-
-.navbar-menu li {
-margin-right: 20px;
-}
-
-.navbar-menu li a {
-color: #fff;
-text-decoration: none;
-}
-.navbar-menu li a:hover {
-background-color: #008aca;
-border-radius: 5px;
-} 
-.advanced-search {
+.menu-horizontal > li > a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
     text-decoration: none;
-    border-radius: 5px;
 }
 
+.menu-horizontal > li:hover {
+    background-color: #3c26ac; 
+    transition: .5s;
+    border-radius: 19px;
+    margin-top: 2px;
+}
 
+.menu-vertical {
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 250px;
+    background-color: rgb(21, 23, 34);
+    text-decoration: none;
+    transition: .5s;
+    border-radius: 7px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-horizontal li:hover .menu-vertical {
+    display: block;
+}
+
+.menu-vertical li:hover {
+    background-color: rgba(230, 240, 236, 0.849);
+    transition: .5s;
+    border-radius: 7px;
+}
+
+.menu-vertical li a {
+    display: block;
+    color: #e7eaee;
+    padding: 15px 15px 15px 20px;
+    text-decoration: none;
+    transition: .5s;
+}

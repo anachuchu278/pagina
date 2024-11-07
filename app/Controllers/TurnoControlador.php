@@ -10,6 +10,13 @@ use App\Models\EstadoModel;
 use App\Models\MetPagoModel;
 use App\Models\DetPagoModelo;
 class TurnoControlador extends BaseController{
+    public function __construct()
+    {
+        $session = \Config\Services::session();
+        if (!$session->get('is_logged_in')) {
+            return redirect()->to('/login');
+        }
+    }
     public function index(){
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
@@ -20,17 +27,10 @@ class TurnoControlador extends BaseController{
 
         $userId = $session->get('user_id');
         $user = $pacienteModel->find($userId);
-
-        $turnos = $turnoModel->findAll();
-        
-        $usuariosTurnos = [];
-        foreach ($turnos as $turno) {
-            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
-        }
-
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
-        $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
+        $idPaciente = $pacienteModel->getPacientePorUsuarioID($userId);
+        $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
 
         $estadosMap = [];
         foreach ($estados as $estado) {
@@ -67,6 +67,7 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
@@ -89,68 +90,69 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('TurnoNew', $data);
     }
     public function new()
-{ 
-    // Guardar datos del nuevo turno
-    $session = \Config\Services::session();
+    { 
+        // Guardar datos del nuevo turno
+        $session = \Config\Services::session();
+        
+        if ($session->get('user_id')) {
+            $turnoModel = new TurnoModel();
+            $pacienteModel = new PacienteModel();
+            $usuarioModel = new UsuarioModelo();
+            $detpagoModel = new DetPagoModelo();
+            $HorarioModel = new HorarioModelo();
     
-    if ($session->get('user_id')) {
-        $turnoModel = new TurnoModel();
-        $pacienteModel = new PacienteModel();
-        $usuarioModel = new UsuarioModelo();
-        $detpagoModel = new DetPagoModelo();
-        $HorarioModel = new HorarioModelo();
-
-        $id = $session->get('user_id');
-        $horarios = $HorarioModel->findAll();
-        $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
-
-        $horario = $HorarioModel->getHorario($this->request->getPost('id_Horario'));
-        function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
-            return bin2hex(openssl_random_pseudo_bytes($num_bytes));
+            $id = $session->get('user_id');
+            $horarios = $HorarioModel->findAll();
+            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
+    
+            $horario = $HorarioModel->getHorario($this->request->getPost('id_Horario'));
+            function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
+                return bin2hex(openssl_random_pseudo_bytes($num_bytes));
+            }
+    
+            $codigoturno = getRandomHex(4);
+    
+            $dato = [
+                'id_metodop' => $this->request->getPost('id_Metpago'),
+                'monto' => 5000,
+                'id_Usuario' => $id
+            ];
+            $id_Detpago = $detpagoModel->insertarDatos($dato);
+    
+            $data = [
+                'fecha_hora' => $this->request->getPost('id_Horario'),
+                'codigo_turno' => $codigoturno,
+                'id_Usuario' => $this->request->getPost('id_Medico'),
+                'id_paciente' => $idPaciente['id_Paciente'],
+                'id_estado' => 1
+            ];
+    
+            $turnoModel->insertarDatos($data);
+    
+            $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
+            switch ($id_Metpago) {
+                case 1:
+                    $session->set('codigoturno' , $codigoturno);
+                    $session->set('horario' , $horario['id_Horario']);
+                    return redirect()->to('pay');
+                case 2:
+                    return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
+                case 3:
+                    $session->set('codigoturno' , $codigoturno);
+                    $session->set('horario' , $horario['id_Horario']);
+                    return redirect()->to('pay');
+                case 4:
+                    return redirect()->to('ruta_para_id_metpago_4');
+                default:
+                    return redirect()->to('pagina');
+            }
+        } else {
+            return redirect()->to('/');
         }
-
-        $codigoturno = getRandomHex(4);
-
-        $dato = [
-            'id_metodop' => $this->request->getPost('id_Metpago'),
-            'monto' => 5000,
-            'id_Usuario' => $id
-        ];
-        $id_Detpago = $detpagoModel->insertarDatos($dato);
-
-        $data = [
-            'fecha_hora' => $this->request->getPost('id_Horario'),
-            'codigo_turno' => $codigoturno,
-            'id_Usuario' => $this->request->getPost('id_Medico'),
-            'id_paciente' => $idPaciente['id_Paciente'],
-            'id_estado' => 1
-        ];
-
-        $turnoModel->insertarDatos($data);
-
-        $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
-        switch ($id_Metpago) {
-            case 1:
-                $session->set('codigoturno' , $codigoturno);
-                $session->set('horario' , $horario['id_Horario']);
-                return redirect()->to('pay');
-            case 2:
-                return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');
-            case 3:
-                $session->set('codigoturno' , $codigoturno);
-                $session->set('horario' , $horario['id_Horario']);
-                return redirect()->to('pay');
-            case 4:
-                return redirect()->to('ruta_para_id_metpago_4');
-            default:
-                return redirect()->to('pagina');
-        }
-    } else {
-        return redirect()->to('/');
     }
-}
 }

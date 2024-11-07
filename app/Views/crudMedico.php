@@ -9,7 +9,7 @@
     <title>Medicos</title>
 </head>
 <body>
-    <table class="table table-striped">
+    <table class="table table-striped" style="margin: 100px auto;">
         <thead>
             <tr>
                 <th>Nombre</th>

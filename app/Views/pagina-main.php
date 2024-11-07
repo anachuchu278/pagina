@@ -24,11 +24,19 @@
                     </ul>
                 </li>
                 <li><a href="">Perfil</a></li>
-                <li><a href="">Calendario</a></li>
                 <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
                 <?php if ($showAdmin): ?>
-                    <li><a class="" href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
-                <?php endif; ?>
+                <li>
+                    <a href="">Administración</a>
+                    <ul class="menu-vertical">
+                        <li><a href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
+                        <li><a href="crudMeds">Medicos</a></li>
+                        <li><a href="crudPaciente">Pacientes</a></li>
+                </li>
+                <?php endif; ?>  
+                <?php if ($showMedico): ?>
+                    <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
+                <?php endif; ?>                  
             </ul>
         </nav>
 
