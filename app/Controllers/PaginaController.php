@@ -12,8 +12,6 @@ class PaginaController extends Controller{
         $session = \Config\Services::session();
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2);
-        $data['showMedico'] = ($userRol == 4);
-        echo view('layout/navbar', $data);
         echo view('pagina-main', $data); 
         return view('layout/footer');
     } 
@@ -36,8 +34,7 @@ class PaginaController extends Controller{
             $data['user'] = $user;  
             return view('perfil', $data);
         }
-    }  
-   
+    } 
     public function preguntas(){
         return view('preguntasFrecuentes');
     } 

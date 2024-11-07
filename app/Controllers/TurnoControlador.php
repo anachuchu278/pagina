@@ -29,7 +29,6 @@ class TurnoControlador extends BaseController{
         }
 
         $estados = $estadoModel->findAll();
-
         $horarios = $HorarioModel->findAll();
         $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
 
@@ -68,7 +67,6 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
-        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
@@ -91,7 +89,6 @@ class TurnoControlador extends BaseController{
 
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2);
-        $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('TurnoNew', $data);
     }
@@ -136,7 +133,6 @@ class TurnoControlador extends BaseController{
         $turnoModel->insertarDatos($data);
 
         $id_Metpago = $this->request->getPost('id_Metpago'); // Dependiendo del tipo de pago elegido se redireccionara a una pagina
-
         switch ($id_Metpago) {
             case 1:
                 $session->set('codigoturno' , $codigoturno);

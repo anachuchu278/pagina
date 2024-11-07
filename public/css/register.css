@@ -65,15 +65,4 @@ body {
 /* Efecto hover en el botón */
 .register-form button:hover {
     background-color: #7e747491;
-} 
-
-a {
-    padding: 2px 4px; 
-    color: #000000;
 }
-  
-  a:hover {
-    background-color: #1f2226; /* Azul más oscuro */
-  }
-  
-  
