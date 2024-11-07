@@ -27,7 +27,7 @@
                     <?php if (!empty($horarios)): ?>
                         <?php foreach ($horarios as $horario): ?>
                             <?php if ($horario['id_usuario'] == $medico['id_Usuario']): ?>
-                                <div class="dropdown">
+                                <div class="dropdown" >
                                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-target="false" aria-expanded="false">
                                         <?= $horario['dia_sem']; ?> | <?= substr($horario['hora_inicio'], 0, -3); ?>-<?= substr($horario['hora_final'], 0, -3 ); ?>
                                     </button>
@@ -55,6 +55,6 @@
     <div class="box-new">
         <a class="btn btn-success" href="newMedView">Añadir</a><br>
     </div>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
