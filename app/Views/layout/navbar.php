@@ -1,10 +1,9 @@
 <head>
     <link rel="stylesheet" href="<?= base_url('css/navbar.css') ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <nav>
     <ul class="menu-horizontal">
-
         <a href="pagina"><i class="fa-solid fa-house-medical"></i></a>
         <li>
             <a href="">Gestion</a>
@@ -23,9 +22,9 @@
                     <li><a href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
                     <li><a href="crudMeds">Medicos</a></li>
                     <li><a href="crudPaciente">Pacientes</a></li>
+                <?php endif; ?>
             </li>
-        <?php endif; ?>
-        <?php if ($showMedico): ?>
-            <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
-        <?php endif; ?>
+            <?php if ($showMedico): ?>
+                <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
+            <?php endif; ?>
 </nav>

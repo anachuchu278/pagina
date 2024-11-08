@@ -110,5 +110,101 @@ class PaginaController extends Controller{
         $data['showMedico'] = ($userRol == 4);
         return redirect()->to('pagina');
     }
+    } 
+    public function formMed()
+    {
+        $session = \Config\Services::session(); 
+        $EspecialidadModelo = new \App\Models\EspecialidadModel();
+        $especialidades = $EspecialidadModelo->findAll();
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2); 
+        $data['showMedico'] = ($userRol == 4);
+        echo view('layout/navbar' , $data);
+        return view('formMedico', ['especialidades' => $especialidades]);
+    }
+    public function nuevoMed()
+    {
+        $session = \Config\Services::session();
+        $HorarioModelo = new HorarioModelo();
+        $UsuarioModelo = new UsuarioModelo();
+        $id_Usuario = $this->request->getPost('id_Usuario');
+        $name = $this->request->getPost('nombre');
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $imagen = $this->request->getPost('imagen_ruta');
+        $idEspecialidad = $this->request->getPost('especialidad');
+        $id_rol = 4;
+        $horarios = $this->request->getPost('horarios');
+        // Verificar si el email ya está registrado
+        $existingEmail = $UsuarioModelo->where('email', $email)->first();
+        if ($existingEmail) {
+            return redirect()->back()->with('error', 'El email ya está registrado.')->withInput();
+        }
+        if ($name) {
+            // Validar que solo contenga letras
+            if (preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/", $name)) {
+                echo "El nombre es válido: " . htmlspecialchars($name);
+            } else {
+                return redirect()->back()->with('error', 'El nombre no puede contener numeros.')->withInput();
+            }
+        }
+        // Verificar si el nombre de usuario ya está registrado
+        $existingName = $UsuarioModelo->where('nombre', $name)->first();
+        if ($existingName) {
+            return redirect()->back()->with('error', 'El nombre de usuario ya está registrado.')->withInput();
+        }
+        // Hash de la contraseña después de todas las verificaciones
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if (empty($imagen)) {
+            $imagen = '/img/medico_imagen.png';
+        }
+        $data = [
+            'id_Usuario' => $id_Usuario,
+            'nombre' => $name,
+            'email' => $email,
+            'password' => $hashedPassword,
+            'id_rol' => $id_rol,
+            'imagen_ruta' => $imagen,
+            'id_especialidad' => $idEspecialidad,
+        ];
+        $id_user = $UsuarioModelo->insert($data);
+        if ($horarios) {
+            foreach ($horarios as $horario) {
+                $dataHorario = [
+                    'dia_sem' => $horario['dia_sem'],
+                    'hora_inicio' => $horario['hora_inicio'],
+                    'hora_final' => $horario['hora_final'],
+                    'id_Usuario' => $id_user,
+                ];
+                $HorarioModelo->insert($dataHorario);
+            }
+        }
+        return redirect()->to('crudMeds');
+    }
+    public function deleteMedico()
+    {
+        $id_Usuario = $this->request->getPost('id_Usuario');
+        if ($id_Usuario) {
+            $usuarioModelo = new UsuarioModelo();
+            $usuarioModelo->deleteAdmin($id_Usuario);
+            return redirect()->to('crudMeds');
+        }
+    }
+    public function perfilMedico()
+    {
+        $session = \Config\Services::session();
+        $idUsuario = $session->get('user_id');
+        $UsuarioModelo = new UsuarioModelo();
+        $EspecialidadModelo = new EspecialidadModel();
+        $medico = $UsuarioModelo->find($idUsuario);
+        if (!$medico) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Médico no encontrado');
+        }
+        $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
+        // Pasar los datos a la vista
+        return view('datosMedico', [
+            'medico' => $medico,
+            'especialidad' => $especialidad,
+        ]);
     }
 }
