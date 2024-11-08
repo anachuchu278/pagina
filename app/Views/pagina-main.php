@@ -12,33 +12,7 @@
 
 <body>
 
-    <div class="box">
-        <nav>
-            <ul class="menu-horizontal">
-                <li>
-                    <a href="">Gestion</a>
-                    <ul class="menu-vertical">
-                        <li><a href="turnos">Turnos</a></li>
-                        <li><a href="newTurno">Generar un turno</a></li>
-                        <li><a href="newPacienteView">Añadir un Paciente</a></li>
-                    </ul>
-                </li>
-                <li><a href="">Perfil</a></li>
-                <li><a href="<?= base_url('logout') ?>">Cerrar Sesion</a></li>
-                <?php if ($showAdmin): ?>
-                <li>
-                    <a href="">Administración</a>
-                    <ul class="menu-vertical">
-                        <li><a href="<?= site_url('vistaAdmin') ?>">Admin</a></li>
-                        <li><a href="crudMeds">Medicos</a></li>
-                        <li><a href="crudPaciente">Pacientes</a></li>
-                </li>
-                <?php endif; ?>  
-                <?php if ($showMedico): ?>
-                    <li><a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Medico</a></li>
-                <?php endif; ?>                  
-            </ul>
-        </nav>
+   
 
         <section class="inicio">
             <div class="text">
