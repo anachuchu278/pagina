@@ -15,7 +15,7 @@
     <?php //var_dump($horarios);
     ?>
     <?php if (!empty($turnos)): ?>
-        <table>
+        <table style="margin-top: 100px;">
             <thead>
                 <tr>
                     <th>Estado</th>
