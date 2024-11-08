@@ -4,7 +4,7 @@
 </head>
 <nav>
     <ul class="menu-horizontal">
-        <a href="pagina"><i class="fa-solid fa-house-medical"></i></a>
+        <a href="pagina"><i class="fa-solid fa-house-medical" style="margin-top: 20px;"></i></a>
         <li>
             <a href="">Gestion</a>
             <ul class="menu-vertical">
