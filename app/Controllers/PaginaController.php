@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\EstadoModel;
 use App\Models\UsuarioModelo;
+use App\Models\EspecialidadModel;
 use App\Models\HorarioModelo;
 use App\Models\TurnoModel;
 use CodeIgniter\Controller;
@@ -79,7 +80,7 @@ class PaginaController extends Controller{
 
                 // Obtener el usuario por su ID para obtener su correo
                 $usuario = $usuarioModel->find($id); 
-                $destinatario = $usuario['email'];
+                $destinatario = 'infosolutions.tesina@gmail.com';
 
                 $email->setTo($destinatario); 
                 $email->setSubject('Aviso de Confirmación'); 
@@ -145,7 +146,7 @@ class PaginaController extends Controller{
     public function formMed()
     {
         $session = \Config\Services::session(); 
-        $EspecialidadModelo = new \App\Models\EspecialidadModel();
+        $EspecialidadModelo = new EspecialidadModel();
         $especialidades = $EspecialidadModelo->findAll();
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2); 
