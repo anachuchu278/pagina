@@ -206,7 +206,7 @@ class RecepcionControlador extends BaseController{
     public function formMed()
     {
         $session = \Config\Services::session(); 
-        $EspecialidadModelo = new \App\Models\EspecialidadModel();
+        $EspecialidadModelo = new EspecialidadModel();
         $especialidades = $EspecialidadModelo->findAll();
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2); 
