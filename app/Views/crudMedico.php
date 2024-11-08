@@ -42,7 +42,7 @@
                         <?php else: ?>
                             <a class="btn btn-primary" role="button" href="<?= base_url('horario_medico'); ?>">Nuevo Horario</a>
                             </div>
-                        <?php endif; ?>>
+                        <?php endif; ?>
                     </td>
                     <td>
                         <a class="btn btn-primary" href="<?= site_url('editPaciente/'. $medico['id_Usuario']); ?>">Editar</a>

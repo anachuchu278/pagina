@@ -16,8 +16,8 @@
                 <tr>
                     <th>Estado</th>
                     <th>Fecha</th>
-                    <th>Medico</th>
                     <th>Paciente</th>
+                    <th>Medico</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

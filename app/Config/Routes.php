@@ -36,8 +36,6 @@ $routes->get('pay', 'Home::pay'); // Pagina de pago
 $routes->get('successpay', 'PaginaController::successpay'); // En caso de realizar el pago se ejecuta esto
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
-// $routes->get('newMedView', 'RecepcionControlador::newMedVista');
-$routes->get('newMedView', 'RecepcionControlador::formMed');
 $routes->post('newMed', 'RecepcionControlador::newMed');
 $routes->post('nuevoMed', 'RecepcionControlador::nuevoMed');
 $routes->get('horario_medico', 'RecepcionControlador::horMed'); // Vista para añadir horarios de medico
