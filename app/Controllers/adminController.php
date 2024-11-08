@@ -12,8 +12,7 @@ class adminController extends BaseController {
 
         $admin = $usuarioModelo->getAdmin();
         $data['admin'] = $admin;
-        echo view('nuevoAdmin', $data); 
-
+        return view('nuevoAdmin', $data); 
 
     }
 
