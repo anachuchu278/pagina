@@ -59,7 +59,7 @@
                 <?php foreach ($horarios as $horario): ?>
                     <option value="<?= $horario['id_Horario'] ?>"><?= $horario['dia_sem'] ?>: <?= $horario['hora_inicio'] ?> - <?= $horario['hora_final'] ?></option>
                 <?php endforeach; ?>
-        </select><br><br>
+        </select><br>
     </form>
 </body>
 </html>
