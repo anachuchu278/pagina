@@ -18,10 +18,10 @@
         <table style="margin-top: 100px;">
             <thead>
                 <tr>
-                    <th>Estado</th>
                     <th>Fecha</th>
-                    <th>Paciente</th>
+                    <th>Estado</th>
                     <th>Medico</th>
+                    <th>Paciente</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        <td><?= $turno['id_Usuario']; ?></td>
+                        <td><?= $turno['estado']; ?></td>
                         <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td>
                         <td><?= $turno['paciente'];?></td> <!-- Paciente -->
                         
