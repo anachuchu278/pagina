@@ -700,7 +700,7 @@
             },
             "time": "2021-09-14T21:35:26+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "PayPalHttp\\": "lib/PayPalHttp"

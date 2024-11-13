@@ -76,6 +76,7 @@ class PacienteControlador extends BaseController
 
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $data['showMedico'] = ($userRol == 4);
 
         echo view('layout/navbar', $data);
         echo view('crudPaciente', $data); // Cambiar a un solo array para pasar datos a la vista

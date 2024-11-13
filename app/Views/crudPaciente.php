@@ -9,7 +9,7 @@
     <title>Registro de pacientes</title>
 </head>
 <body>
-    <table>
+    <table style="margin: 100px auto;">
         <thead>
             <tr>
                 <th>DNI</th>
