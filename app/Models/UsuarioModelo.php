@@ -47,9 +47,9 @@ class UsuarioModelo extends Model{
             ->get()
             ->getResultArray();
     }
-    public function deleteAdmin($id_Usuario){
+    public function deleteAdmin($id){
         return $this->db->table('usuario')
-                        ->where('id_Usuario', $id_Usuario)
+                        ->where('id_Usuario', $id)
                         ->delete();
     }
 }

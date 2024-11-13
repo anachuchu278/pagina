@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nuevo Medico</title>
     <link rel="stylesheet" href="<?= base_url('css/formMedico.css')?>">
 </head>
 
@@ -41,7 +40,7 @@
                         <option value="<?= $especialidad['id_Especialidad'] ?>"><?= $especialidad['tipo'] ?></option>
                     <?php endforeach; ?>
                 </select><br>
-                <div id="horarios-container">
+                <!-- <div id="horarios-container">
                     <div class="horario">
                         <label for="dia_sem">Día de la semana:</label>
                         <input type="text" name="horarios[0][dia_sem]" required><br>
@@ -52,7 +51,7 @@
                         <label for="hora_final">Hora de fin:</label>
                         <input type="time" name="horarios[0][hora_final]" required><br>
                     </div>
-                </div>
+                </div> -->
 
                 <button type="submit" href="<?= base_url('nuevoMed') ?>">Registrar nuevo medico</button>
             </form><br>
