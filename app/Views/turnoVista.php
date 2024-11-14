@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <form class="form-inline my-2 my-lg-0" style="margin-top: 100px;">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <?php //var_dump($turnos);
     ?>
     <?php //var_dump($usuarios);
@@ -15,7 +19,7 @@
     <?php //var_dump($horarios);
     ?>
     <?php if (!empty($turnos)): ?>
-        <table style="margin-top: 100px;">
+        <table style="margin-top: 10px;">
             <thead>
                 <tr>
                     <th>Fecha</th>
