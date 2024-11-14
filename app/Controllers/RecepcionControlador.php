@@ -118,22 +118,29 @@ class RecepcionControlador extends BaseController{
     }
     public function guardarHorario() //funcion que añade horarios
     {
+        $session = \Config\Services::session();
         $HorarioModelo = new HorarioModelo();
         $UsuarioModelo = new UsuarioModelo();        
-        $medico_id = $this->request->getPost('doctor_id');
+        $emailMed = $session->get('emailMed');
+        if($emailMed){
+            $medico_id = $UsuarioModelo->where('email', $emailMed)->first();
+        }else {
+            $medico_id = $this->request->getPost('doctor_id');
+        }
         $dia = $this->request->getPost('day');
         $hora_inicio = $this->request->getPost('start_time');
         $hora_final = $this->request->getPost('end_time');
         
+
         $data = [
-            'id_usuario' => $medico_id,
+            'id_usuario' => $medico_id['id_Usuario'],
             'dia_sem' => $dia,
             'hora_inicio' => $hora_inicio,
             'hora_final' => $hora_final,
         ];
         
         $HorarioModelo->insertData($data);
-        return redirect()->to('');
+        return redirect()->to('pagina');
     }
     public function deleteHorario($id)
     {
@@ -206,7 +213,7 @@ class RecepcionControlador extends BaseController{
     public function formMed()
     {
         $session = \Config\Services::session(); 
-        $EspecialidadModelo = new \App\Models\EspecialidadModel();
+        $EspecialidadModelo = new EspecialidadModel();
         $especialidades = $EspecialidadModelo->findAll();
         $userRol = $session->get('user_rol');
         $data['showAdmin'] = ($userRol == 2); 
@@ -220,9 +227,9 @@ class RecepcionControlador extends BaseController{
         $HorarioModelo = new HorarioModelo();
         $UsuarioModelo = new UsuarioModelo();
 
-        $id_Usuario = $this->request->getPost('id_Usuario');
         $name = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
+        $session->set('emailMed', $email);
         $password = $this->request->getPost('password');
         $imagen = $this->request->getPost('imagen_ruta');
         $idEspecialidad = $this->request->getPost('especialidad');
@@ -259,7 +266,6 @@ class RecepcionControlador extends BaseController{
         }
 
         $data = [
-            'id_Usuario' => $id_Usuario,
             'nombre' => $name,
             'email' => $email,
             'password' => $hashedPassword,
@@ -269,27 +275,27 @@ class RecepcionControlador extends BaseController{
 
         ];
         $id_user = $UsuarioModelo->insert($data);
-        if ($horarios) {
-            foreach ($horarios as $horario) {
-                $dataHorario = [
-                    'dia_sem' => $horario['dia_sem'],
-                    'hora_inicio' => $horario['hora_inicio'],
-                    'hora_final' => $horario['hora_final'],
-                    'id_Usuario' => $id_user,
-                ];
-                $HorarioModelo->insert($dataHorario);
-            }
-        }
+        // if ($horarios) {
+        //     foreach ($horarios as $horario) {
+        //         $dataHorario = [
+        //             'dia_sem' => $horario['dia_sem'],
+        //             'hora_inicio' => $horario['hora_inicio'],
+        //             'hora_final' => $horario['hora_final'],
+        //             'id_Usuario' => $id_user,
+        //         ];
+        //         $HorarioModelo->insert($dataHorario);
+        //     }
+        // }
 
-        return redirect()->to('crudMeds');
+        return redirect()->to('horario_medico');
     }
-    public function deleteMedico()
+    public function deleteMedico($id)
     {
         $id_Usuario = $this->request->getPost('id_Usuario');
         if ($id_Usuario) {
             $usuarioModelo = new UsuarioModelo();
 
-            $usuarioModelo->deleteAdmin($id_Usuario);
+            $usuarioModelo->deleteAdmin($id);
 
             return redirect()->to('crudMeds');
         }
