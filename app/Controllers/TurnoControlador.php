@@ -26,11 +26,20 @@ class TurnoControlador extends BaseController{
         $HorarioModel = new HorarioModelo();
 
         $userId = $session->get('user_id');
+        $userRol = $session->get('user_rol');
         $user = $pacienteModel->find($userId);
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($userId);
-        $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+        if ($userRol == 1) { // Usuario - Paciente
+            $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+        } elseif ($userRol == 2) { //Admin
+            $turnos = $turnoModel->findAll();
+        } elseif ($userRol == 3) { // Recepcion
+            $turnos = $turnoModel->findAll();    
+        } elseif ($userRol == 4) { // Medico
+            $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
+        }
 
         $estadosMap = [];
         foreach ($estados as $estado) {

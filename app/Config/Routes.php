@@ -45,7 +45,7 @@ $routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
 $routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
 $routes->get('medico/(:num)', 'RecepcionControlador::perfilMedico/$1'); 
 $routes->get('formMedico', 'RecepcionControlador::formMed' ); 
-$routes->post('admin/deleteMed', 'RecepcionControlador::deleteMedico');
+$routes->get('admin/deleteMed/(:num)', 'RecepcionControlador::deleteMedico/$1');
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');

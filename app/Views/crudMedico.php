@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         <a class="btn btn-primary" href="<?= site_url('editPaciente/'. $medico['id_Usuario']); ?>">Editar</a>
-                        <a class="btn btn-danger" href="<?= site_url('eliminarPaciente/'. $medico['id_Usuario']); ?>">Eliminar</a>
+                        <a class="btn btn-danger" href="<?= site_url('admin/deleteMed/'. $medico['id_Usuario']); ?>">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach;?>
