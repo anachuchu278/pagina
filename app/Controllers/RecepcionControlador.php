@@ -1,13 +1,17 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Models\UsuarioModelo;
 use App\Models\HorarioModelo;
 use CodeIgniter\Controller;
 use App\Models\PacienteModel;
 use App\Models\EspecialidadModel;
+use App\Models\EstadoModel;
 use App\Models\TurnoModel;
 
-class RecepcionControlador extends BaseController{
+class RecepcionControlador extends BaseController
+{
     public function __construct()
     {
         $session = \Config\Services::session();
@@ -15,10 +19,11 @@ class RecepcionControlador extends BaseController{
             return redirect()->to('/login');
         }
     }
-    public function index(){
+    public function index()
+    {
         $session = \Config\Services::session();
         if ($session->get('user_id')) {
-            $rol= $session->get('user_rol');
+            $rol = $session->get('user_rol');
             if ($rol == 3 && $rol == 2) {
                 $pacienteModel = new PacienteModel();
                 $turnoModel = new TurnoModel();
@@ -54,7 +59,7 @@ class RecepcionControlador extends BaseController{
         $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
         $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
         $data['showMedico'] = ($userRol == 4);
-        echo view('layout/navbar',$data);
+        echo view('layout/navbar', $data);
         return view('crudMedico', $data);
     }
     public function newMedVista()
@@ -75,9 +80,9 @@ class RecepcionControlador extends BaseController{
     public function newMed()
     {
         $session = \Config\Services::session();
-        $usuarioModelo= new UsuarioModelo();
+        $usuarioModelo = new UsuarioModelo();
 
-        $data=[
+        $data = [
             'id_Usuario' => $this->request->getPost('id_Usuario'),
             'id_especialidad' => $this->request->getPost('especialidad'),
             'id_rol' => 4
@@ -87,11 +92,11 @@ class RecepcionControlador extends BaseController{
     }
     public function delMed($id)
     {
-        $usuarioModelo= new UsuarioModelo();
+        $usuarioModelo = new UsuarioModelo();
 
-        $data=[
-            'id_especialidad'=> null,
-            'id_rol'=> 1
+        $data = [
+            'id_especialidad' => null,
+            'id_rol' => 1
         ];
         $usuarioModelo->update($id, $data);
         return redirect()->to('crudPaciente');
@@ -104,7 +109,7 @@ class RecepcionControlador extends BaseController{
         $data['medicos'] = $UsuarioModelo->where('id_rol', 4)->findAll();
         $data['horarios'] = [];
 
-        if ($id){
+        if ($id) {
             $HorarioModelo = new HorarioModelo();
             $data['usuario'] = $UsuarioModelo->find($id);
             $data['horarios'] = $HorarioModelo->where('id_usuario', $id)->findAll();
@@ -120,17 +125,17 @@ class RecepcionControlador extends BaseController{
     {
         $session = \Config\Services::session();
         $HorarioModelo = new HorarioModelo();
-        $UsuarioModelo = new UsuarioModelo();        
+        $UsuarioModelo = new UsuarioModelo();
         $emailMed = $session->get('emailMed');
-        if($emailMed){
+        if ($emailMed) {
             $medico_id = $UsuarioModelo->where('email', $emailMed)->first();
-        }else {
+        } else {
             $medico_id = $this->request->getPost('doctor_id');
         }
         $dia = $this->request->getPost('day');
         $hora_inicio = $this->request->getPost('start_time');
         $hora_final = $this->request->getPost('end_time');
-        
+
 
         $data = [
             'id_usuario' => $medico_id['id_Usuario'],
@@ -138,7 +143,7 @@ class RecepcionControlador extends BaseController{
             'hora_inicio' => $hora_inicio,
             'hora_final' => $hora_final,
         ];
-        
+
         $HorarioModelo->insertData($data);
         return redirect()->to('pagina');
     }
@@ -152,19 +157,47 @@ class RecepcionControlador extends BaseController{
     public function turnoDisp() // Vista de turnos disponibles
     {
         $HorarioModelo = new HorarioModelo();
-        $UsuarioModelo = new UsuarioModelo();        
+        $TurnoModelo = new TurnoModel();
+        $UsuarioModelo = new UsuarioModelo();
+
         $medicos = $UsuarioModelo->where('id_rol', 4)->findAll();
 
-        // Obtener horarios para cada médico
-        $horarios = [];
-        foreach ($medicos as $medico) {
-            $horarios[$medico['id_Usuario']] = $HorarioModelo->where('id_usuario', $medico['id_Usuario'])->findAll();
+        // Obtener datos del formulario (si se envió)
+        $fecha_turno = $this->request->getPost('fecha_turno');
+        $id_Medico = $this->request->getPost('id_Medico');
+
+        $horarios_disponibles = [];
+
+        if ($fecha_turno && $id_Medico) {
+            // Obtener horarios del médico seleccionado
+            $horarios = $HorarioModelo->where('id_usuario', $id_Medico)->findAll();
+
+            // Obtener turnos reservados para ese médico y fecha
+            $turnos_reservados = $TurnoModelo
+                ->where('id_Usuario', $id_Medico)
+                ->where('fecha_turno', $fecha_turno)
+                ->findAll();
+
+            // Convertir horarios reservados a un array simple
+            $reservados = [];
+            foreach ($turnos_reservados as $turno) {
+                $reservados[] = $turno['id_Horario'];
+            }
+
+            // Calcular horarios disponibles
+            foreach ($horarios as $horario) {
+                if (!in_array($horario['id_Horario'], $reservados)) {
+                    $horarios_disponibles[] = $horario;
+                }
+            }
         }
 
         // Preparar datos para la vista
         $data = [
             'medicos' => $medicos,
-            'horarios' => $this->calculateAllSlots($horarios),
+            'horarios_disponibles' => $horarios_disponibles,
+            'fecha_turno' => $fecha_turno,
+            'id_Medico' => $id_Medico,
         ];
 
         return view('turno_disponible', $data);
@@ -173,13 +206,13 @@ class RecepcionControlador extends BaseController{
     private function calculateAllSlots($horarios) // Calculo
     {
         $slotsData = [];
-        
+
         foreach ($horarios as $medicoId => $Hor) {
             foreach ($Hor as $horario) {
                 $dia_sem = $horario['dia_sem'];
                 $hora_inicio = $horario['hora_inicio'];
                 $hora_final = $horario['hora_final'];
-                
+
                 // Calcular slots para este horario
                 $slotsData[$medicoId][$dia_sem][] = $this->calculateAvailableSlots($hora_inicio, $hora_final);
             }
@@ -212,13 +245,13 @@ class RecepcionControlador extends BaseController{
     }
     public function formMed()
     {
-        $session = \Config\Services::session(); 
+        $session = \Config\Services::session();
         $EspecialidadModelo = new EspecialidadModel();
         $especialidades = $EspecialidadModelo->findAll();
         $userRol = $session->get('user_rol');
-        $data['showAdmin'] = ($userRol == 2); 
+        $data['showAdmin'] = ($userRol == 2);
         $data['showMedico'] = ($userRol == 4);
-        echo view('layout/navbar' , $data);
+        echo view('layout/navbar', $data);
         return view('formMedico', ['especialidades' => $especialidades]);
     }
     public function nuevoMed()
@@ -321,5 +354,67 @@ class RecepcionControlador extends BaseController{
             'medico' => $medico,
             'especialidad' => $especialidad,
         ]);
+    }
+
+
+
+
+
+    public function turnosMedico()
+    {
+        $session = \Config\Services::session();
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $estadoModel = new EstadoModel();
+        $HorarioModel = new HorarioModelo();
+
+        // Obtener el ID del médico desde la sesión
+        $idMedico = $session->get('user_id');
+ 
+        // Obtener todos los turnos del médico
+        $turnos = $turnoModel->where('id_Usuario', $idMedico)->findAll();
+        
+        // Obtener todos los estados
+        $estados = $estadoModel->findAll();
+
+        //$horarios = $HorarioModel->where('id_Horario', $turnos['id_Horario'])->findAll();
+        // Crear un mapa de estados
+        $estadosMap = array_column($estados, 'estado', 'id_Estado');
+
+        // Agrupar los turnos por día
+        $turnosPorDia = [];
+        foreach ($turnos as $turno) {
+            // Convertir la fecha del turno a formato solo de día
+            $dia = date('Y-m-d', strtotime($turno['id_Horario']));
+
+            // Obtener el nombre del paciente
+            $paciente = $pacienteModel->find($turno['id_Paciente']);
+            $turno['Paciente'] = $paciente ? $paciente['nombre'] : 'Desconocido';
+
+            // Obtener el estado del turno
+            $turno['estado'] = $estadosMap[$turno['id_estado']] ?? 'Desconocido';
+
+            // Agrupar los turnos por día
+            $turnosPorDia[$dia][] = $turno;
+        }
+        $diasSemana = [
+            1 => 'Lunes',
+            2 => 'Martes',
+            3 => 'Miércoles',
+            4 => 'Jueves',
+            5 => 'Viernes',
+            6 => 'Sábado',
+            7 => 'Domingo'
+        ];
+
+        // Ordenar los días
+        ksort($turnosPorDia);
+
+        // Datos para la vista
+        $data['turnosPorDia'] = $turnosPorDia;
+        $data['diasSemana'] = $diasSemana;
+
+        // Cargar la vista
+        return view('turnosMedico', $data);
     }
 }

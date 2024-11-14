@@ -32,7 +32,7 @@ class TurnoControlador extends BaseController{
         $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($userId);
         if ($userRol == 1) { // Usuario - Paciente
-            $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+            $turnos = $turnoModel->where('id_Paciente', $idPaciente['id_Paciente'])->findAll();
         } elseif ($userRol == 2) { //Admin
             $turnos = $turnoModel->findAll();
         } elseif ($userRol == 3) { // Recepcion
@@ -116,8 +116,12 @@ class TurnoControlador extends BaseController{
             $HorarioModel = new HorarioModelo();
     
             $id = $session->get('user_id');
+
             $horarios = $HorarioModel->findAll();
-            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
+            $idPaciente = $pacienteModel->getPacientePorUsuarioID($id); 
+
+            
+            
     
             $horario = $HorarioModel->getHorario($this->request->getPost('id_Horario'));
             function getRandomHex($num_bytes = 4) { //Genera el codigo del turno
@@ -134,10 +138,11 @@ class TurnoControlador extends BaseController{
             $id_Detpago = $detpagoModel->insertarDatos($dato);
     
             $data = [
-                'fecha_hora' => $this->request->getPost('id_Horario'),
+                'id_Horario' => $this->request->getPost('id_Horario'),
                 'codigo_turno' => $codigoturno,
                 'id_Usuario' => $this->request->getPost('id_Medico'),
-                'id_paciente' => $idPaciente['id_Paciente'],
+                'id_paciente' => $idPaciente,
+                'fecha_turno' => $this->request->getPost('fecha_turno'),
                 'id_estado' => 1
             ];
     
