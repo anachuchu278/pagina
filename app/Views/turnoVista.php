@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <form class="form-inline my-2 my-lg-0" style="margin-top: 100px;">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="search" style="margin-top: 100px;">
+        <input class="search-input" type="search" placeholder="Ingrese un DNI..." aria-label="Search">
+        <button class="box-new" type="submit">Buscar</button>
     </form>
     <?php //var_dump($turnos);
     ?>
