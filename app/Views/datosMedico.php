@@ -19,7 +19,6 @@
                 <p><strong>Especialidad:</strong> <?= htmlspecialchars($especialidad['tipo']) ?></p>
             </div>
 
-            <a href="<?= base_url('turnos') ?>">Ver tus turnos</a> 
             <a href="<?= base_url('turnosMedico')?>">Turnos del dia.</a>
         </div>
     </body>

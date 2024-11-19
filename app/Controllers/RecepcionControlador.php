@@ -370,12 +370,19 @@ class RecepcionControlador extends BaseController
 
         // Obtener el ID del médico desde la sesión
         $idMedico = $session->get('user_id');
- 
+
         // Obtener todos los turnos del médico
         $turnos = $turnoModel->where('id_Usuario', $idMedico)->findAll();
-        
+
         // Obtener todos los estados
         $estados = $estadoModel->findAll();
+
+        $fechaActual = date('Y-m-d');
+
+        $turnos = $turnoModel->where('id_Usuario', $idMedico)
+                ->where('fecha_turno >=', $fechaActual) // Filtrar solo turnos futuros
+                ->orderBy('fecha_turno', 'ASC') // Ordenar por fecha ascendente
+                ->findAll();
 
         //$horarios = $HorarioModel->where('id_Horario', $turnos['id_Horario'])->findAll();
         // Crear un mapa de estados

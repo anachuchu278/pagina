@@ -5,7 +5,8 @@
 <h1>Turnos del Médico</h1>
 
 <?php foreach ($turnosPorDia as $dia => $turnos): ?>
-    <h2><?= date('d/m/Y') ?> - <?= $diasSemana[date('N')] ?></h2>
+    <h2><?= date('d/m/Y') ?> - <?= $diasSemana[date('N')] ?></h2> 
+    <a href="<?php echo base_url('medico/' . session()->get('user_id')) ?>">Volver</a>
     <table class="table">
         <thead>
             <tr>
@@ -19,7 +20,7 @@
                 <tr>
                     <td><?= esc($turno['Paciente']) ?></td>
                     <td><?= esc($turno['estado']) ?></td>
-                    <td><?= esc($turno['fecha_turno'])?></td>
+                    <td><?= date('d/m/Y g:i A', strtotime($turno['fecha_turno'])) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

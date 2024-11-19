@@ -53,14 +53,13 @@ class PaginaController extends Controller{
         $HorarioModel = new HorarioModelo();
 
         $codigoturno = $session->get('codigoturno');
-        $id = $session->get('user_id');
-        $id_horario = $session->get('horario');
-        $horario = $HorarioModel->getHorario($id_horario);
-    
+        $id = $session->get('user_id'); 
+
+        $fecha = $turnoModel->where('id_Usuario', $id)->first();
+        var_dump($fecha);return;
         // Buscar el turno por el código ingresado
         $turno = $turnoModel->where('codigo_turno', $codigoIngresado)->first(); 
-    
-        if ($turno) {
+        if ($turno != null) {
             // Obtener el ID del estado "confirmado" de la tabla Estado
             $estadoConfirmado = $estadoModel->where('estado', 'confirmado')->first();
             
@@ -81,6 +80,7 @@ class PaginaController extends Controller{
 
                 // Obtener el usuario por su ID para obtener su correo
                 $usuario = $usuarioModel->find($id); 
+
                 $destinatario = 'infosolutions.tesina@gmail.com';
 
                 $email->setTo($destinatario); 
@@ -89,7 +89,7 @@ class PaginaController extends Controller{
                 $mensaje = "El usuario " . $usuario['nombre'] . "a confirmado su turno exitosamente." . "\n\n";
                 $mensaje = "Su turno ha sido generado exitosamente.\n\n";
                 $mensaje .= "Código de Turno: {$codigoturno}\n";
-                $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
+                $mensaje .= "El día: " . $fecha['fecha_turno'] ;
 
                 $email->setMessage($mensaje);
 
