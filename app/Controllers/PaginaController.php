@@ -55,14 +55,15 @@ class PaginaController extends Controller{
         $codigoturno = $session->get('codigoturno');
         $id = $session->get('user_id'); 
 
-        $fecha = $turnoModel->where('id_Usuario', $id)->first();
-        var_dump($fecha);return;
+        
+        
         // Buscar el turno por el código ingresado
         $turno = $turnoModel->where('codigo_turno', $codigoIngresado)->first(); 
         if ($turno != null) {
             // Obtener el ID del estado "confirmado" de la tabla Estado
             $estadoConfirmado = $estadoModel->where('estado', 'confirmado')->first();
             
+           
             // Verificar que se encontró el estado "confirmado"
             if ($estadoConfirmado) {
                 // Actualizar el estado del turno con el ID del estado "confirmado"
@@ -86,10 +87,14 @@ class PaginaController extends Controller{
                 $email->setTo($destinatario); 
                 $email->setSubject('Aviso de Confirmación'); 
 
+                $fechaFormateada = (new \DateTime($turno['fecha_turno']))->format('d/m/Y H:i');
+
                 $mensaje = "El usuario " . $usuario['nombre'] . "a confirmado su turno exitosamente." . "\n\n";
                 $mensaje = "Su turno ha sido generado exitosamente.\n\n";
                 $mensaje .= "Código de Turno: {$codigoturno}\n";
-                $mensaje .= "El día: " . $fecha['fecha_turno'] ;
+                $mensaje .= "Fecha del Turno: {$fechaFormateada}\n"; 
+
+                
 
                 $email->setMessage($mensaje);
 

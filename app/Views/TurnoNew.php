@@ -22,15 +22,6 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </select><br>
-        <label for="id_Horario">Seleccione un horario:</label>
-        <select id="id_Horario" name="id_Horario" required>
-            <option value="">Seleccione un horario</option>
-            <?php foreach ($horarios as $horario): ?>
-                <option value="<?= $horario['id_Horario'] ?>" data-id-usuario="<?= $horario['id_usuario'] ?>">
-                    <?= $horario['dia_sem']; ?> - <?= substr($horario['hora_inicio'], 0, -3); ?> - <?= substr($horario['hora_final'], 0, -3); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
         <label for="fecha_turno">Seleccione la fecha de su turno.</label>
         <br><input type="datetime-local" id="fecha_turno" name="fecha_turno"></br>
         <label for="id_Metpago">Metodo de pago:</label><br>
