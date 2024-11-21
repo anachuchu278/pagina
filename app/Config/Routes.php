@@ -34,6 +34,7 @@ $routes->post('newTurno1', 'TurnoControlador::new');
 $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para el turno */
 $routes->get('pay', 'Home::pay'); // Pagina de pago
 $routes->get('successpay', 'PaginaController::successpay'); // En caso de realizar el pago se ejecuta esto
+$routes->get('search', 'TurnoControlador::search');
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
 $routes->post('newMed', 'RecepcionControlador::newMed');

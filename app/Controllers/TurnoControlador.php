@@ -31,6 +31,7 @@ class TurnoControlador extends BaseController{
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($userId);
+        $search = $this->request->getPost('search');
         if ($userRol == 1) { // Usuario - Paciente
             $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
         } elseif ($userRol == 2) { //Admin
@@ -39,6 +40,72 @@ class TurnoControlador extends BaseController{
             $turnos = $turnoModel->findAll();    
         } elseif ($userRol == 4) { // Medico
             $turnos = $turnoModel->where('id_Usuario', $userId)->findAll();
+        }
+
+        $estadosMap = [];
+        foreach ($estados as $estado) {
+            $estadosMap[$estado['id_Estado']] = $estado['estado'];
+        }     
+        $usuariosTurnos = [];
+        foreach ($turnos as $turno) {
+            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
+        }
+        $pacienteTurnos = [];
+        foreach ($turnos as $turno){
+            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+        }
+
+        foreach ($turnos as &$turno) {
+            $paciente = $pacienteModel->find($turno['id_paciente']);
+            if ($paciente) {
+                $turno['paciente'] = $paciente['nombre'];
+            } else {
+                $turno['paciente'] = 'Desconocido';
+            }
+            if (isset($estadosMap[$turno['id_estado']])) {
+                $turno['estado'] = $estadosMap[$turno['id_estado']];
+            } else {
+                $turno['estado'] = 'Desconocido';
+            }
+        }
+
+        $data['usuarios'] = $user;
+        $data['turnos'] = $turnos;
+        $data['horarios'] = $horarios;
+        $data['usuariosTurno'] = $usuariosTurnos;
+        $data['pacienteTurno'] = $pacienteTurnos;
+
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
+        echo view('layout/navbar', $data);
+        return view('turnoVista', $data);
+    }
+    public function search(){
+        $session = \Config\Services::session();
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
+        $estadoModel = new EstadoModel();
+        $HorarioModel = new HorarioModelo();
+
+        $userId = $session->get('user_id');
+        $userRol = $session->get('user_rol');
+        $user = $pacienteModel->find($userId);
+        $estados = $estadoModel->findAll();
+        $horarios = $HorarioModel->findAll();
+        $search = $this->request->getPost('search');
+        $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+        if (!$search == null) {
+            return redirect()->back();
+        } else {
+            $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+            if (!$idPaciente == null) {
+                return redirect()->back()->with('error', 'Paciente no encontrado.');
+            } else{
+                // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+                $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+            }    
         }
 
         $estadosMap = [];

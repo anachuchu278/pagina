@@ -8,10 +8,15 @@
 </head>
 
 <body>
-    <form class="search" style="margin-top: 100px;">
-        <input class="search-input" type="search" placeholder="Ingrese un DNI..." aria-label="Search">
+    <form class="search" style="margin-top: 100px;" action="search">
+        <input type="text" placeholder="Ingrese un DNI..." name="search" aria-label="Search">
         <button class="box-new" type="submit">Buscar</button>
     </form>
+    <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+	<?php endif; ?>
     <?php //var_dump($turnos);
     ?>
     <?php //var_dump($usuarios);
