@@ -23,7 +23,10 @@
         </div>
     </body>
 
-        <a href="<?= base_url('pagina') ?>">Volver a Inicio</a>
+        
+    </div>
+    <div class="volver-container">
+    <a href="<?= base_url('pagina') ?>" class="volver">Volver a Inicio</a>
     </div>
 </body>
 

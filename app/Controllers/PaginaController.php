@@ -57,29 +57,32 @@ class PaginaController extends Controller{
 
         
         
-        // Buscar el turno por el código ingresado
+       
         $turno = $turnoModel->where('codigo_turno', $codigoIngresado)->first(); 
         if ($turno != null) {
-            // Obtener el ID del estado "confirmado" de la tabla Estado
+           
             $estadoConfirmado = $estadoModel->where('estado', 'confirmado')->first();
             
            
-            // Verificar que se encontró el estado "confirmado"
+            
             if ($estadoConfirmado) {
-                // Actualizar el estado del turno con el ID del estado "confirmado"
-                $turnoModel->update($turno['id_Turno'], ['id_Estado' => $estadoConfirmado['id_Estado']]);
+                
+                $turnoModel->update($turno['id_Turno'], [
+                    'id_Estado' => $estadoConfirmado['id_Estado'],
+                    'fechaConfirmacion' => date('Y-m-d H:i:s')
+                ]);
     
-                // Eliminar el turno después de actualizar su estado
+                
                 $turnoModel->delete($turno['id_Turno']);
     
-                // Mostrar mensaje de confirmación
+               
                 session()->setFlashdata('codigoValido', true);
                 $email = \Config\Services::email();
 
-                // Configurar la dirección del remitente (quien envía el correo)
+                
                 $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
 
-                // Obtener el usuario por su ID para obtener su correo
+                
                 $usuario = $usuarioModel->find($id); 
 
                 $destinatario = 'infosolutions.tesina@gmail.com';

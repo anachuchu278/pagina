@@ -366,42 +366,37 @@ class RecepcionControlador extends BaseController
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
         $estadoModel = new EstadoModel();
-        $HorarioModel = new HorarioModelo();
 
-        // Obtener el ID del médico desde la sesión
         $idMedico = $session->get('user_id');
 
-        // Obtener todos los turnos del médico
         $turnos = $turnoModel->where('id_Usuario', $idMedico)->findAll();
 
-        // Obtener todos los estados
         $estados = $estadoModel->findAll();
 
         $fechaActual = date('Y-m-d');
 
         $turnos = $turnoModel->where('id_Usuario', $idMedico)
-                ->where('fecha_turno >=', $fechaActual) // Filtrar solo turnos futuros
-                ->orderBy('fecha_turno', 'ASC') // Ordenar por fecha ascendente
-                ->findAll();
+            ->where('fecha_turno >=', $fechaActual)
+            ->orderBy('fecha_turno', 'ASC')
+            ->findAll();
 
         //$horarios = $HorarioModel->where('id_Horario', $turnos['id_Horario'])->findAll();
-        // Crear un mapa de estados
+
         $estadosMap = array_column($estados, 'estado', 'id_Estado');
 
-        // Agrupar los turnos por día
         $turnosPorDia = [];
         foreach ($turnos as $turno) {
-            // Convertir la fecha del turno a formato solo de día
+
             $dia = date('Y-m-d', strtotime($turno['id_Horario']));
 
-            // Obtener el nombre del paciente
+
             $paciente = $pacienteModel->find($turno['id_Paciente']);
             $turno['Paciente'] = $paciente ? $paciente['nombre'] : 'Desconocido';
 
-            // Obtener el estado del turno
+
             $turno['estado'] = $estadosMap[$turno['id_estado']] ?? 'Desconocido';
 
-            // Agrupar los turnos por día
+
             $turnosPorDia[$dia][] = $turno;
         }
         $diasSemana = [
@@ -414,14 +409,11 @@ class RecepcionControlador extends BaseController
             7 => 'Domingo'
         ];
 
-        // Ordenar los días
         ksort($turnosPorDia);
 
-        // Datos para la vista
         $data['turnosPorDia'] = $turnosPorDia;
         $data['diasSemana'] = $diasSemana;
 
-        // Cargar la vista
         return view('turnosMedico', $data);
     }
 }
