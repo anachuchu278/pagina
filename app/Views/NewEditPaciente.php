@@ -17,7 +17,7 @@
         <select name="id_Usuario" id="id_Usuario" <?= isset($paciente['id_Paciente']) ? 'disabled' : 'required' ?> onchange="checkUserRole()">
             <option value="">Seleccione un usuario</option>
             <?php foreach ($usuarios as $usuario): ?>
-                <?php if ($usuario['id_rol'] != 2): ?> <!-- Excluir usuarios con rol de administrador -->
+                <?php if ($usuario['id_rol'] != 2): ?> 
                     <option value="<?= $usuario['id_Usuario'] ?>" data-id-rol="<?= $usuario['id_rol'] ?>" <?= (isset($paciente['id_Usuario']) && $paciente['id_Usuario'] == $usuario['id_Usuario']) ? 'selected' : '' ?>><?= $usuario['nombre'] ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
@@ -87,7 +87,7 @@
         }
     }
 
-    // Llamar a la función al cargar la página para verificar el rol del usuario seleccionado
+    
     window.onload = checkUserRole;
 </script>
 </html>

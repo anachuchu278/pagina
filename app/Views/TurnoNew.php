@@ -17,7 +17,7 @@
         <select class="form-select" name="id_Medico" id="id_Medico" required>
             <option value="">Seleccione un medico</option>
             <?php foreach ($medicos as $medico): ?>
-                <?php if ($medico['id_rol'] == 4): ?> <!-- Solo medicos -->
+                <?php if ($medico['id_rol'] == 4): ?> 
                     <option value="<?= $medico['id_Usuario'] ?>" data-id-rol="<?= $medico['id_rol'] ?>"><?= $medico['nombre']; ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>

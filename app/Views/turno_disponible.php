@@ -1,3 +1,7 @@
+<head>
+    <title>Turnos Disponibles</title>
+    <link rel="stylesheet" href="<?= base_url('css/turnosDisponibles.css')?>">
+</head>
 <form action="<?= base_url('turnoDisp') ?>" method="POST">
     <label for="id_Medico">Seleccione un médico:</label>
     <select class="form-select" name="id_Medico" id="id_Medico" required>

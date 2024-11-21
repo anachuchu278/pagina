@@ -42,7 +42,7 @@ class RecepcionControlador extends BaseController
             return redirect()->to('/');
         }
     }
-    public function indexMed() // Vista para el crud de Medicos 
+    public function indexMed() 
     {
         $session = \Config\Services::session();
         $usuarioModelo = new UsuarioModelo();
@@ -50,14 +50,13 @@ class RecepcionControlador extends BaseController
         $medicos = $usuarioModelo->where('id_rol', 4)->findAll();
         $horarios = $horarioModelo->findAll();
 
-        // Preparar datos para la vista
         $data = [
             'medicos' => $medicos,
             'horarios' => $horarios,
         ];
 
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $userRol = $session->get('user_rol'); 
+        $data['showAdmin'] = ($userRol == 2); 
         $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('crudMedico', $data);
@@ -71,8 +70,8 @@ class RecepcionControlador extends BaseController
         $data['usuarios'] = $usuario->findAll();
         $data['especialidades'] = $espec->findAll();
 
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $userRol = $session->get('user_rol'); 
+        $data['showAdmin'] = ($userRol == 2);
         $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('nuevoMedico', $data);
@@ -101,10 +100,9 @@ class RecepcionControlador extends BaseController
         $usuarioModelo->update($id, $data);
         return redirect()->to('crudPaciente');
     }
-    public function horMed($id = null) //Vista para añadir horarios
+    public function horMed($id = null) 
     {
         $session = \Config\Services::session();
-        // Obtener médicos con rol 3
         $UsuarioModelo = new UsuarioModelo();
         $data['medicos'] = $UsuarioModelo->where('id_rol', 4)->findAll();
         $data['horarios'] = [];
@@ -115,13 +113,13 @@ class RecepcionControlador extends BaseController
             $data['horarios'] = $HorarioModelo->where('id_usuario', $id)->findAll();
         }
 
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $userRol = $session->get('user_rol'); 
+        $data['showAdmin'] = ($userRol == 2); 
         $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
         return view('HorarioMedico', $data);
     }
-    public function guardarHorario() //funcion que añade horarios
+    public function guardarHorario() 
     {
         $session = \Config\Services::session();
         $HorarioModelo = new HorarioModelo();
@@ -154,7 +152,7 @@ class RecepcionControlador extends BaseController
 
         return redirect()->to('crudMeds');
     }
-    public function turnoDisp() // Vista de turnos disponibles
+    public function turnoDisp() 
     {
         $HorarioModelo = new HorarioModelo();
         $TurnoModelo = new TurnoModel();
@@ -162,29 +160,24 @@ class RecepcionControlador extends BaseController
 
         $medicos = $UsuarioModelo->where('id_rol', 4)->findAll();
 
-        // Obtener datos del formulario (si se envió)
         $fecha_turno = $this->request->getPost('fecha_turno');
         $id_Medico = $this->request->getPost('id_Medico');
 
         $horarios_disponibles = [];
 
         if ($fecha_turno && $id_Medico) {
-            // Obtener horarios del médico seleccionado
             $horarios = $HorarioModelo->where('id_usuario', $id_Medico)->findAll();
 
-            // Obtener turnos reservados para ese médico y fecha
             $turnos_reservados = $TurnoModelo
                 ->where('id_Usuario', $id_Medico)
                 ->where('fecha_turno', $fecha_turno)
                 ->findAll();
 
-            // Convertir horarios reservados a un array simple
             $reservados = [];
             foreach ($turnos_reservados as $turno) {
                 $reservados[] = $turno['id_Horario'];
             }
 
-            // Calcular horarios disponibles
             foreach ($horarios as $horario) {
                 if (!in_array($horario['id_Horario'], $reservados)) {
                     $horarios_disponibles[] = $horario;
@@ -192,7 +185,6 @@ class RecepcionControlador extends BaseController
             }
         }
 
-        // Preparar datos para la vista
         $data = [
             'medicos' => $medicos,
             'horarios_disponibles' => $horarios_disponibles,
@@ -203,7 +195,7 @@ class RecepcionControlador extends BaseController
         return view('turno_disponible', $data);
     }
 
-    private function calculateAllSlots($horarios) // Calculo
+    private function calculateAllSlots($horarios) 
     {
         $slotsData = [];
 
@@ -213,7 +205,6 @@ class RecepcionControlador extends BaseController
                 $hora_inicio = $horario['hora_inicio'];
                 $hora_final = $horario['hora_final'];
 
-                // Calcular slots para este horario
                 $slotsData[$medicoId][$dia_sem][] = $this->calculateAvailableSlots($hora_inicio, $hora_final);
             }
         }
@@ -221,7 +212,7 @@ class RecepcionControlador extends BaseController
         return $slotsData;
     }
 
-    private function calculateAvailableSlots($hora_inicio, $hora_final) // Calculo turno de 30 min
+    private function calculateAvailableSlots($hora_inicio, $hora_final) 
     {
         $slots = [];
         $start = new \DateTime($hora_inicio);
@@ -269,7 +260,6 @@ class RecepcionControlador extends BaseController
         $id_rol = 4;
         $horarios = $this->request->getPost('horarios');
 
-        // Verificar si el email ya está registrado
         $existingEmail = $UsuarioModelo->where('email', $email)->first();
         if ($existingEmail) {
             return redirect()->back()->with('error', 'El email ya está registrado.')->withInput();
@@ -278,20 +268,17 @@ class RecepcionControlador extends BaseController
 
         if ($name) {
 
-            // Validar que solo contenga letras
             if (preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/", $name)) {
                 echo "El nombre es válido: " . htmlspecialchars($name);
             } else {
                 return redirect()->back()->with('error', 'El nombre no puede contener numeros.')->withInput();
             }
         }
-        // Verificar si el nombre de usuario ya está registrado
         $existingName = $UsuarioModelo->where('nombre', $name)->first();
         if ($existingName) {
             return redirect()->back()->with('error', 'El nombre de usuario ya está registrado.')->withInput();
         }
 
-        // Hash de la contraseña después de todas las verificaciones
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         if (empty($imagen)) {
@@ -349,7 +336,6 @@ class RecepcionControlador extends BaseController
 
         $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
 
-        // Pasar los datos a la vista
         return view('datosMedico', [
             'medico' => $medico,
             'especialidad' => $especialidad,
@@ -389,10 +375,8 @@ class RecepcionControlador extends BaseController
 
             $dia = date('Y-m-d', strtotime($turno['id_Horario']));
 
-
             $paciente = $pacienteModel->find($turno['id_Paciente']);
             $turno['Paciente'] = $paciente ? $paciente['nombre'] : 'Desconocido';
-
 
             $turno['estado'] = $estadosMap[$turno['id_estado']] ?? 'Desconocido';
 

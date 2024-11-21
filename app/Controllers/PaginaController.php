@@ -11,7 +11,7 @@ use CodeIgniter\Controller;
 class PaginaController extends Controller{
     public function Ingresar() {
         $session = \Config\Services::session();
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $userRol = $session->get('user_rol'); 
         $data['showAdmin'] = ($userRol == 2);
         $data['showMedico'] = ($userRol == 4);
         echo view('layout/navbar', $data);
@@ -72,15 +72,11 @@ class PaginaController extends Controller{
                     'fechaConfirmacion' => date('Y-m-d H:i:s')
                 ]);
     
-                
-                $turnoModel->delete($turno['id_Turno']);
-    
-               
                 session()->setFlashdata('codigoValido', true);
                 $email = \Config\Services::email();
 
                 
-                $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
+                $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); 
 
                 
                 $usuario = $usuarioModel->find($id); 
@@ -124,13 +120,12 @@ class PaginaController extends Controller{
         $id_horario = $session->get('horario');
         $horario = $HorarioModel->getHorario($id_horario);
 
-        // Enviar correo electrónico dinámicamente
+    
         $email = \Config\Services::email();
 
-        // Configurar la dirección del remitente (quien envía el correo)
-        $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); // Cambia 'tu_correo@dominio.com' por un correo válido y 'Nombre Remitente' por el nombre que quieras mostrar.
+   
+        $email->setFrom('infosolutions.tesina@gmail.com', 'Clinica'); 
 
-        // Obtener el usuario por su ID para obtener su correo
         $usuario = $usuarioModel->find($id); 
         $destinatario = $usuario['email'];
 
@@ -147,7 +142,7 @@ class PaginaController extends Controller{
             echo $email->printDebugger(['headers']);
             exit;
         }
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
+        $userRol = $session->get('user_rol'); 
         $data['showMedico'] = ($userRol == 4);
         return redirect()->to('pagina');
     }
@@ -176,25 +171,21 @@ class PaginaController extends Controller{
         $idEspecialidad = $this->request->getPost('especialidad');
         $id_rol = 4;
         $horarios = $this->request->getPost('horarios');
-        // Verificar si el email ya está registrado
         $existingEmail = $UsuarioModelo->where('email', $email)->first();
         if ($existingEmail) {
             return redirect()->back()->with('error', 'El email ya está registrado.')->withInput();
         }
         if ($name) {
-            // Validar que solo contenga letras
             if (preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/", $name)) {
                 echo "El nombre es válido: " . htmlspecialchars($name);
             } else {
                 return redirect()->back()->with('error', 'El nombre no puede contener numeros.')->withInput();
             }
         }
-        // Verificar si el nombre de usuario ya está registrado
         $existingName = $UsuarioModelo->where('nombre', $name)->first();
         if ($existingName) {
             return redirect()->back()->with('error', 'El nombre de usuario ya está registrado.')->withInput();
         }
-        // Hash de la contraseña después de todas las verificaciones
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         if (empty($imagen)) {
             $imagen = '/img/medico_imagen.png';
@@ -242,7 +233,6 @@ class PaginaController extends Controller{
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Médico no encontrado');
         }
         $especialidad = $EspecialidadModelo->find($medico['id_especialidad']);
-        // Pasar los datos a la vista
         return view('datosMedico', [
             'medico' => $medico,
             'especialidad' => $especialidad,
