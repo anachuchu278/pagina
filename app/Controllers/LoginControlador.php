@@ -30,14 +30,18 @@ class LoginControlador extends BaseController{
                 $session->set('name' , $user['nombre']);
                 $session->set('email' , $user['email']);
 
-                $idPaciente = $pacienteModel->getPacientePorUsuarioID($user['id_Usuario']);
-                if (!$idPaciente){
-                    $id = $user['id_Usuario'];
-                    return redirect()->to('editPaciente/', $id);
+                $id = $user['id_Usuario'];
+                $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
+                if ($user['id_rol'] == 1 OR $user['id_rol'] == 3 OR $user['id_rol'] == 4) {
+                    if ($idPaciente){
+                        return redirect()->to('newPacienteView');
+                        // return redirect()->to('editPaciente/', $id);
+                    } else {
+                    // Redirigir a la URL guardada o a una ruta predeterminada después del login
+                    $redirect_url = $session->get('redirect_url') ?? 'pagina';
+                    return redirect()->to($redirect_url); }
                 } else {
-                // Redirigir a la URL guardada o a una ruta predeterminada después del login
-                $redirect_url = $session->get('redirect_url') ?? 'pagina';
-                return redirect()->to($redirect_url); }
+                return redirect()->to('pagina');}
             } else {
                 return redirect()->back()->with('error', 'Credenciales incorrectas.');
             }
