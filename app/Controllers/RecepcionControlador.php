@@ -295,17 +295,6 @@ class RecepcionControlador extends BaseController
 
         ];
         $id_user = $UsuarioModelo->insert($data);
-        // if ($horarios) {
-        //     foreach ($horarios as $horario) {
-        //         $dataHorario = [
-        //             'dia_sem' => $horario['dia_sem'],
-        //             'hora_inicio' => $horario['hora_inicio'],
-        //             'hora_final' => $horario['hora_final'],
-        //             'id_Usuario' => $id_user,
-        //         ];
-        //         $HorarioModelo->insert($dataHorario);
-        //     }
-        // }
 
         return redirect()->to('horario_medico');
     }
@@ -326,8 +315,10 @@ class RecepcionControlador extends BaseController
         $idUsuario = $session->get('user_id');
         $UsuarioModelo = new UsuarioModelo();
         $EspecialidadModelo = new EspecialidadModel();
+        $HorarioModel = new HorarioModelo();
 
         $medico = $UsuarioModelo->find($idUsuario);
+        $horarios = $HorarioModel->where('id_usuario',$idUsuario)->findAll();
 
 
         if (!$medico) {
@@ -339,6 +330,7 @@ class RecepcionControlador extends BaseController
         return view('datosMedico', [
             'medico' => $medico,
             'especialidad' => $especialidad,
+            'horarios' => $horarios
         ]);
     }
 

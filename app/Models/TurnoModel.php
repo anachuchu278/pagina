@@ -44,7 +44,14 @@ class TurnoModel extends Model{
     public function getTurnosPorUsuario($userId) {
         return $this->where('id_Usuario', $userId)->findAll();
     }
-
+    public function getTurnoPorPaciente($idP = false)
+    {
+        if ($idP === false){
+            return redirect()->to('error');
+        } else {
+            return $this->where(['id_paciente' => $idP])->first() ? $this->where(['id_paciente' => $idP])->first() : [];
+        }
+    }
     public function getEstado($idEstado){
         return $this->where('id_estado',$idEstado)->findAll();
     } 

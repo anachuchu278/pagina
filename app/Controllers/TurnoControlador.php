@@ -80,7 +80,77 @@ class TurnoControlador extends BaseController{
         echo view('layout/navbar', $data);
         return view('turnoVista', $data);
     }
-    public function newVista() { 
+    public function search(){
+        $session = \Config\Services::session();
+        $turnoModel = new TurnoModel();
+        $pacienteModel = new PacienteModel();
+        $usuarioModel = new UsuarioModelo();
+        $estadoModel = new EstadoModel();
+        $HorarioModel = new HorarioModelo();
+
+        $userId = $session->get('user_id');
+        $userRol = $session->get('user_rol');
+        $user = $pacienteModel->find($userId);
+        $estados = $estadoModel->findAll();
+        $horarios = $HorarioModel->findAll();
+        $search = $this->request->getPost('search');
+        // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+        $idPaciente = $pacienteModel->getPacientePorDNI($search);
+        if (!$search == null) {
+            return redirect()->back()->with('error', '529');
+        } else {
+            // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+            $idPaciente = $pacienteModel->getPacientePorDNI($search);
+            if ($idPaciente) {
+                return redirect()->back()->with('error', 'Paciente no encontrado.');
+            } else{
+                // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+                $idP = $pacienteModel->getPacientePorDNI($search);
+                // $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+                $turnos = $turnoModel->test($idP);
+            }    
+        }
+
+        $estadosMap = [];
+        foreach ($estados as $estado) {
+            $estadosMap[$estado['id_Estado']] = $estado['estado'];
+        }     
+        $usuariosTurnos = [];
+        foreach ($turnos as $turno) {
+            $usuariosTurnos[$turno['id_Usuario']] = $usuarioModel->find($turno['id_Usuario']);
+        }
+        $pacienteTurnos = [];
+        foreach ($turnos as $turno){
+            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+        }
+
+        foreach ($turnos as &$turno) {
+            $paciente = $pacienteModel->find($turno['id_paciente']);
+            if ($paciente) {
+                $turno['paciente'] = $paciente['nombre'];
+            } else {
+                $turno['paciente'] = 'Desconocido';
+            }
+            if (isset($estadosMap[$turno['id_estado']])) {
+                $turno['estado'] = $estadosMap[$turno['id_estado']];
+            } else {
+                $turno['estado'] = 'Desconocido';
+            }
+        }
+
+        $data['usuarios'] = $user;
+        $data['turnos'] = $turnos;
+        $data['horarios'] = $horarios;
+        $data['usuariosTurno'] = $usuariosTurnos;
+        $data['pacienteTurno'] = $pacienteTurnos;
+
+        $userRol = $session->get('user_rol');
+        $data['showAdmin'] = ($userRol == 2);
+        $data['showMedico'] = ($userRol == 4);
+        echo view('layout/navbar', $data);
+        return view('turnoVista', $data);
+    }
+    public function newVista() { // Vista para agendar un turno
         $session = \Config\Services::session();
         $turnoModel = new TurnoModel();
         $pacienteModel = new PacienteModel();
