@@ -8,12 +8,7 @@
 </head>
 
 <body>
-    <?php //var_dump($turnos);
-    ?>
-    <?php //var_dump($usuarios);
-    ?>
-    <?php //var_dump($horarios);
-    ?>
+   
     <?php if (!empty($turnos)): ?>
         <table style="margin-top: 100px;">
             <thead>
@@ -40,7 +35,7 @@
                         <?php endif; ?>
                         <td><?= $turno['estado']; ?></td>
                         <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td>
-                        <td><?= $turno['paciente'];?></td> <!-- Paciente -->
+                        <td><?= $turno['paciente'];?></td> 
                         
                         <td>
                             <a href="<?= site_url('editarTurno/' . $turno['id_Turno']); ?>">Reprogramar Turno</a>

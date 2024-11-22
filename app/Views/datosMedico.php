@@ -19,11 +19,14 @@
                 <p><strong>Especialidad:</strong> <?= htmlspecialchars($especialidad['tipo']) ?></p>
             </div>
 
-            <a href="<?= base_url('turnos') ?>">Ver tus turnos</a>
+            <a href="<?= base_url('turnosMedico')?>">Turnos del dia.</a>
         </div>
     </body>
 
-        <a href="<?= base_url('pagina') ?>">Volver a Inicio</a>
+        
+    </div>
+    <div class="volver-container">
+    <a href="<?= base_url('pagina') ?>" class="volver">Volver a Inicio</a>
     </div>
 </body>
 

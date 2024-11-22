@@ -42,14 +42,12 @@ class PacienteControlador extends BaseController
         }
 
         foreach ($pacientes as &$paciente) {
-            // Convertir RH_tipo_sangre a '+' o '-'
             if ($paciente['RH_tipo_sangre'] == '1') {
                 $paciente['RH_tipo_sangre'] = '+';
             } else {
                 $paciente['RH_tipo_sangre'] = '-';
             }
 
-            // Obtener el email del usuario y reemplazar el id_usuario con el email
             $usuario = $usuarioModel->find($paciente['id_Usuario']);
             if ($usuario) {
                 $paciente['usuario_email'] = $usuario['email'];
@@ -57,14 +55,12 @@ class PacienteControlador extends BaseController
                 $paciente['usuario_email'] = 'Desconocido';
             }
 
-            // Reemplazar id_Obra con el nombre de la obra
             if (isset($obrasMap[$paciente['id_Obra']])) {
                 $paciente['obra_nombre'] = $obrasMap[$paciente['id_Obra']];
             } else {
                 $paciente['obra_nombre'] = 'Desconocido';
             }
 
-            // Reemplazar id_Sangre con el tipo de sangre
             if (isset($tiposSangreMap[$paciente['id_Sangre']])) {
                 $paciente['tipo_sangre'] = $tiposSangreMap[$paciente['id_Sangre']];
             } else {
@@ -72,14 +68,14 @@ class PacienteControlador extends BaseController
             }
         }
 
-        $data['pacientes'] = $pacientes; // Modificar aquí para pasar correctamente los datos a la vista
+        $data['pacientes'] = $pacientes; 
 
-        $userRol = $session->get('user_rol'); // Cambiar a 'user_rol' en lugar de 'user_id_rol'
-        $data['showAdmin'] = ($userRol == 2); // Simplificar la lógica para mostrar el admin
+        $userRol = $session->get('user_rol'); 
+        $data['showAdmin'] = ($userRol == 2); 
         $data['showMedico'] = ($userRol == 4);
 
         echo view('layout/navbar', $data);
-        echo view('crudPaciente', $data); // Cambiar a un solo array para pasar datos a la vista
+        echo view('crudPaciente', $data); 
     }
 
     public function newVista($id = null)
@@ -95,14 +91,12 @@ class PacienteControlador extends BaseController
         $data['tiposans'] = $tiposan->findAll();
         $data['especialidades'] = $espec->findAll();
 
-        $data['paciente'] = []; // Inicializar un array vacío para el paciente
+        $data['paciente'] = [];
 
-        // Si se proporciona un $id, intenta cargar el paciente para edición
         if ($id) {
             $pacienteModel = new PacienteModel();
             $data['paciente'] = $pacienteModel->find($id);
 
-            // Verificar si el usuario actual puede editar este paciente
             if ($session->get('user_rol') != 1 && $session->get('user_id') != $data['paciente']['id_usuario']) {
                 return redirect()->to('crudPaciente')->with('error', 'No tienes permiso para editar este paciente.');
             }
@@ -171,7 +165,6 @@ class PacienteControlador extends BaseController
         $pacienteModel = new PacienteModel();
         $data['paciente'] = $pacienteModel->find($id);
 
-        // Verificar si el usuario actual puede editar este paciente
         $session = \Config\Services::session();
 
         return view('NewEditPaciente', $data);
@@ -197,7 +190,6 @@ class PacienteControlador extends BaseController
         $idEspecialidad = $this->request->getPost('especialidad');
 
         $pacienteModel->editarPaciente($id, $data);
-        // $usuarioModel->update($data['id_Usuario'], ['id_especialidad' => $idEspecialidad]);
 
         return redirect()->to('crudPaciente');
     }

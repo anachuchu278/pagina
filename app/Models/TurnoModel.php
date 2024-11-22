@@ -8,11 +8,12 @@ class TurnoModel extends Model{
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id_Turno';
     protected $allowedFields =[
-        'fecha_hora',
+        'id_Horario',
         'codigo_turno',
         'id_Usuario',
         'id_paciente',
-        'id_Estado'
+        'id_Estado',
+        'fecha_turno'
     ];
     public function insertarDatos($data){
         $query = $this->db->table($this->table)->insert($data);

@@ -28,7 +28,6 @@ class LoginControlador extends BaseController{
                 $session->set('name' , $user['nombre']);
                 $session->set('email' , $user['email']);
 
-                // Redirigir a la URL guardada o a una ruta predeterminada después del login
                 $redirect_url = $session->get('redirect_url') ?? 'pagina';
                 return redirect()->to($redirect_url);
             } else {
@@ -41,7 +40,7 @@ class LoginControlador extends BaseController{
     public function logout()
     {
         $session = \Config\Services::session();
-        $this->session->destroy(); //Funciona pero da warning
+        $this->session->destroy();
         return redirect()->to('loginVista');
     } 
     

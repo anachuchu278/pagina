@@ -37,8 +37,8 @@
                     <td><?= $paciente['obra_nombre']; ?></td>
                     <td><?= $paciente['usuario_email']; ?></td>
                     <td>
-                        <a class="editar" href="<?= site_url('editPaciente/'. $paciente['id_Paciente']); ?>">Editar</a>
-                        <a class="delete" href="<?= site_url('eliminarPaciente/'. $paciente['id_Paciente']); ?>">Eliminar</a>
+                        
+                        
                     </td>
                 </tr>
             <?php endforeach; ?>

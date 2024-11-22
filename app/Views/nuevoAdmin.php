@@ -11,7 +11,7 @@
 
 <body>
 <div class="container">
-    <!-- Formulario de registro -->
+   
     <div class="register-form">
         <h2>Administrador</h2>
         <?php if (session()->getFlashdata('error')): ?>
@@ -39,7 +39,7 @@
         </form><br>
     </div>
 
-    <!-- Tabla de administradores -->
+    
     <div class="admin-table">
         <h2>Lista de Administradores</h2>
 

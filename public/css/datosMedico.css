@@ -53,21 +53,35 @@ h2 {
 }
 
 /* Enlace de regreso */
-a {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+.volver {
+    display: inline-block; /* Para que se comporte como un botón */
+    position: absolute; /* Ubicación absoluta para posicionarlo donde quieras */
+    top: 20px; /* Distancia desde la parte superior de la página */
+    left: 20px; /* Distancia desde el lado izquierdo de la página */
+    padding: 10px 20px; /* Espaciado interno para hacerlo más grande */
+    background-color: #72b7df; /* Color de fondo */
+    color: #fff; /* Color del texto en blanco */
+    text-decoration: none; /* Eliminar el subrayado */
+    font-weight: bold; /* Hacer que el texto sea más prominente */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición para hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
 }
 
-a:hover {
-    background-color: #0056b3;
+.volver:hover {
+    background-color: #5a9bc0; /* Un tono más oscuro al pasar el ratón */
 }
+
+.volver:active {
+    background-color: #4b8ba9; /* Color más oscuro cuando se presiona */
+    box-shadow: none; /* Eliminar la sombra cuando se presiona */
+}
+
+.volver-container {
+    text-align: center; /* Centrar el enlace en su contenedor */
+    margin-top: 30px; /* Añadir un poco de espacio extra por encima */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
