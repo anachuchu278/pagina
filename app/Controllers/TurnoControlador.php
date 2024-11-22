@@ -31,7 +31,6 @@ class TurnoControlador extends BaseController{
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
         $idPaciente = $pacienteModel->getPacientePorUsuarioID($userId);
-        $search = $this->request->getPost('search');
         if ($userRol == 1) { // Usuario - Paciente
             $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
         } elseif ($userRol == 2) { //Admin
@@ -95,16 +94,20 @@ class TurnoControlador extends BaseController{
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
         $search = $this->request->getPost('search');
-        $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+        // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+        $idPaciente = $pacienteModel->getPacientePorDNI($search);
         if (!$search == null) {
-            return redirect()->back();
+            return redirect()->back()->with('error', '529');
         } else {
-            $idPaciente = $pacienteModel->where('dni', $search)->findAll();
-            if (!$idPaciente == null) {
+            // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
+            $idPaciente = $pacienteModel->getPacientePorDNI($search);
+            if ($idPaciente) {
                 return redirect()->back()->with('error', 'Paciente no encontrado.');
             } else{
                 // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
-                $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+                $idP = $pacienteModel->getPacientePorDNI($search);
+                // $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
+                $turnos = $turnoModel->test($idP);
             }    
         }
 

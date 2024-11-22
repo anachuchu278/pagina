@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <form class="search" style="margin-top: 100px;" action="search">
+    <!-- <form class="search" style="margin-top: 100px;" action="search">
         <input type="text" placeholder="Ingrese un DNI..." name="search" aria-label="Search">
         <button class="box-new" type="submit">Buscar</button>
-    </form>
+    </form> -->
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-danger">
             <?= session()->getFlashdata('error') ?>

@@ -40,12 +40,19 @@ class PacienteModel extends Model{
             return $this->where(['id_Usuario' => $id])->first() ? $this->where(['id_Usuario' => $id])->first() : [];
         }
     }
-    public function getPacientePorDNI($search = false){
-        if ($search === false){
-            return redirect()->to('error');
-        } else {
-            return $this->where(['dni' => $search])->first() ? $this->where(['dni' => $search])->first() : [];
-        }
+    // public function getPacientePorDNI($search = false){
+    //     if ($search === false){
+    //         return redirect()->to('error');
+    //     } else {
+    //         return $this->where(['dni' => $search])->first() ? $this->where(['dni' => $search])->first() : [];
+    //     }
+    // }
+    public function getPacientePorDNI($search){
+        return $this->db->table($this->table) 
+            ->select('paciente.id_Paciente')
+            ->where('paciente.dni', $search)
+            ->get()
+            ->getResultArray();
     }
     public function editarPaciente($id, $data){
         $query = $this->db->table($this->table)->update($data, array('id_Paciente' => $id));
