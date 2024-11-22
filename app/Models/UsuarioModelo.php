@@ -10,7 +10,7 @@ class UsuarioModelo extends Model{
 
     protected $useAutoIncrement = true; 
 
-    protected $allowedFields = ['nombre','password','email','id_rol','id_especialidad','id_horamed','imagen_ruta']; 
+    protected $allowedFields = ['nombre','password','email','id_rol','id_especialidad','imagen_ruta']; 
 
     //protected $createdFields = 'created-at'; 
     public function insertData($data)

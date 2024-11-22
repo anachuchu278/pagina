@@ -13,7 +13,7 @@
         <select name="id_Usuario" id="id_Usuario" <?= isset($paciente['id_Paciente']) ? 'disabled' : 'required' ?> onchange="checkUserRole()">
             <option value="">Seleccione un usuario</option>
             <?php foreach ($usuarios as $usuario): ?>
-                <?php if ($usuario['id_rol'] == 4): ?> <!-- Excluir usuarios con rol de administrador -->
+                <?php if ($usuario['id_rol'] == 4): ?> 
                     <option value="<?= $usuario['id_Usuario'] ?>" data-id-rol="<?= $usuario['id_rol'] ?>" <?= (isset($paciente['id_Usuario']) && $paciente['id_Usuario'] == $usuario['id_Usuario']) ? 'selected' : '' ?>><?= $usuario['nombre'] ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>

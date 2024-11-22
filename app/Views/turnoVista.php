@@ -49,7 +49,7 @@
                         <?php endif; ?>
                         <td><?= $turno['estado']; ?></td>
                         <td><?= $usuariosTurno[$turno['id_Usuario']]['nombre']; ?></td>
-                        <td><?= $turno['paciente'];?></td> <!-- Paciente -->
+                        <td><?= $turno['paciente'];?></td> 
                         
                         <td>
                             <a href="<?= site_url('editarTurno/' . $turno['id_Turno']); ?>">Reprogramar Turno</a>

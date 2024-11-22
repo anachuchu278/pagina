@@ -42,6 +42,8 @@ class LoginControlador extends BaseController{
                     return redirect()->to($redirect_url); }
                 } else {
                 return redirect()->to('pagina');}
+                $redirect_url = $session->get('redirect_url') ?? 'pagina';
+                return redirect()->to($redirect_url);
             } else {
                 return redirect()->back()->with('error', 'Credenciales incorrectas.');
             }
@@ -52,7 +54,7 @@ class LoginControlador extends BaseController{
     public function logout()
     {
         $session = \Config\Services::session();
-        $this->session->destroy(); //Funciona pero da warning
+        $this->session->destroy();
         return redirect()->to('loginVista');
     } 
     

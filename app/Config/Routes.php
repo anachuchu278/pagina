@@ -35,6 +35,7 @@ $routes->get('PDFTurno/(:num)', 'TurnoControlador::PDF/$1'); /* Crear PDF para e
 $routes->get('pay', 'Home::pay'); // Pagina de pago
 $routes->get('successpay', 'PaginaController::successpay'); // En caso de realizar el pago se ejecuta esto
 $routes->get('search', 'TurnoControlador::search');
+$routes->get('turnosDisponibles', 'RecepcionControlador::turnoDisp');
 //Medico
 $routes->get('crudMeds', 'RecepcionControlador::indexMed');
 $routes->post('newMed', 'RecepcionControlador::newMed');
@@ -43,10 +44,11 @@ $routes->get('horario_medico', 'RecepcionControlador::horMed'); // Vista para aÃ
 $routes->post('guardarH', 'RecepcionControlador::guardarHorario'); // Guardar horarios
 $routes->get('eliminarHorario/(:num)', 'RecepcionControlador::deleteHorario/$1');
 $routes->post('delHorario', 'RecepcionControlador::eliminarHorario');
-$routes->get('turnos_disp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
+$routes->post('turnoDisp', 'RecepcionControlador::turnoDisp'); // Vista de turnos disponibles
 $routes->get('medico/(:num)', 'RecepcionControlador::perfilMedico/$1'); 
 $routes->get('formMedico', 'RecepcionControlador::formMed' ); 
 $routes->get('admin/deleteMed/(:num)', 'RecepcionControlador::deleteMedico/$1');
+$routes->get('turnosMedico', 'RecepcionControlador::turnosMedico');
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');

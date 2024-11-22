@@ -10,12 +10,12 @@
 </head>
 <body>
 
-    <!-- Mostrar errores si hay -->
+   
     <?php if (session()->getFlashdata('error')): ?>
         <p style="color:red;"><?= session()->getFlashdata('error') ?></p>
     <?php endif; ?>
     
-    <!-- Envolvemos el h1 y el formulario en un div contenedor -->
+    
     <div class="form-container">
         <?php if (!session()->getFlashData('codigoValido')): ?>
             <h1>Ingresar Código</h1>
@@ -27,7 +27,7 @@
         <?php endif; ?>
     </div>
 
-    <!-- Mostrar los pasos a seguir si el código es válido -->
+    
     <?php if (session()->getFlashdata('codigoValido')): ?>
         <div id="pasos-a-seguir" style="margin-top: 20px;">
             <h2>Pasos a seguir</h2>
