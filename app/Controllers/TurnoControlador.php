@@ -94,21 +94,16 @@ class TurnoControlador extends BaseController{
         $estados = $estadoModel->findAll();
         $horarios = $HorarioModel->findAll();
         $search = $this->request->getPost('search');
-        // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
-        $idPaciente = $pacienteModel->getPacientePorDNI($search);
-        if (!$search == null) {
-            return redirect()->back()->with('error', '529');
+	$search = (string)$search;
+	$idPaciente = $pacienteModel->where('dni', $search)->first();
+        if (!$search) {
+            return redirect()->back()->with('error', 'Introduzca un DNI');
         } else {
-            // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
-            $idPaciente = $pacienteModel->getPacientePorDNI($search);
-            if ($idPaciente) {
+            if (!$idPaciente) {
                 return redirect()->back()->with('error', 'Paciente no encontrado.');
             } else{
-                // $idPaciente = $pacienteModel->where('dni', $search)->findAll();
-                $idP = $pacienteModel->getPacientePorDNI($search);
-                // $turnos = $turnoModel->where('id_paciente', $idPaciente['id_Paciente'])->findAll();
-                $turnos = $turnoModel->test($idP);
-            }    
+                $turnos = $turnoModel->where('id_Paciente', $idPaciente['id_Paciente'])->findAll();
+            }
         }
 
         $estadosMap = [];

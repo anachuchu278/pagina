@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <!-- <form class="search" style="margin-top: 100px;" action="search">
-        <input type="text" placeholder="Ingrese un DNI..." name="search" aria-label="Search">
+    <form class="search" style="margin-top: 100px;" method="POST" action="<?= base_url('search') ?>">
+        <input type="number" placeholder="Ingrese un DNI..." id="search" name="search" aria-label="Search">
         <button class="box-new" type="submit">Buscar</button>
-    </form> -->
+    </form>
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-danger">
             <?= session()->getFlashdata('error') ?>
@@ -42,7 +42,7 @@
                     <tr>
                         <?php if (!empty($horarios)) : ?>
                             <?php foreach ($horarios as $horario) : ?>
-                                <?php if ($horario['id_Horario'] == $turno['fecha_hora']) : ?>
+                                <?php if ($horario['id_Horario'] == $turno['id_Horario']) : ?>
                                     <td><?= $horario['dia_sem']; ?> | <?= $horario['hora_inicio']; ?> - <?= $horario['hora_final']; ?></td>
                                 <?php endif; ?>
                             <?php endforeach; ?>
