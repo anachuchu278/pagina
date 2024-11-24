@@ -118,4 +118,37 @@ a {
 
 a:hover {
     background-color: #0056b3;
+} 
+/* Botón de cancelar turno */
+.btn-danger {
+    background-color: #e74c3c; /* Rojo intenso */
+    color: #ffffff; /* Texto blanco */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano al pasar el ratón */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+/* Hover para el botón */
+.btn-danger:hover {
+    background-color: #c0392b; /* Rojo más oscuro */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+/* Botón al hacer clic */
+.btn-danger:active {
+    background-color: #a93226; /* Rojo aún más oscuro */
+    transform: scale(0.95); /* Disminuye ligeramente el tamaño */
+}
+
+/* Botón deshabilitado */
+.btn-danger:disabled {
+    background-color: #e6e6e6; /* Gris claro */
+    color: #aaaaaa; /* Texto gris */
+    cursor: not-allowed; /* Cursor de prohibido */
+    box-shadow: none; /* Sin sombra */
 }

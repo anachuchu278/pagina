@@ -49,6 +49,7 @@ $routes->get('medico/(:num)', 'RecepcionControlador::perfilMedico/$1');
 $routes->get('formMedico', 'RecepcionControlador::formMed' ); 
 $routes->get('admin/deleteMed/(:num)', 'RecepcionControlador::deleteMedico/$1');
 $routes->get('turnosMedico', 'RecepcionControlador::turnosMedico');
+$routes->post('cancelarTurnos', 'RecepcionControlador::cancelarTurnosMedico');
 //Creacion de Admins 
 $routes->get('vistaAdmin', 'adminController::Admin'); 
 $routes->post('nuevoadmin', 'adminController::nuevoAdmin');

@@ -391,5 +391,26 @@ class RecepcionControlador extends BaseController
         $data['diasSemana'] = $diasSemana;
 
         return view('turnosMedico', $data);
+    } 
+    public function cancelarTurnosMedico(){
+        $turnoModel = new TurnoModel();
+        $estadoModel = new EstadoModel();
+    
+        
+        $idTurno = $this->request->getPost('id_turno');
+    
+        
+        $estadoCancelado = $estadoModel->where('estado', 'cancelado')->first();
+    
+        if ($estadoCancelado) {
+            
+            $turnoModel->update($idTurno, ['id_Estado' => $estadoCancelado['id_Estado']]);
+    
+            
+            return redirect()->back()->with('success', 'El turno ha sido cancelado exitosamente.');
+        } else {
+           
+            return redirect()->back()->with('error', 'El estado "cancelado" no existe en la base de datos.');
+        }
     }
 }

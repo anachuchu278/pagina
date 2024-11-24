@@ -51,11 +51,11 @@ class TurnoControlador extends BaseController{
         }
         $pacienteTurnos = [];
         foreach ($turnos as $turno){
-            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+            $pacienteTurnos[$turno['id_Paciente']] = $pacienteModel->find($turno['id_Paciente']);
         }
 
         foreach ($turnos as &$turno) {
-            $paciente = $pacienteModel->find($turno['id_paciente']);
+            $paciente = $pacienteModel->find($turno['id_Paciente']);
             if ($paciente) {
                 $turno['paciente'] = $paciente['nombre'];
             } else {
@@ -121,11 +121,11 @@ class TurnoControlador extends BaseController{
         }
         $pacienteTurnos = [];
         foreach ($turnos as $turno){
-            $pacienteTurnos[$turno['id_paciente']] = $pacienteModel->find($turno['id_paciente']);
+            $pacienteTurnos[$turno['id_Paciente']] = $pacienteModel->find($turno['id_Paciente']);
         }
 
         foreach ($turnos as &$turno) {
-            $paciente = $pacienteModel->find($turno['id_paciente']);
+            $paciente = $pacienteModel->find($turno['id_Paciente']);
             if ($paciente) {
                 $turno['paciente'] = $paciente['nombre'];
             } else {

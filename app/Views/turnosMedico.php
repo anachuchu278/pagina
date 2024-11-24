@@ -21,6 +21,12 @@
                     <td><?= esc($turno['Paciente']) ?></td>
                     <td><?= esc($turno['estado']) ?></td>
                     <td><?= date('d/m/Y g:i A', strtotime($turno['fecha_turno'])) ?></td>
+                    <td>
+                    <form action="<?= base_url('cancelarTurnos') ?>" method="post">
+                    <input type="hidden" name="id_turno" value="<?= esc($turno['id_Turno']) ?>">
+                    <button type="submit" class="btn btn-danger">Cancelar Turno</button>
+                    </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
