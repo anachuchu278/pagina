@@ -211,11 +211,13 @@ class TurnoControlador extends BaseController{
             ];
     
             $turnoModel->insertarDatos($data);
+	    $horario => $this->request-getPost('fecha_turno');
     
             $id_Metpago = $this->request->getPost('id_Metpago'); 
             switch ($id_Metpago) {
                 case 1:
                     $session->set('codigoturno' , $codigoturno);
+		    $session->set('horario',$horario);
                     return redirect()->to('pay');
                 case 2:
                     return redirect()->to('pagina')->with('message', 'Por favor diríjase a recepción para efectuar el pago.');

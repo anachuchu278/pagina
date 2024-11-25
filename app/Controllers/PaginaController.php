@@ -114,12 +114,13 @@ class PaginaController extends Controller{
     if ($session->get('user_id')) {
         $usuarioModel = new UsuarioModelo();
         $HorarioModel =new HorarioModelo();
+	$turnoModel = new TurnoModel();
         $id = $session->get('user_id');
 
         $codigoturno = $session->get('codigoturno');
         $id_horario = $session->get('horario');
         $horario = $HorarioModel->getHorario($id_horario);
-
+	$turno = $turnoModel->where('codigo_turno', $codigoturno)->first();
     
         $email = \Config\Services::email();
 
@@ -131,10 +132,12 @@ class PaginaController extends Controller{
 
         $email->setTo($destinatario); 
         $email->setSubject('Confirmación de Turno'); 
+	$fechaFormateada = (new \DateTime($turno['fecha_turno']))->format('d/m/Y H:i');
 
         $mensaje = "Su turno ha sido generado exitosamente.\n\n";
         $mensaje .= "Código de Turno: {$codigoturno}\n";
-        $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
+	$mensaje .= "Fecha del Turno: {$fechaFormateada}\n"; 
+        // $mensaje .= "El día: " . $horario['dia_sem'] . " desde las " . substr($horario['hora_inicio'],0,-3) . " hasta las " . substr($horario['hora_final'],0,-3) . "\n";
 
         $email->setMessage($mensaje);
 

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class HorarioModelo extends Model{
     protected $table      = 'horario_medico';
     // Uncomment below if you want add primary key
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id_Horario';
     protected $allowedFields = [
         'id_Horario',
         'dia_sem',

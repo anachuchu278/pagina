@@ -33,7 +33,7 @@ class LoginControlador extends BaseController{
                 $id = $user['id_Usuario'];
                 $idPaciente = $pacienteModel->getPacientePorUsuarioID($id);
                 if ($user['id_rol'] == 1 OR $user['id_rol'] == 3 OR $user['id_rol'] == 4) {
-                    if ($idPaciente){
+                    if (!$idPaciente){
                         return redirect()->to('newPacienteView');
                         // return redirect()->to('editPaciente/', $id);
                     } else {
