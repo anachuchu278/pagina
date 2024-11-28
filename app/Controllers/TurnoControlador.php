@@ -211,7 +211,6 @@ class TurnoControlador extends BaseController{
             ];
     
             $turnoModel->insertarDatos($data);
-	    $horario => $this->request-getPost('fecha_turno');
     
             $id_Metpago = $this->request->getPost('id_Metpago'); 
             switch ($id_Metpago) {
